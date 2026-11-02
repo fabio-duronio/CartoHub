@@ -1,4 +1,4 @@
-# 🇮🇹 Italian Geological Cartography Hub (IGC-Hub)
+# Italian Geological Cartography Hub (IGC-Hub)
 ### L'Hub digitale aperto per la cartografia geologica in Italia.
 
 **Progetto a cura di [Geologiaintasca](https://www.geologiaintasca.it)**

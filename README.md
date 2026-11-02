@@ -61,7 +61,7 @@ python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni
 - [x] Livello Journal of Maps da Crossref, con DOI verificati
 - [x] Confini regionali ufficiali ISTAT
 - [ ] Localizzare manualmente le 128 pubblicazioni in `jom_da_localizzare.csv`
-- [ ] Verificare i 21 link dei geoportali regionali
+- [ ] Verificare i link dei geoportali regionali (6 sostituiti il 3/11/2026, da ricontrollare)
 - [ ] Carta Geologica d'Italia 1:100.000 (277 fogli)
 - [ ] Cartografia geologica marina (CARG Mare)
 
@@ -69,7 +69,7 @@ python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni
 Il repository è un **indice di collegamenti** a risorse esterne.
 
 * **Codice:** licenza [MIT](LICENSE).
-* **Quadro d'unione CARG:** © ISPRA – Servizio Geologico d'Italia. Il servizio non dichiara una licenza per questo layer; i dati CARG 1:50.000 sono distribuiti da ISPRA con licenza CC BY 4.0 (metadati INSPIRE del dataset raster).
+* **Quadro d'unione CARG:** © ISPRA – Servizio Geologico d'Italia, licenza **CC BY 4.0**, come per i dati CARG 1:50.000 nei metadati INSPIRE ISPRA (scelta confermata dal curatore del progetto il 3/11/2026).
 * **Confini amministrativi:** © ISTAT, licenza CC BY 4.0.
 * **Journal of Maps:** sono indicizzati solo i metadati bibliografici. Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
 

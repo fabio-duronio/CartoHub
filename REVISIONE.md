@@ -25,8 +25,17 @@ Tutti i problemi bloccanti delle sezioni 1 e 2 sono stati risolti ricostruendo i
 
 **Limiti noti**
 - Stato dei fogli CARG: le etichette interpretano codici ISPRA non documentati (`bd` → Realizzato, `finanziati` → Finanziato / in corso).
-- Licenza del quadro d'unione ISPRA: il servizio riporta solo "© Servizio Geologico d'Italia – ISPRA". La licenza CC BY 4.0 è dichiarata per il dataset raster CARG 1:50k, non esplicitamente per questo layer. **Serve una conferma del proprietario del progetto.**
-- I link dei geoportali regionali non sono verificati, perché i siti bloccano l'accesso automatico.
+- Licenza del quadro d'unione ISPRA: il servizio riporta solo "© Servizio Geologico d'Italia – ISPRA". **Decisione (3/11/2026):** si adotta la CC BY 4.0, la licenza dichiarata da ISPRA per i dati CARG 1:50k, con attribuzione a ISPRA.
+- Link dei geoportali regionali: il curatore ha verificato che i 6 link in http non funzionavano. Sono stati sostituiti con risorse trovate sui siti ufficiali o sul catalogo nazionale RNDT (geodati.gov.it) e vanno ricontrollati. Gli altri 15 link non sono ancora verificati.
+
+| Ente | Nuovo link | Note |
+|---|---|---|
+| Abruzzo | geoportale.regione.abruzzo.it/Cartanet/catalogo/difesa-suolo-geologia | il vecchio link usava "geoportal"; resta in http |
+| Calabria | geodati.gov.it – Carta Geologica raster 1:25.000 | scheda del catalogo nazionale, non il visualizzatore |
+| Lazio | dati.lazio.it – Carta Geologica informatizzata 1:25.000 | open data regionali |
+| Puglia | SIT Puglia – servizi WMS | la Puglia non ha una carta geologica regionale: il prodotto di riferimento è la Carta Idrogeomorfologica |
+| Trento | provincia.tn.it – Carta Geologica della Provincia | |
+| Bolzano | Geocatalogo provinciale – Carta geologica | scheda di metadati con i servizi |
 - Precisione regionale: per 116 pubblicazioni il punto indica solo la regione, ad esempio il centro della Calabria.
 
 ---

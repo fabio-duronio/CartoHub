@@ -83,9 +83,9 @@ def main(path_reg, path_prov):
     nuove, mancanti = [], []
     for f in attuale["features"]:
         titolo = f["properties"]["Title"]
-        if "(Trento)" in titolo:
+        if "Trento" in titolo:
             chiave = "prov_TN"
-        elif "(Bolzano)" in titolo:
+        elif "Bolzano" in titolo:
             chiave = "prov_BZ"
         else:
             chiave = norm(titolo)

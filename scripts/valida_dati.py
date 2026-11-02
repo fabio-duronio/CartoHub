@@ -86,22 +86,29 @@ def controlla_file(path):
             segnala("E", nome, f"{len(fuori)} DOI non appartengono al Journal of Maps (prefisso {JOM_PREFIX})")
 
     if "carg" in nome:
-        # Verifica di plausibilità: il Foglio 1 (Passo di Resia) si trova intorno a 10.5°E, 46.8°N.
+        # Punti di controllo: località note che devono cadere nel foglio con quel nome.
+        controlli = {"L'Aquila": (13.40, 42.35), "Napoli": (14.25, 40.85), "Genova": (8.93, 44.41)}
         for f in fs:
-            if str(f["properties"].get("Title", "")).startswith("Foglio 1 "):
-                x0, y0, x1, y1 = bbox(f["geometry"]["coordinates"])
-                if not (x0 <= 10.5 <= x1 + 0.5 and y0 - 0.5 <= 46.8 <= y1 + 0.5):
-                    segnala("E", nome, f"Foglio 1 posizionato a {x0}-{x1}°E: griglia non georeferenziata correttamente")
-        dimensioni = Counter(
-            (round(bbox(f["geometry"]["coordinates"])[2] - bbox(f["geometry"]["coordinates"])[0], 3),
-             round(bbox(f["geometry"]["coordinates"])[3] - bbox(f["geometry"]["coordinates"])[1], 3))
-            for f in fs)
-        attesa = (0.333, 0.2)  # fogli IGM 1:50.000: 20' x 12'
-        if attesa not in dimensioni:
-            segnala("E", nome, f"dimensione fogli {dict(dimensioni)} diversa da 20'x12' ({attesa}°)")
-        segnaposto = sum(1 for f in fs if not re.match(r"^10\.", str(f["properties"].get("DOI", ""))))
-        if segnaposto:
-            segnala("W", nome, f"{segnaposto} valori DOI non sono DOI (testo segnaposto)")
+            loc = str(f["properties"].get("Location", ""))
+            if loc in controlli:
+                x, y = controlli[loc]
+                g = f["geometry"]
+                anelli = g["coordinates"] if g["type"] == "Polygon" else [r for q in g["coordinates"] for r in q]
+                x0, y0, x1, y1 = bbox(anelli)
+                if not (x0 <= x <= x1 and y0 <= y <= y1):
+                    segnala("E", nome, f"il foglio {loc} non contiene {loc} ({x},{y}): griglia non georeferenziata")
+        # Fogli standard IGM 1:50.000: 20' x 12'
+        standard = [f for f in fs if f["geometry"]["type"] == "Polygon"
+                    and f["properties"].get("Estensione") == "Standard"]
+        fuori_formato = 0
+        for f in standard:
+            x0, y0, x1, y1 = bbox(f["geometry"]["coordinates"])
+            if abs((x1 - x0) - 1 / 3) > 0.01 or abs((y1 - y0) - 0.2) > 0.01:
+                fuori_formato += 1
+        if fuori_formato:
+            segnala("E", nome, f"{fuori_formato} fogli standard non misurano 20'x12'")
+        if not standard:
+            segnala("E", nome, "nessun foglio 'Standard': schema CARG non riconosciuto")
 
     print(f"{nome}: {len(fs)} feature")
 

@@ -1,64 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>Geological Cartography Hub - Italy</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
-    <style>
-        body { margin: 0; padding: 0; }
-        #map { width: 100%; height: 100vh; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGC-Hub – Cartografia geologica italiana</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; }
+    #map { height: 100%; }
+    .avviso { position: absolute; z-index: 1000; left: 50%; transform: translateX(-50%); top: 10px;
+              background: #fff8e1; border: 1px solid #f0c36d; padding: 6px 12px; border-radius: 4px;
+              font-size: 13px; max-width: 90%; }
+  </style>
 </head>
 <body>
-
+<div class="avviso">⚠️ Dati in revisione: le geometrie sono indicative e non vanno usate per localizzare i fogli.
+  Vedi <a href="REVISIONE.md">REVISIONE.md</a>.</div>
 <div id="map"></div>
-
 <script>
-    var map = L.map('map').setView([42.5, 12.5], 6);
+  const map = L.map('map').setView([42.5, 12.5], 6);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
 
-    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+  // Evita che testo nei dati venga interpretato come HTML
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const safeUrl = u => /^https?:\/\//.test(u || '') ? u : '#';
 
-    var styleJoM = { color: "#ff0000", weight: 2, opacity: 0.8, fillOpacity: 0.1 };
-    var styleCARG = { color: "#0000ff", weight: 1, opacity: 0.6, fillOpacity: 0.1, dashArray: '5, 5' };
+  function popup(feature, layer) {
+    const p = feature.properties || {};
+    let html = `<b>${esc(p.Title)}</b>`;
+    if (p.Description) html += `<br>${esc(p.Description)}`;
+    if (p.DOI && /^10\./.test(p.DOI)) html += `<br>DOI: ${esc(p.DOI)}`;
+    html += `<br><a href="${esc(safeUrl(p.URL))}" target="_blank" rel="noopener">Apri risorsa</a>`;
+    layer.bindPopup(html);
+  }
 
-    function onEachFeature(feature, layer) {
-        if (feature.properties) {
-            layer.bindPopup(
-                "<b>" + feature.properties.Title + "</b><br>" +
-                "Location: " + feature.properties.Location + "<br>" +
-                "<a href='" + feature.properties.URL + "' target='_blank'>Vedi Risorsa</a>"
-            );
-        }
-    }
+  const livelli = [
+    { nome: 'Progetto CARG 1:50.000', file: 'dati/carg/carg_50k_fogli.geojson',
+      stile: { color: '#1f5fbf', weight: 1, fillOpacity: 0.05, dashArray: '4 4' } },
+    { nome: 'Geoportali regionali', file: 'dati/geoportali_regionali/geoportali_regionali.geojson',
+      stile: { color: '#2e8b57', weight: 2, fillOpacity: 0.05 } },
+    { nome: 'Journal of Maps', file: 'dati/journal_of_maps/jom_italia.geojson',
+      stile: { color: '#c62828', weight: 2, fillOpacity: 0.1 } }
+  ];
 
-    // *** QUI È LA MODIFICA IMPORTANTE: AGGIUNTO "dati/" ***
-    var jomLayer = new L.GeoJSON.AJAX("dati/journal_of_maps_italy_top150.geojson", {
-        style: styleJoM,
-        onEachFeature: onEachFeature
-    });
-
-    var cargLayer = new L.GeoJSON.AJAX("dati/carg_italy_GRID_FIXED.geojson", {
-        style: styleCARG,
-        onEachFeature: onEachFeature
-    });
-
-    jomLayer.addTo(map);
-    cargLayer.addTo(map);
-
-    var baseMaps = { "Base OpenStreetMap": osm };
-    var overlayMaps = {
-        "<span style='color:red'>■</span> Journal of Maps (Ricerca)": jomLayer,
-        "<span style='color:blue'>■</span> Progetto CARG (Ufficiale)": cargLayer
-    };
-
-    L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
+  const controllo = L.control.layers(null, {}, { collapsed: false }).addTo(map);
+  livelli.forEach(l => {
+    fetch(l.file)
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(dati => {
+        const layer = L.geoJSON(dati, { style: l.stile, onEachFeature: popup }).addTo(map);
+        controllo.addOverlay(layer, `<span style="color:${l.stile.color}">■</span> ${l.nome}`);
+      })
+      .catch(e => console.error('Impossibile caricare', l.file, e));
+  });
 </script>
-
 </body>
 </html>

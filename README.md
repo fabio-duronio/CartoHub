@@ -18,7 +18,7 @@ Questo repository ospita un indice geografico (GeoJSON) delle risorse cartografi
 |---|---|---|---|
 | Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 652 | Griglia da ricostruire |
 | Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 119 | DOI da verificare |
-| Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 | Geometrie semplificate, link da verificare |
+| Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 | Confini ISTAT; link da verificare |
 
 Tutti i file condividono lo stesso schema: `Title`, `URL`, `Location`, `Type` (più `DOI` o `Description` dove pertinente).
 
@@ -32,7 +32,7 @@ Selezione di pubblicazioni con mappe di aree italiane: geologia, geomorfologia, 
 
 ### 3. Geoportali regionali
 Accesso diretto ai geoportali e WebGIS regionali e delle Province autonome di Trento e Bolzano (21 enti), dove si trova la cartografia geologica di dettaglio (spesso 1:10.000 o 1:25.000).
-*Fonte: selezione manuale dei servizi regionali.*
+*Fonte link: selezione manuale dei servizi regionali. Confini: ISTAT, 1° gennaio 2026 (CC BY 4.0), via [openpolis/geojson-italy](https://github.com/openpolis/geojson-italy), semplificati a circa 300 m.*
 
 ---
 
@@ -45,7 +45,7 @@ Lo script controlla schema, duplicati, posizione geografica, DOI e dimensione de
 ## Roadmap
 - [ ] **Priorità:** ricostruire la griglia CARG dal quadro d'unione ufficiale ISPRA (fogli 20'×12').
 - [ ] **Priorità:** ricostruire il livello Journal of Maps da Crossref (solo DOI con prefisso `10.1080/17445647.`).
-- [ ] Sostituire i rettangoli regionali con i confini amministrativi ufficiali.
+- [x] Sostituire i rettangoli regionali con i confini amministrativi ufficiali ISTAT.
 - [ ] Carta Geologica d'Italia 1:100.000 (277 fogli), utile nelle aree non coperte dal CARG.
 - [ ] Cartografia geologica marina (CARG Mare).
 
@@ -53,6 +53,7 @@ Lo script controlla schema, duplicati, posizione geografica, DOI e dimensione de
 Il repository è un **indice di collegamenti** a risorse esterne.
 
 * **Codice:** licenza [MIT](LICENSE).
+* **Confini regionali:** © ISTAT, licenza CC BY 4.0.
 * **Dati CARG e regionali:** appartengono ai rispettivi enti (ISPRA, Regioni, Province autonome), che restano titolari delle licenze.
 * **Journal of Maps:** sono indicizzati solo i metadati bibliografici (titolo, DOI). Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
 

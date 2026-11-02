@@ -56,14 +56,18 @@ def controlla_file(path):
         titoli[str(p.get("Title", "")).strip().lower()] += 1
         if p.get("DOI"):
             dois[p["DOI"]] += 1
-        if g.get("type") != "Polygon":
+        if g.get("type") == "Polygon":
+            anelli = g["coordinates"]
+        elif g.get("type") == "MultiPolygon":
+            anelli = [r for pol in g["coordinates"] for r in pol]
+        else:
+            segnala("E", nome, f"#{i} geometria mancante o di tipo non gestito: {g.get('type')}")
             continue
-        ring = g["coordinates"][0]
-        if ring[0] != ring[-1]:
+        if any(r[0] != r[-1] for r in anelli):
             segnala("E", nome, f"#{i} anello non chiuso")
-        if len(ring) == 5:
+        if g["type"] == "Polygon" and len(anelli[0]) == 5:
             rettangoli += 1
-        x0, y0, x1, y1 = bbox(g["coordinates"])
+        x0, y0, x1, y1 = bbox(anelli)
         if x0 < BBOX_ITALIA[0] or y0 < BBOX_ITALIA[1] or x1 > BBOX_ITALIA[2] or y1 > BBOX_ITALIA[3]:
             segnala("E", nome, f"#{i} '{p.get('Title')}' fuori dall'Italia: {x0},{y0},{x1},{y1}")
 

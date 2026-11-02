@@ -14,7 +14,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1] / "dati"
 CAMPI = {"Title", "URL", "Location", "Type"}
 BBOX_ITALIA = (6.0, 35.0, 19.0, 47.5)  # lon_min, lat_min, lon_max, lat_max
-JOM_PREFIX = "10.1080/17445647."
+# Prefissi DOI del Journal of Maps: attuale (Taylor & Francis) e storici (2005-2011)
+JOM_PREFIX = ("10.1080/17445647.", "10.1080/jom.", "10.4113/jom.")
 
 problemi = []
 
@@ -56,6 +57,11 @@ def controlla_file(path):
         titoli[str(p.get("Title", "")).strip().lower()] += 1
         if p.get("DOI"):
             dois[p["DOI"]] += 1
+        if g.get("type") == "Point":
+            x, y = g["coordinates"][:2]
+            if not (BBOX_ITALIA[0] <= x <= BBOX_ITALIA[2] and BBOX_ITALIA[1] <= y <= BBOX_ITALIA[3]):
+                segnala("E", nome, f"#{i} '{p.get('Title')}' fuori dall'Italia: {x},{y}")
+            continue
         if g.get("type") == "Polygon":
             anelli = g["coordinates"]
         elif g.get("type") == "MultiPolygon":
@@ -81,9 +87,9 @@ def controlla_file(path):
         segnala("W", nome, f"tutte le {len(fs)} geometrie sono rettangoli (bounding box, non perimetri reali)")
 
     if "journal_of_maps" in nome:
-        fuori = [x for x in dois if not str(x).startswith(JOM_PREFIX)]
+        fuori = [x for x in dois if not str(x).lower().startswith(JOM_PREFIX)]
         if fuori:
-            segnala("E", nome, f"{len(fuori)} DOI non appartengono al Journal of Maps (prefisso {JOM_PREFIX})")
+            segnala("E", nome, f"{len(fuori)} DOI non appartengono al Journal of Maps (prefissi {JOM_PREFIX})")
 
     if "carg" in nome:
         # Punti di controllo: località note che devono cadere nel foglio con quel nome.

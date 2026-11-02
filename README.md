@@ -3,62 +3,78 @@
 
 **Progetto a cura di [Geologiaintasca](https://www.geologiaintasca.it)**
 
-Questo repository ospita un indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. L'obiettivo è riunire in un'unica mappa interattiva i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi.
+Questo repository ospita un indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. L'obiettivo è riunire in un'unica mappa i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi.
 
 [**Mappa interattiva (uMap)**](https://umap.openstreetmap.fr/it/map/cartografia-geologica-italiana_1338725) · [Anteprima Leaflet](index.html)
 
-> [!WARNING]
-> **Dati in revisione (novembre 2026).** Le geometrie attuali sono indicative: la griglia CARG non corrisponde alla posizione reale dei fogli, e parte dei riferimenti del livello Journal of Maps non è verificata. Non usare la mappa per localizzare un foglio o una pubblicazione. Dettagli e piano di correzione in [REVISIONE.md](REVISIONE.md).
+> [!NOTE]
+> **Dati ricostruiti a novembre 2026** da fonti ufficiali (ISPRA, ISTAT, Crossref). Cosa è cambiato e quali limiti restano: [REVISIONE.md](REVISIONE.md).
 
 ---
 
 ## Dataset
 
-| Livello | File | Feature | Stato |
+| Livello | File | Feature | Fonte |
 |---|---|---|---|
-| Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 652 | Griglia da ricostruire |
-| Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 119 | DOI da verificare |
-| Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 | Confini ISTAT; link da verificare |
+| Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 636 fogli | Quadro d'unione ISPRA |
+| Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 226 pubblicazioni | Crossref + confini ISTAT |
+| Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 enti | Selezione manuale + confini ISTAT |
 
-Tutti i file condividono lo stesso schema: `Title`, `URL`, `Location`, `Type` (più `DOI` o `Description` dove pertinente).
+Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`.
 
 ### 1. Cartografia ufficiale (Progetto CARG)
-Quadro dei 652 fogli geologici previsti dal Progetto CARG alla scala 1:50.000. Ogni foglio rimanda alla ricerca nell'archivio Open Access di ISPRA (OAR).
-*Fonte: Servizio Geologico d'Italia – ISPRA.*
+Quadro d'unione dei fogli geologici alla scala 1:50.000 (CARG e pre-CARG), con la posizione reale di ogni foglio.
+* **Campi:** `Foglio`, `Stato`, `Raster`, `Estensione` (fogli standard, estesi o accorpati), `URL`.
+* **Stato** (dal campo ISPRA `stato`): 214 *Realizzato*, 64 *Finanziato / in corso*, 358 *Non avviato o non indicato*. Le etichette interpretano i codici ISPRA (`bd`, `finanziati`), che il servizio non documenta.
+* **URL:** 243 fogli hanno la pagina dedicata ISPRA. Gli altri rimandano alla pagina generale CARG, e il campo `URL_tipo` lo indica.
+* I fogli accorpati (es. 1-7 Vipiteno) sono un'unica feature: un clic corrisponde a un foglio pubblicato.
+
+*Fonte: ISPRA – Servizio Geologico d'Italia, servizio [Antropico25k, layer "Quadro unione Fogli"](https://sinacloud.isprambiente.it/arcgisgeo/rest/services/servizi/Antropico25k/MapServer/0).*
 
 ### 2. Ricerca scientifica (Journal of Maps)
-Selezione di pubblicazioni con mappe di aree italiane: geologia, geomorfologia, rischi geologici.
-*Fonte metadati: Crossref.*
+Pubblicazioni del *Journal of Maps* su aree italiane, ognuna con DOI verificato su Crossref.
+* **Posizione:** un punto sul centroide dell'unità ISTAT più specifica citata nel titolo. Le pubblicazioni sono 103 a livello di comune, 7 di provincia e 116 di regione, come indicato nel campo `Precisione`. **Non è l'area cartografata**: serve a trovare la pubblicazione, non a delimitarla.
+* **Non posizionate:** 128 pubblicazioni non hanno un toponimo ISTAT nel titolo (es. Etna, Campi Flegrei, Dolomiti) oppure citano più regioni. Sono elencate in `jom_da_localizzare.csv` e non vengono collocate a stima.
+* **Licenza:** il campo `Licenza` riporta quella dichiarata in Crossref: 95 CC BY 4.0, 20 CC BY-NC 4.0, 3 CC BY-NC-ND 4.0. Per 108 articoli Crossref non indica la licenza: va verificata sulla pagina dell'articolo prima di riusarne le figure.
+
+*Fonte: metadati [Crossref](https://www.crossref.org/) (ISSN 1744-5647); confini ISTAT per la localizzazione.*
 
 ### 3. Geoportali regionali
-Accesso diretto ai geoportali e WebGIS regionali e delle Province autonome di Trento e Bolzano (21 enti), dove si trova la cartografia geologica di dettaglio (spesso 1:10.000 o 1:25.000).
-*Fonte link: selezione manuale dei servizi regionali. Confini: ISTAT, 1° gennaio 2026 (CC BY 4.0), via [openpolis/geojson-italy](https://github.com/openpolis/geojson-italy), semplificati a circa 300 m.*
+Accesso ai geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano (21 enti), dove si trova la cartografia geologica di dettaglio.
+
+*Fonte link: selezione manuale. Confini: ISTAT, 1° gennaio 2026 (CC BY 4.0), via [openpolis/geojson-italy](https://github.com/openpolis/geojson-italy), semplificati a circa 300 m.*
 
 ---
 
-## Controllo qualità
+## Rigenerare i dati
+Ogni livello ha uno script che lo ricostruisce dalla fonte. Le istruzioni per scaricare i dati di partenza sono nell'intestazione di ciascuno script.
+
 ```bash
-python3 scripts/valida_dati.py
+python3 scripts/build_carg.py <quadro_unione_ispra.geojson>
+python3 scripts/build_jom.py <crossref.json> <regions> <provinces> <municipalities>
+python3 scripts/build_geoportali.py <regions> <provinces>
+python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni commit
 ```
-Lo script controlla schema, duplicati, posizione geografica, DOI e dimensione dei fogli. Va eseguito prima di ogni commit sui dati.
 
 ## Roadmap
-- [ ] **Priorità:** ricostruire la griglia CARG dal quadro d'unione ufficiale ISPRA (fogli 20'×12').
-- [ ] **Priorità:** ricostruire il livello Journal of Maps da Crossref (solo DOI con prefisso `10.1080/17445647.`).
-- [x] Sostituire i rettangoli regionali con i confini amministrativi ufficiali ISTAT.
-- [ ] Carta Geologica d'Italia 1:100.000 (277 fogli), utile nelle aree non coperte dal CARG.
-- [ ] Cartografia geologica marina (CARG Mare).
+- [x] Griglia CARG dal quadro d'unione ufficiale ISPRA
+- [x] Livello Journal of Maps da Crossref, con DOI verificati
+- [x] Confini regionali ufficiali ISTAT
+- [ ] Localizzare manualmente le 128 pubblicazioni in `jom_da_localizzare.csv`
+- [ ] Verificare i 21 link dei geoportali regionali
+- [ ] Carta Geologica d'Italia 1:100.000 (277 fogli)
+- [ ] Cartografia geologica marina (CARG Mare)
 
 ## Licenze e disclaimer
 Il repository è un **indice di collegamenti** a risorse esterne.
 
 * **Codice:** licenza [MIT](LICENSE).
-* **Confini regionali:** © ISTAT, licenza CC BY 4.0.
-* **Dati CARG e regionali:** appartengono ai rispettivi enti (ISPRA, Regioni, Province autonome), che restano titolari delle licenze.
-* **Journal of Maps:** sono indicizzati solo i metadati bibliografici (titolo, DOI). Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
+* **Quadro d'unione CARG:** © ISPRA – Servizio Geologico d'Italia. Il servizio non dichiara una licenza per questo layer; i dati CARG 1:50.000 sono distribuiti da ISPRA con licenza CC BY 4.0 (metadati INSPIRE del dataset raster).
+* **Confini amministrativi:** © ISTAT, licenza CC BY 4.0.
+* **Journal of Maps:** sono indicizzati solo i metadati bibliografici. Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
 
 *Geologiaintasca non è titolare dei dati cartografici collegati: fornisce solo il servizio di indicizzazione geografica.*
 
 ## Contribuire
-1. Apri una **Issue** per segnalare una mappa o un errore.
+1. Apri una **Issue** per segnalare una mappa, un errore o una localizzazione.
 2. Fai un **fork** e invia una pull request, dopo aver eseguito `scripts/valida_dati.py`.

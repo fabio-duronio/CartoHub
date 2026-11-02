@@ -2,6 +2,37 @@
 
 Branch: `revisione-2026-11`. Controlli ripetibili con `python3 scripts/valida_dati.py`.
 
+## 0. Aggiornamento: dati ricostruiti (stesso giorno)
+
+Tutti i problemi bloccanti delle sezioni 1 e 2 sono stati risolti ricostruendo i dati da fonti ufficiali. Il validatore ora riporta **0 errori**; restano 6 avvisi, tutti relativi a link regionali in http.
+
+| Livello | Prima | Dopo | Fonte | Script |
+|---|---|---|---|---|
+| CARG | 652 rettangoli in posizione inventata | 636 fogli georeferenziati 20'×12', con stato ISPRA | Quadro d'unione ISPRA (Antropico25k, layer 0) | `build_carg.py` |
+| Journal of Maps | 119 voci, 84 DOI di altre riviste | 226 pubblicazioni con DOI Crossref, licenza e precisione della localizzazione | Crossref ISSN 1744-5647 + confini ISTAT | `build_jom.py` |
+| Geoportali | 21 rettangoli sovrapposti | 21 confini ISTAT (Trento e Bolzano separate) | ISTAT 2026 via openpolis | `build_geoportali.py` |
+
+**Scelte di metodo (Journal of Maps)**
+- Le pubblicazioni sono **punti**, non poligoni. Crossref non fornisce l'area cartografata, e un rettangolo stimato sembrerebbe preciso senza esserlo. Il punto si trova sul centroide dell'unità ISTAT citata nel titolo; il campo `Precisione` dice quale (comune, provincia o regione).
+- Regole contro i falsi positivi, ciascuna verificata sui casi reali emersi:
+  - un nome di regione o comune vale solo se scritto con la maiuscola ("Adriatic piedmont" non è il Piemonte, "thrust zone" non è il comune di Zone);
+  - un toponimo non vale se fa parte di un nome composto ("Santa Barbara Basin" non è il comune di Barbara; "Ferriere-Mollieres Shear Zone" non è Ferriere in provincia di Piacenza; "Piemonte-Ligurian units" non è il Piemonte);
+  - i comuni omonimi di regioni o subregioni sono esclusi (Molise, Salento);
+  - un comune con nome non univoco in Italia viene accettato solo se il titolo cita anche la sua regione.
+- I DOI storici del Journal of Maps (`10.4113/jom.*`, `10.1080/jom.*`, 2005-2011) sono validi. Se lo stesso articolo ha due DOI, si tiene quello Taylor & Francis.
+- È stato escluso un record che Crossref associa all'ISSN del Journal of Maps ma con DOI di un'altra rivista (`10.1080/17530350.*`).
+- 128 pubblicazioni non sono posizionate: non hanno toponimi ISTAT nel titolo, come per Etna, Campi Flegrei o Dolomiti, oppure citano più regioni. Sono elencate in `dati/journal_of_maps/jom_da_localizzare.csv`.
+
+**Limiti noti**
+- Stato dei fogli CARG: le etichette interpretano codici ISPRA non documentati (`bd` → Realizzato, `finanziati` → Finanziato / in corso).
+- Licenza del quadro d'unione ISPRA: il servizio riporta solo "© Servizio Geologico d'Italia – ISPRA". La licenza CC BY 4.0 è dichiarata per il dataset raster CARG 1:50k, non esplicitamente per questo layer. **Serve una conferma del proprietario del progetto.**
+- I link dei geoportali regionali non sono verificati, perché i siti bloccano l'accesso automatico.
+- Precisione regionale: per 116 pubblicazioni il punto indica solo la regione, ad esempio il centro della Calabria.
+
+---
+
+*Le sezioni seguenti documentano lo stato iniziale del repository.*
+
 Livelli: **E** = errore bloccante (dato sbagliato) · **W** = avviso (dato approssimato o fragile).
 
 ## 1. Problemi nei dati (non corretti in questa revisione)
@@ -22,7 +53,7 @@ Livelli: **E** = errore bloccante (dato sbagliato) · **W** = avviso (dato appro
 | # | Liv. | Problema | Evidenza |
 |---|---|---|---|
 | J1 | E | **84 DOI su 119 non appartengono al Journal of Maps.** Alcuni rimandano a riviste o libri senza relazione con il titolo. | Esempi: `10.1038/044271a0` (Nature, 1891) per il Vesuvio, `10.1093/owc/…` (Oxford World's Classics) per il Brennero, `10.17656/jzs.10477` (rivista irachena) usato sia per la Toscana sia per la Sardegna. |
-| J2 | E | **Anche i DOI con prefisso corretto sono in parte inesistenti.** | A campione su Crossref, 5 non risolvono (es. `…2014.891267`, `…2014.935503`, `…2012.668423`, `…2024.2359973`, `…2014.959569`). Altri esistono ma con titolo diverso: per esempio `…2019.1633426` è "Geomorphology of the Rio Cisles basin (Odle Group…)", non "Geomorphology of the Dolomites". |
+| J2 | E | **I titoli non corrispondono ai DOI.** ~~Una prima versione di questo rapporto indicava 5 DOI come inesistenti: l'affermazione era sbagliata.~~ Le mancate risposte venivano dallo strumento di consultazione, non da Crossref. L'export Crossref completo conferma che `…2014.891267`, `…2014.935503`, `…2012.668423` e `…2014.959569` esistono. Resta il problema dei titoli. | Per esempio `…2019.1633426` è "Geomorphology of the Rio Cisles basin (Odle Group…)", non "Geomorphology of the Dolomites"; `…2014.891267` è "Drought events… (Calabria)", non "Drought events in Calabria". Solo 28 dei 119 DOI originali compaiono nell'export Crossref "Italy". |
 | J3 | E | 4 DOI duplicati, assegnati a pubblicazioni diverse. | `…2013.842507` usato per Monviso e per Argentera |
 | J4 | E | I titoli sono generici ("Geology of X") e non corrispondono ai titoli reali. | — |
 | J5 | W | Le geometrie sono rettangoli approssimati, non l'area cartografata. | 119 su 119 |

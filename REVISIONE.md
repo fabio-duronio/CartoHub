@@ -31,7 +31,7 @@ Tutti i problemi bloccanti delle sezioni 1 e 2 sono stati risolti ricostruendo i
 | Ente | Nuovo link | Note |
 |---|---|---|
 | Abruzzo | geoportale.regione.abruzzo.it/Cartanet/catalogo/difesa-suolo-geologia | il vecchio link usava "geoportal"; resta in http |
-| Calabria | geodati.gov.it – Carta Geologica raster 1:25.000 | scheda del catalogo nazionale, non il visualizzatore |
+| Calabria | regione.calabria.it – Portale cartografico WebGIS | 3/11: anche la scheda geodati.gov.it non funzionava. Non risulta un visualizzatore online della Carta Geologica 1:25.000: il link porta alla pagina WebGIS regionale |
 | Lazio | dati.lazio.it – Carta Geologica informatizzata 1:25.000 | open data regionali |
 | Puglia | SIT Puglia – servizi WMS | la Puglia non ha una carta geologica regionale: il prodotto di riferimento è la Carta Idrogeomorfologica |
 | Trento | provincia.tn.it – Carta Geologica della Provincia | |

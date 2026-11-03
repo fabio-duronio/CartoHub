@@ -1,0 +1,4751 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Engineering geological map of the Chiavari city area (Liguria, Italy)",
+    "DOI": "10.1080/17445647.2012.668756",
+    "URL": "https://doi.org/10.1080/17445647.2012.668756",
+    "Location": "Chiavari (GE)",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.3171,
+     44.3292
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Morphotectonic map of the Osento River basin (Abruzzo, Italy), scale 1:30,000",
+    "DOI": "10.1080/17445647.2012.668764",
+    "URL": "https://doi.org/10.1080/17445647.2012.668764",
+    "Location": "Abruzzo",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8548,
+     42.2274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological map of the Tremiti Islands (Puglia, Southern Adriatic Sea, Italy), scale 1:15,000",
+    "DOI": "10.1080/17445647.2012.668765",
+    "URL": "https://doi.org/10.1080/17445647.2012.668765",
+    "Location": "Puglia",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6197,
+     40.9843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Map of changes in landscape naturalness in the Fiastra and Salino catchment basins (central Italy)",
+    "DOI": "10.1080/17445647.2012.668769",
+    "URL": "https://doi.org/10.1080/17445647.2012.668769",
+    "Location": "Fiastra (MC)",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1698,
+     43.0394
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological map of the Lipari volcanic island (Aeolian Archipelago – Italy)",
+    "DOI": "10.1080/17445647.2012.668770",
+    "URL": "https://doi.org/10.1080/17445647.2012.668770",
+    "Location": "Lipari (ME)",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.936,
+     38.4871
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological map of the Montelago area (North Marche Apennines, central Italy): constrains for two relict lakes",
+    "DOI": "10.1080/17445647.2012.668771",
+    "URL": "https://doi.org/10.1080/17445647.2012.668771",
+    "Location": "Marche",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1421,
+     43.3452
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Integrated geomorphological mapping in the north-western sector of Agrigento (Italy)",
+    "DOI": "10.1080/17445647.2012.680775",
+    "URL": "https://doi.org/10.1080/17445647.2012.680775",
+    "Location": "Agrigento (AG)",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.5656,
+     37.3224
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Landslide inventory map for the Briga and the Giampilieri catchments, NE Sicily, Italy",
+    "DOI": "10.1080/17445647.2012.694271",
+    "URL": "https://doi.org/10.1080/17445647.2012.694271",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Environmental climatic maps of Liguria (Italy)",
+    "DOI": "10.1080/17445647.2012.703901",
+    "URL": "https://doi.org/10.1080/17445647.2012.703901",
+    "Location": "Liguria",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.7043,
+     44.2648
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological map of the northeastern sector of the high Agri Valley, Southern Apennines (Basilicata, Italy)",
+    "DOI": "10.1080/17445647.2012.722403",
+    "URL": "https://doi.org/10.1080/17445647.2012.722403",
+    "Location": "Basilicata",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.0817,
+     40.4998
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Sedimentological and morpho-evolution maps of the ‘ <i>Bosco Pantano di Policoro</i> ’ coastal system (Gulf of Taranto, southern Italy)",
+    "DOI": "10.1080/17445647.2012.722791",
+    "URL": "https://doi.org/10.1080/17445647.2012.722791",
+    "Location": "Policoro (MT)",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.668,
+     40.1968
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Multi-temporal mapping of land subsidence at basin scale exploiting Persistent Scatterer Interferometry: case study of Gioia Tauro plain (Italy)",
+    "DOI": "10.1080/17445647.2012.743440",
+    "URL": "https://doi.org/10.1080/17445647.2012.743440",
+    "Location": "Gioia Tauro (RC)",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.9221,
+     38.4283
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological map of the ultra-high pressure Brossasco-Isasca unit (Western Alps, Italy)",
+    "DOI": "10.1080/17445647.2012.744367",
+    "URL": "https://doi.org/10.1080/17445647.2012.744367",
+    "Location": "Brossasco (CN)",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.3278,
+     44.582
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Facies associations map of the Pliocene marine deposits of the central-southern Siena Basin (Tuscany, Italy)",
+    "DOI": "10.1080/17445647.2012.744706",
+    "URL": "https://doi.org/10.1080/17445647.2012.744706",
+    "Location": "Siena (SI)",
+    "Type": "Research Map",
+    "Anno": 2012,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.3336,
+     43.3104
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological map of the External Ligurian Units in western Monferrato (Tertiary Piedmont Basin, NW Italy)",
+    "DOI": "10.1080/17445647.2012.757711",
+    "URL": "https://doi.org/10.1080/17445647.2012.757711",
+    "Location": "Piemonte",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.9231,
+     45.0606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Multi-temporal Maps of the Montaguto Earth Flow in Southern Italy from 1954 to 2010",
+    "DOI": "10.1080/17445647.2013.765812",
+    "URL": "https://doi.org/10.1080/17445647.2013.765812",
+    "Location": "Montaguto (AV)",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.2373,
+     41.2517
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Erosion hazard assessment along the Capitolo coast (Monopoli, southern Italy)",
+    "DOI": "10.1080/17445647.2013.777857",
+    "URL": "https://doi.org/10.1080/17445647.2013.777857",
+    "Location": "Monopoli (BA)",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     17.2781,
+     40.8984
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Relationships between geo-hydrological processes induced by heavy rainfall and land-use: the case of 25 October 2011 in the Vernazza catchment (Cinque Terre, NW Italy)",
+    "DOI": "10.1080/17445647.2013.780188",
+    "URL": "https://doi.org/10.1080/17445647.2013.780188",
+    "Location": "Vernazza (SP)",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.699,
+     44.1408
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Land suitability map for mountain viticulture: a case study in Aosta Valley (NW Italy)",
+    "DOI": "10.1080/17445647.2013.785986",
+    "URL": "https://doi.org/10.1080/17445647.2013.785986",
+    "Location": "Aosta (AO)",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.3013,
+     45.7495
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Morphotectonic map of the Aventino-Lower Sangro valley (Abruzzo, Italy), scale 1:50,000",
+    "DOI": "10.1080/17445647.2013.799050",
+    "URL": "https://doi.org/10.1080/17445647.2013.799050",
+    "Location": "Abruzzo",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8548,
+     42.2274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Total natural radioactivity, Tuscany, Italy",
+    "DOI": "10.1080/17445647.2013.802999",
+    "URL": "https://doi.org/10.1080/17445647.2013.802999",
+    "Location": "Toscana",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.1359,
+     43.4596
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Denudation processes and landforms map of the Camastra River catchment (Basilicata – South Italy)",
+    "DOI": "10.1080/17445647.2013.804797",
+    "URL": "https://doi.org/10.1080/17445647.2013.804797",
+    "Location": "Basilicata",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.0817,
+     40.4998
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological map of Tuscany (Italy)",
+    "DOI": "10.1080/17445647.2013.820154",
+    "URL": "https://doi.org/10.1080/17445647.2013.820154",
+    "Location": "Toscana",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.1359,
+     43.4596
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological map of Pliocene-Pleistocene deposits of the Ambra and Ombrone valleys (Northern Siena Basin, Tuscany, Italy)",
+    "DOI": "10.1080/17445647.2013.829412",
+    "URL": "https://doi.org/10.1080/17445647.2013.829412",
+    "Location": "Siena (SI)",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.3336,
+     43.3104
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Landslide inventory map of north-eastern Calabria (South Italy)",
+    "DOI": "10.1080/17445647.2013.852142",
+    "URL": "https://doi.org/10.1080/17445647.2013.852142",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Phytoclimatic map of Calabria (Southern Italy)",
+    "DOI": "10.1080/17445647.2013.860884",
+    "URL": "https://doi.org/10.1080/17445647.2013.860884",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The marine and alluvial terraces of Tavoliere di Puglia plain(southern Italy)",
+    "DOI": "10.1080/17445647.2013.861366",
+    "URL": "https://doi.org/10.1080/17445647.2013.861366",
+    "Location": "Puglia",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6197,
+     40.9843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Tectonic-geomorphological map of the middle Aterno River valley (Abruzzo, Central Italy)",
+    "DOI": "10.1080/17445647.2013.867545",
+    "URL": "https://doi.org/10.1080/17445647.2013.867545",
+    "Location": "Abruzzo",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8548,
+     42.2274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of the Rotolon landslide (Veneto Region, Italy)",
+    "DOI": "10.1080/17445647.2013.869666",
+    "URL": "https://doi.org/10.1080/17445647.2013.869666",
+    "Location": "Veneto",
+    "Type": "Research Map",
+    "Anno": 2013,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.8558,
+     45.648
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "High-resolution morpho-bathymetry of Pozzuoli Bay, southern Italy",
+    "DOI": "10.1080/17445647.2014.1001800",
+    "URL": "https://doi.org/10.1080/17445647.2014.1001800",
+    "Location": "Pozzuoli (NA)",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1024,
+     40.8502
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Little Ice Age and contemporary glacier extent in the Western and South-Western Piedmont Alps (North-Western Italy)",
+    "DOI": "10.1080/17445647.2014.880226",
+    "URL": "https://doi.org/10.1080/17445647.2014.880226",
+    "Location": "Piemonte",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.9231,
+     45.0606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Drought events at different timescales in southern Italy (Calabria)",
+    "DOI": "10.1080/17445647.2014.891267",
+    "URL": "https://doi.org/10.1080/17445647.2014.891267",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Territorial evolution and volcanic hazard, Ischia Island (Southern Italy)",
+    "DOI": "10.1080/17445647.2014.893846",
+    "URL": "https://doi.org/10.1080/17445647.2014.893846",
+    "Location": "Ischia (NA)",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.9477,
+     40.7276
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the middle and upper Pleistocene marine and continental terraces of the northern Tavoliere di Puglia plain (Apulia, southern Italy)",
+    "DOI": "10.1080/17445647.2014.895436",
+    "URL": "https://doi.org/10.1080/17445647.2014.895436",
+    "Location": "Puglia",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6197,
+     40.9843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Average shear wave velocity of the plain of the province of Treviso (Northern Italy)",
+    "DOI": "10.1080/17445647.2014.895967",
+    "URL": "https://doi.org/10.1080/17445647.2014.895967",
+    "Location": "Provincia di Treviso",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.2177,
+     45.7946
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Total natural radioactivity, Veneto (Italy)",
+    "DOI": "10.1080/17445647.2014.923348",
+    "URL": "https://doi.org/10.1080/17445647.2014.923348",
+    "Location": "Veneto",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.8558,
+     45.648
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Mass movements inventory map of the Rubbio stream catchment (Basilicata – South Italy)",
+    "DOI": "10.1080/17445647.2014.924038",
+    "URL": "https://doi.org/10.1080/17445647.2014.924038",
+    "Location": "Basilicata",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.0817,
+     40.4998
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological Map of the Monte Grighini Variscan Complex (Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2014.924441",
+    "URL": "https://doi.org/10.1080/17445647.2014.924441",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Quaternary geology of the Middle Aterno Valley, 2009 L'Aquila earthquake area (Abruzzi Apennines, Italy)",
+    "DOI": "10.1080/17445647.2014.927128",
+    "URL": "https://doi.org/10.1080/17445647.2014.927128",
+    "Location": "Abruzzo",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8548,
+     42.2274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Coastal and marine geomorphology between Albenga and Savona(NW Mediterranean Sea, Italy)",
+    "DOI": "10.1080/17445647.2014.933134",
+    "URL": "https://doi.org/10.1080/17445647.2014.933134",
+    "Location": "Albenga (SV)",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.1842,
+     44.0638
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Weathering grade and geotectonics of the western-central Mucone River basin (Calabria, Italy)",
+    "DOI": "10.1080/17445647.2014.933719",
+    "URL": "https://doi.org/10.1080/17445647.2014.933719",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological map of the area between Craco and Pisticci (Basilicata, Italy)",
+    "DOI": "10.1080/17445647.2014.935501",
+    "URL": "https://doi.org/10.1080/17445647.2014.935501",
+    "Location": "Pisticci (MT)",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6546,
+     40.3624
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Contour map of the top of the regional geothermal reservoir of Sicily (Italy)",
+    "DOI": "10.1080/17445647.2014.935503",
+    "URL": "https://doi.org/10.1080/17445647.2014.935503",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Structural map of Variscan northern Sardinia (Italy)",
+    "DOI": "10.1080/17445647.2014.936914",
+    "URL": "https://doi.org/10.1080/17445647.2014.936914",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Variscan basement of the Laconi-Asuni area (central Sardinia, Italy): the core of a regional antiform refolding a tectonic nappe stack",
+    "DOI": "10.1080/17445647.2014.942396",
+    "URL": "https://doi.org/10.1080/17445647.2014.942396",
+    "Location": "Laconi (OR)",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.049,
+     39.8615
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Shallow landslides triggered by consecutive rainfall events at Catanzaro strait (Calabria–Southern Italy)",
+    "DOI": "10.1080/17445647.2014.943814",
+    "URL": "https://doi.org/10.1080/17445647.2014.943814",
+    "Location": "Catanzaro (CZ)",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6025,
+     38.89
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological map of the Tellaro River Valley (Hyblean Foreland, southeastern Sicily, Italy)",
+    "DOI": "10.1080/17445647.2014.944878",
+    "URL": "https://doi.org/10.1080/17445647.2014.944878",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Structure of the Variscan metamorphic complexes in the central transect of the Posada-Asinara Line (SW Gallura region, Northern Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2014.944945",
+    "URL": "https://doi.org/10.1080/17445647.2014.944945",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Pontinvrea area (Ligurian Alps, Italy): structural setting of the contact between Montenotte and Voltri units",
+    "DOI": "10.1080/17445647.2014.945749",
+    "URL": "https://doi.org/10.1080/17445647.2014.945749",
+    "Location": "Pontinvrea (SV)",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.4383,
+     44.4317
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the late Miocene south-eastern Volterra Basin (Northern Apennines, Italy)",
+    "DOI": "10.1080/17445647.2014.946105",
+    "URL": "https://doi.org/10.1080/17445647.2014.946105",
+    "Location": "Volterra (PI)",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.8872,
+     43.3994
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological evolution of the plain between the Livenza and Piave Rivers in the sixteenth and seventeenth centuries inferred by historical maps analysis (Mainland of Venice, Northeastern Italy)",
+    "DOI": "10.1080/17445647.2014.947341",
+    "URL": "https://doi.org/10.1080/17445647.2014.947341",
+    "Location": "Venezia (VE)",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.346,
+     45.467
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Petro-structural geology of the Eastern Aspromonte Massif crystalline basement (southern Italy-Calabria): an example of interoperable geo-data management from thin section – to field scale",
+    "DOI": "10.1080/17445647.2014.948939",
+    "URL": "https://doi.org/10.1080/17445647.2014.948939",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Near-surface deposits and hillslope evolution of the Adriatic piedmont of the Central Apennines (Feltrino Stream basin and minor coastal basins, Abruzzo, Italy)",
+    "DOI": "10.1080/17445647.2014.949884",
+    "URL": "https://doi.org/10.1080/17445647.2014.949884",
+    "Location": "Abruzzo",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8548,
+     42.2274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Rockfall runout, Mount Cimone area, Emilia-Romagna Region, Italy",
+    "DOI": "10.1080/17445647.2014.956154",
+    "URL": "https://doi.org/10.1080/17445647.2014.956154",
+    "Location": "Emilia-Romagna",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.0419,
+     44.5234
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Villalvernia – Varzi Line Between Scrivia and Curone valleys (NW Italy)",
+    "DOI": "10.1080/17445647.2014.959569",
+    "URL": "https://doi.org/10.1080/17445647.2014.959569",
+    "Location": "Villalvernia (AL)",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.8583,
+     44.8103
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Tectono-metamorphic map of the south-western flank of the Aspromonte Massif (southern Calabria -Italy)",
+    "DOI": "10.1080/17445647.2014.962634",
+    "URL": "https://doi.org/10.1080/17445647.2014.962634",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Quantitative assessment of the sensitivity to desertification in the Bradano River basin (Basilicata, southern Italy)",
+    "DOI": "10.1080/17445647.2014.980857",
+    "URL": "https://doi.org/10.1080/17445647.2014.980857",
+    "Location": "Basilicata",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.0817,
+     40.4998
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Bioclimate map of Sardinia (Italy)",
+    "DOI": "10.1080/17445647.2014.988187",
+    "URL": "https://doi.org/10.1080/17445647.2014.988187",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2014,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Evolution of the Gelasian (Pleistocene) slope turbidite systems of southern Marche (Peri-Adriatic basin, central Italy)",
+    "DOI": "10.1080/17445647.2014.995724",
+    "URL": "https://doi.org/10.1080/17445647.2014.995724",
+    "Location": "Marche",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1421,
+     43.3452
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Bathymetry of Ischia Island and its offshore (Italy), scale 1:50.000",
+    "DOI": "10.1080/17445647.2014.998302",
+    "URL": "https://doi.org/10.1080/17445647.2014.998302",
+    "Location": "Ischia (NA)",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.9477,
+     40.7276
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of Mar Piccolo, Taranto (southern Italy): the physical basis for remediation of a polluted marine area",
+    "DOI": "10.1080/17445647.2014.999136",
+    "URL": "https://doi.org/10.1080/17445647.2014.999136",
+    "Location": "Taranto (TA)",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     17.2742,
+     40.4746
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Weathering grade in granitoid rocks: The San Giovanni in Fiore area (Calabria, Italy)",
+    "DOI": "10.1080/17445647.2015.1010742",
+    "URL": "https://doi.org/10.1080/17445647.2015.1010742",
+    "Location": "San Giovanni in Fiore (CS)",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6498,
+     39.2679
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Sinkhole susceptibility, Lazio Region, central Italy",
+    "DOI": "10.1080/17445647.2015.1014939",
+    "URL": "https://doi.org/10.1080/17445647.2015.1014939",
+    "Location": "Lazio",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.7665,
+     41.9806
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Entracque<i>–</i>Colle di Tenda area (Maritime Alps, NW Italy)",
+    "DOI": "10.1080/17445647.2015.1024293",
+    "URL": "https://doi.org/10.1080/17445647.2015.1024293",
+    "Location": "Entracque (CN)",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.403,
+     44.1816
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Relicts of the Pleistocene Po Plain on the Western and Southern slopes of Turin Hill (NW Italy)",
+    "DOI": "10.1080/17445647.2015.1027481",
+    "URL": "https://doi.org/10.1080/17445647.2015.1027481",
+    "Location": "Torino (TO)",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.6779,
+     45.0718
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geostructure of Coroglio tuff cliff, Naples (Italy) derived from terrestrial laser scanner data",
+    "DOI": "10.1080/17445647.2015.1028237",
+    "URL": "https://doi.org/10.1080/17445647.2015.1028237",
+    "Location": "Napoli (NA)",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.2396,
+     40.8567
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of the floodplain at the confluence of the Aventino and Sangro rivers (Abruzzo, Central Italy)",
+    "DOI": "10.1080/17445647.2015.1036139",
+    "URL": "https://doi.org/10.1080/17445647.2015.1036139",
+    "Location": "Abruzzo",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8548,
+     42.2274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Recent alluvial fans in Calabria (southern Italy)",
+    "DOI": "10.1080/17445647.2015.1047905",
+    "URL": "https://doi.org/10.1080/17445647.2015.1047905",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Soil loss assessment in the Turbolo catchment (Calabria, Italy)",
+    "DOI": "10.1080/17445647.2015.1077168",
+    "URL": "https://doi.org/10.1080/17445647.2015.1077168",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The geological map of Sardinia (Italy) at 1:250,000 scale",
+    "DOI": "10.1080/17445647.2015.1084544",
+    "URL": "https://doi.org/10.1080/17445647.2015.1084544",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Regional-scale landslide inventory, central-western sector of the Basilicata region (Southern Apennines, Italy)",
+    "DOI": "10.1080/17445647.2015.1091749",
+    "URL": "https://doi.org/10.1080/17445647.2015.1091749",
+    "Location": "Basilicata",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.0817,
+     40.4998
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Structural and metallogenic map of late Variscan Arbus Pluton (SW Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2015.1091750",
+    "URL": "https://doi.org/10.1080/17445647.2015.1091750",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological features of the Montebello sul Sangro large landslide (Abruzzo, Central Italy)",
+    "DOI": "10.1080/17445647.2015.1095134",
+    "URL": "https://doi.org/10.1080/17445647.2015.1095134",
+    "Location": "Montebello sul Sangro (CH)",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.3225,
+     41.9866
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Morphoneotectonics and lithology of the eastern sector of the Gulf of Trieste (NE Italy)",
+    "DOI": "10.1080/17445647.2015.1099572",
+    "URL": "https://doi.org/10.1080/17445647.2015.1099572",
+    "Location": "Trieste (TS)",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.7987,
+     45.6638
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Stratigraphic vs structural contacts in a late orogenic basin: the case of the Tertiary Piedmont Basin in the Sassello area (Ligurian Alps, Italy)",
+    "DOI": "10.1080/17445647.2015.1100561",
+    "URL": "https://doi.org/10.1080/17445647.2015.1100561",
+    "Location": "Piemonte",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.9231,
+     45.0606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Updated landslide inventory of the area between the Furiano and Rosmarino creeks (Sicily, Italy)",
+    "DOI": "10.1080/17445647.2015.1114975",
+    "URL": "https://doi.org/10.1080/17445647.2015.1114975",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2015,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geo-archaeology of the Roman palaeosurface of <i>Sena Gallica</i> (Senigallia, Italy)",
+    "DOI": "10.1080/17445647.2016.1152916",
+    "URL": "https://doi.org/10.1080/17445647.2016.1152916",
+    "Location": "Senigallia (AN)",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.2009,
+     43.6818
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Thickness of pyroclastic cover beds: the case study of Mount Albino (Campania region, southern Italy)",
+    "DOI": "10.1080/17445647.2016.1158668",
+    "URL": "https://doi.org/10.1080/17445647.2016.1158668",
+    "Location": "Campania",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.8441,
+     40.8605
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Morpho-sedimentary features and sediment transport model of the submerged beach of the ‘Pineta della foce del Garigliano’ SCI Site (Caserta, southern Italy)",
+    "DOI": "10.1080/17445647.2016.1171804",
+    "URL": "https://doi.org/10.1080/17445647.2016.1171804",
+    "Location": "Caserta (CE)",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.358,
+     41.0875
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological classification of urban landscapes: the case study of Rome (Italy)",
+    "DOI": "10.1080/17445647.2016.1187977",
+    "URL": "https://doi.org/10.1080/17445647.2016.1187977",
+    "Location": "Roma (RM)",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.462,
+     41.8833
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of Pisticci area (Basilicata, Southern Italy)",
+    "DOI": "10.1080/17445647.2016.1193776",
+    "URL": "https://doi.org/10.1080/17445647.2016.1193776",
+    "Location": "Pisticci (MT)",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6546,
+     40.3624
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Distribution of <i>Posidonia oceanica</i> (L.) Delile meadows around Lampedusa Island (Strait of Sicily, Italy)",
+    "DOI": "10.1080/17445647.2016.1195298",
+    "URL": "https://doi.org/10.1080/17445647.2016.1195298",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Landslide-risk scenario of the Costa Viola mountain ridge (Calabria, Southern Italy)",
+    "DOI": "10.1080/17445647.2016.1195300",
+    "URL": "https://doi.org/10.1080/17445647.2016.1195300",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Photo-geology of the Montefalco Quaternary Basin, Umbria, Central Italy",
+    "DOI": "10.1080/17445647.2016.1210042",
+    "URL": "https://doi.org/10.1080/17445647.2016.1210042",
+    "Location": "Montefalco (PG)",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.6473,
+     42.8804
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Mt. Cosce sector (Narni Ridge, Central Apennines, Italy)",
+    "DOI": "10.1080/17445647.2016.1211896",
+    "URL": "https://doi.org/10.1080/17445647.2016.1211896",
+    "Location": "Narni (TR)",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.514,
+     42.5041
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Landslide susceptibility of the Prato–Pistoia–Lucca provinces, Tuscany, Italy",
+    "DOI": "10.1080/17445647.2016.1233463",
+    "URL": "https://doi.org/10.1080/17445647.2016.1233463",
+    "Location": "Toscana",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.1359,
+     43.4596
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Northern Simbruini Mts. (Abruzzo – Italy)",
+    "DOI": "10.1080/17445647.2016.1237899",
+    "URL": "https://doi.org/10.1080/17445647.2016.1237899",
+    "Location": "Abruzzo",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8548,
+     42.2274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Traces of the active Capitignano and San Giovanni faults (Abruzzi Apennines, Italy)",
+    "DOI": "10.1080/17445647.2016.1239229",
+    "URL": "https://doi.org/10.1080/17445647.2016.1239229",
+    "Location": "Capitignano (AQ)",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.3048,
+     42.5234
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the northwestern portion of the Ferriere-Mollieres Shear Zone, Argentera Massif, Italy",
+    "DOI": "10.1080/17445647.2016.1243491",
+    "URL": "https://doi.org/10.1080/17445647.2016.1243491",
+    "Location": "Argentera (CN)",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6.9493,
+     44.3782
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Post flash flood survey: the 14th and 15th October 2015 event in the Paupisi-Solopaca area (Southern Italy)",
+    "DOI": "10.1080/17445647.2016.1249034",
+    "URL": "https://doi.org/10.1080/17445647.2016.1249034",
+    "Location": "Solopaca (BN)",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.5518,
+     41.1909
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Organic carbon and total nitrogen topsoil stocks, biogenetic natural reserve ‘Marchesale’ (Calabria region, southern Italy)",
+    "DOI": "10.1080/17445647.2016.1262795",
+    "URL": "https://doi.org/10.1080/17445647.2016.1262795",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "High-resolution aeromagnetic survey of Calabria (Southern Italy)",
+    "DOI": "10.1080/17445647.2016.1266523",
+    "URL": "https://doi.org/10.1080/17445647.2016.1266523",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2016,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Tectonics, ore bodies, and gamma-ray logging of the Variscan basement, southern Gennargentu massif (central Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2017.1287601",
+    "URL": "https://doi.org/10.1080/17445647.2017.1287601",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY-NC-ND 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the ‘Coltre della Val Marecchia’ (Romagna-Marche Northern Apennines, Italy)",
+    "DOI": "10.1080/17445647.2017.1290555",
+    "URL": "https://doi.org/10.1080/17445647.2017.1290555",
+    "Location": "Marche",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY-NC-ND 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1421,
+     43.3452
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Natura 2000 protected habitats, Massaciuccoli Lake (northern Tuscany, Italy)",
+    "DOI": "10.1080/17445647.2017.1290557",
+    "URL": "https://doi.org/10.1080/17445647.2017.1290557",
+    "Location": "Toscana",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY-NC-ND 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.1359,
+     43.4596
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Tectono-stratigraphic architecture of the Ionian piedmont between the Arso Stream and Nicà River catchments (Calabria, Southern Italy)",
+    "DOI": "10.1080/17445647.2017.1299642",
+    "URL": "https://doi.org/10.1080/17445647.2017.1299642",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Late Holocene landscape evolution of the Gulf of Naples (Italy) inferred from geoarchaeological data",
+    "DOI": "10.1080/17445647.2017.1300611",
+    "URL": "https://doi.org/10.1080/17445647.2017.1300611",
+    "Location": "Napoli (NA)",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.2396,
+     40.8567
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Dune habitats of the Migliarino – San Rossore – Massaciuccoli Regional Park (Tuscany – Italy)",
+    "DOI": "10.1080/17445647.2017.1302365",
+    "URL": "https://doi.org/10.1080/17445647.2017.1302365",
+    "Location": "Toscana",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.1359,
+     43.4596
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of Piemonte region (NW Italy, Alps–Apennines interference zone)",
+    "DOI": "10.1080/17445647.2017.1316218",
+    "URL": "https://doi.org/10.1080/17445647.2017.1316218",
+    "Location": "Piemonte",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.9231,
+     45.0606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Evaporite sinkholes of the Friuli Venezia Giulia region (NE Italy)",
+    "DOI": "10.1080/17445647.2017.1316321",
+    "URL": "https://doi.org/10.1080/17445647.2017.1316321",
+    "Location": "Friuli-Venezia Giulia",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.0528,
+     46.1543
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Pluvial flood hazard in the city of Rome (Italy)",
+    "DOI": "10.1080/17445647.2017.1333968",
+    "URL": "https://doi.org/10.1080/17445647.2017.1333968",
+    "Location": "Roma (RM)",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.462,
+     41.8833
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Morphotectonics of the Pescara River basin (Central Italy)",
+    "DOI": "10.1080/17445647.2017.1338204",
+    "URL": "https://doi.org/10.1080/17445647.2017.1338204",
+    "Location": "Pescara (PE)",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.2034,
+     42.4558
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Saint-Marcel valley metaophiolites (Northwestern Alps, Italy)",
+    "DOI": "10.1080/17445647.2017.1355853",
+    "URL": "https://doi.org/10.1080/17445647.2017.1355853",
+    "Location": "Saint-Marcel (AO)",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.4495,
+     45.689
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphic effects caused by heavy rainfall in southern Calabria (Italy) on 30 October–1 November 2015",
+    "DOI": "10.1080/17445647.2017.1390499",
+    "URL": "https://doi.org/10.1080/17445647.2017.1390499",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Tectono-stratigraphic setting of the Campania region (southern Italy)",
+    "DOI": "10.1080/17445647.2018.1424655",
+    "URL": "https://doi.org/10.1080/17445647.2018.1424655",
+    "Location": "Campania",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.8441,
+     40.8605
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology, slow-moving landslides, and damages to buildings in the Verbicaro area (north-western Calabria region, southern Italy)",
+    "DOI": "10.1080/17445647.2018.1425164",
+    "URL": "https://doi.org/10.1080/17445647.2018.1425164",
+    "Location": "Verbicaro (CS)",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.9352,
+     39.7599
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geoheritage map of the Portofino Natural Park (Italy)",
+    "DOI": "10.1080/17445647.2018.1433561",
+    "URL": "https://doi.org/10.1080/17445647.2018.1433561",
+    "Location": "Portofino (GE)",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.1976,
+     44.3097
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Surface ruptures following the 30 October 2016 <i>M</i> <sub>w</sub> 6.5 Norcia earthquake, central Italy",
+    "DOI": "10.1080/17445647.2018.1441756",
+    "URL": "https://doi.org/10.1080/17445647.2018.1441756",
+    "Location": "Norcia (PG)",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1224,
+     42.7867
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the San Colombano hill, a Quaternary isolated tectonic relief in the Po Plain of Lombardy (Northern Italy)",
+    "DOI": "10.1080/17445647.2018.1443166",
+    "URL": "https://doi.org/10.1080/17445647.2018.1443166",
+    "Location": "Lombardia",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.7691,
+     45.6206
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Spatial evolution of the December 2013 Metaponto plain (Basilicata, Italy) flood event using multi-source and high-resolution remotely sensed data",
+    "DOI": "10.1080/17445647.2018.1454349",
+    "URL": "https://doi.org/10.1080/17445647.2018.1454349",
+    "Location": "Basilicata",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.0817,
+     40.4998
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The interplay of structural pathway and weathering intensity in forming mass-wasting processes in deeply weathered gneissic rocks (Sila Massif, Calabria, Italy)",
+    "DOI": "10.1080/17445647.2018.1456489",
+    "URL": "https://doi.org/10.1080/17445647.2018.1456489",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Soils of the Aversa plain (southern Italy)",
+    "DOI": "10.1080/17445647.2018.1458338",
+    "URL": "https://doi.org/10.1080/17445647.2018.1458338",
+    "Location": "Aversa (CE)",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.2071,
+     40.9712
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Landslide inventory of the Basilicata region (Southern Italy)",
+    "DOI": "10.1080/17445647.2018.1475309",
+    "URL": "https://doi.org/10.1080/17445647.2018.1475309",
+    "Location": "Basilicata",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.0817,
+     40.4998
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology and tectonic setting of the Fornovolasco area, Alpi Apuane (Tuscany, Italy)",
+    "DOI": "10.1080/17445647.2018.1476985",
+    "URL": "https://doi.org/10.1080/17445647.2018.1476985",
+    "Location": "Toscana",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.1359,
+     43.4596
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the eastern slopes of the Simbruini Mts. between Verrecchie and Capistrello (Central Apennines – Abruzzo, Italy)",
+    "DOI": "10.1080/17445647.2018.1483843",
+    "URL": "https://doi.org/10.1080/17445647.2018.1483843",
+    "Location": "Capistrello (AQ)",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.3761,
+     41.9763
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Marine benthic forms of the Marine Protected Area Capo Caccia-Isola Piana (Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2018.1486242",
+    "URL": "https://doi.org/10.1080/17445647.2018.1486242",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Natura 2000 habitat of Mt. Argentario promontory (southern Tuscany, Italy)",
+    "DOI": "10.1080/17445647.2018.1489903",
+    "URL": "https://doi.org/10.1080/17445647.2018.1489903",
+    "Location": "Toscana",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.1359,
+     43.4596
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Volcanology of Ischia (Italy)",
+    "DOI": "10.1080/17445647.2018.1498811",
+    "URL": "https://doi.org/10.1080/17445647.2018.1498811",
+    "Location": "Ischia (NA)",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.9477,
+     40.7276
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological landscape and stone heritage of the Genoa Walls Urban Park and surrounding area (Italy)",
+    "DOI": "10.1080/17445647.2018.1508378",
+    "URL": "https://doi.org/10.1080/17445647.2018.1508378",
+    "Location": "Genova (GE)",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.8931,
+     44.4414
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Flood hazard of major river segments, Benevento Province, Southern Italy",
+    "DOI": "10.1080/17445647.2018.1526718",
+    "URL": "https://doi.org/10.1080/17445647.2018.1526718",
+    "Location": "Provincia di Benevento",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.7516,
+     41.2413
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Inventory of geo-hydrological phenomena in Genova municipality (NW Italy)",
+    "DOI": "10.1080/17445647.2018.1535454",
+    "URL": "https://doi.org/10.1080/17445647.2018.1535454",
+    "Location": "Genova (GE)",
+    "Type": "Research Map",
+    "Anno": 2018,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.8931,
+     44.4414
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Landslide inventory and main geomorphological features affecting slope stability in the Picentino river basin (Campania, southern Italy)",
+    "DOI": "10.1080/17445647.2018.1563836",
+    "URL": "https://doi.org/10.1080/17445647.2018.1563836",
+    "Location": "Campania",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.8441,
+     40.8605
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the central part of the Amatrice Basin (Central Apennines, Italy)",
+    "DOI": "10.1080/17445647.2019.1570877",
+    "URL": "https://doi.org/10.1080/17445647.2019.1570877",
+    "Location": "Amatrice (RI)",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.2925,
+     42.6262
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological tourist mapping of the Mount Serrone fault Geosite (Gioia dei Marsi, Central Apennines, Italy)",
+    "DOI": "10.1080/17445647.2019.1592718",
+    "URL": "https://doi.org/10.1080/17445647.2019.1592718",
+    "Location": "Gioia dei Marsi (AQ)",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.7298,
+     41.916
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Shallow landslide susceptibility, Rupinaro catchment, Liguria (northwestern Italy)",
+    "DOI": "10.1080/17445647.2019.1593252",
+    "URL": "https://doi.org/10.1080/17445647.2019.1593252",
+    "Location": "Liguria",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.7043,
+     44.2648
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Assessment of soil erosion risk in a typical Mediterranean environment using a high resolution RUSLE approach (Portofino promontory, NW-Italy)",
+    "DOI": "10.1080/17445647.2019.1599452",
+    "URL": "https://doi.org/10.1080/17445647.2019.1599452",
+    "Location": "Portofino (GE)",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.1976,
+     44.3097
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Phytoavailable phosphorus (P <sub>2</sub> O <sub>5</sub> ) and potassium (K <sub>2</sub> O) in topsoil for apple orchards and vineyards, South Tyrol, Italy",
+    "DOI": "10.1080/17445647.2019.1633962",
+    "URL": "https://doi.org/10.1080/17445647.2019.1633962",
+    "Location": "Trentino-Alto Adige",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2821,
+     46.4415
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "PS-driven inventory of town-damaging landslides in the Benevento, Avellino and Salerno Provinces, southern Italy",
+    "DOI": "10.1080/17445647.2019.1651770",
+    "URL": "https://doi.org/10.1080/17445647.2019.1651770",
+    "Location": "Benevento (BN)",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.7829,
+     41.1491
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Shallow geophysics of the Asinara Island Marine Reserve Area (NW Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2019.1669498",
+    "URL": "https://doi.org/10.1080/17445647.2019.1669498",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The De Martonne aridity index in Calabria (Southern Italy)",
+    "DOI": "10.1080/17445647.2019.1673840",
+    "URL": "https://doi.org/10.1080/17445647.2019.1673840",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Surface ruptures following the 26 December 2018, Mw 4.9, Mt. Etna earthquake, Sicily (Italy)",
+    "DOI": "10.1080/17445647.2019.1683476",
+    "URL": "https://doi.org/10.1080/17445647.2019.1683476",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The key role of hazard indices and hotspot in disaster risk management: the case study of Napoli and Pozzuoli municipalities (Southern Italy)",
+    "DOI": "10.1080/17445647.2019.1698472",
+    "URL": "https://doi.org/10.1080/17445647.2019.1698472",
+    "Location": "Pozzuoli (NA)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1024,
+     40.8502
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Litho-sedimentological and morphodynamic characterization of the Pisa Province coastal area (northern Tuscany, Italy)",
+    "DOI": "10.1080/17445647.2019.1700836",
+    "URL": "https://doi.org/10.1080/17445647.2019.1700836",
+    "Location": "Provincia di Pisa",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.6669,
+     43.5022
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological and geomorphological analysis of a complex landslides system: the case of San Martino sulla Marruccina (Abruzzo, Central Italy)",
+    "DOI": "10.1080/17445647.2019.1702596",
+    "URL": "https://doi.org/10.1080/17445647.2019.1702596",
+    "Location": "Abruzzo",
+    "Type": "Research Map",
+    "Anno": 2019,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8548,
+     42.2274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological analysis of drainage changes in the NE Apennines piedmont area: the case of the middle Tavo River bend (Abruzzo, Central Italy)",
+    "DOI": "10.1080/17445647.2020.1726833",
+    "URL": "https://doi.org/10.1080/17445647.2020.1726833",
+    "Location": "Abruzzo",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8548,
+     42.2274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "<i>Papia civitas gloriosa:</i> urban geomorphology for a thematic itinerary on geocultural heritage in Pavia (Central Po Plain, N Italy)",
+    "DOI": "10.1080/17445647.2020.1736198",
+    "URL": "https://doi.org/10.1080/17445647.2020.1736198",
+    "Location": "Pavia (PV)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.1649,
+     45.1978
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Hydrogeology of the western Po plain (Piedmont, NW Italy)",
+    "DOI": "10.1080/17445647.2020.1738280",
+    "URL": "https://doi.org/10.1080/17445647.2020.1738280",
+    "Location": "Piemonte",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.9231,
+     45.0606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of the urban area of Palermo (Italy)",
+    "DOI": "10.1080/17445647.2020.1739154",
+    "URL": "https://doi.org/10.1080/17445647.2020.1739154",
+    "Location": "Palermo (PA)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.3312,
+     38.1301
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The relation of spatio-temporal distribution of landslides to urban development (a case study from the Apulia region, Southern Italy)",
+    "DOI": "10.1080/17445647.2020.1746417",
+    "URL": "https://doi.org/10.1080/17445647.2020.1746417",
+    "Location": "Puglia",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6197,
+     40.9843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Urban geomorphology of a historical city straddling the Tanaro River (Alessandria, NW Italy)",
+    "DOI": "10.1080/17445647.2020.1746420",
+    "URL": "https://doi.org/10.1080/17445647.2020.1746420",
+    "Location": "Alessandria (AL)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.6444,
+     44.909
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Land capability classification of Vernazza catchment, Cinque Terre National Park, Italy",
+    "DOI": "10.1080/17445647.2020.1750067",
+    "URL": "https://doi.org/10.1080/17445647.2020.1750067",
+    "Location": "Vernazza (SP)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.699,
+     44.1408
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of the historic centre of the<i>Urbs</i>(Rome, Italy)",
+    "DOI": "10.1080/17445647.2020.1761465",
+    "URL": "https://doi.org/10.1080/17445647.2020.1761465",
+    "Location": "Roma (RM)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.462,
+     41.8833
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "A multidisciplinary approach to the study of insular environments: the 1st Summer School on Geomorphology, Ecology, and Marine Biology in the Tremiti Islands (Southern Adriatic Sea, Puglia, Italy)",
+    "DOI": "10.1080/17445647.2020.1776645",
+    "URL": "https://doi.org/10.1080/17445647.2020.1776645",
+    "Location": "Puglia",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6197,
+     40.9843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Urban geomorphology of Genoa old city (Italy)",
+    "DOI": "10.1080/17445647.2020.1777214",
+    "URL": "https://doi.org/10.1080/17445647.2020.1777214",
+    "Location": "Genova (GE)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.8931,
+     44.4414
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological and structural characterization of the ‘Canale di Pirro’ polje, Apulia (Southern Italy)",
+    "DOI": "10.1080/17445647.2020.1778550",
+    "URL": "https://doi.org/10.1080/17445647.2020.1778550",
+    "Location": "Puglia",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6197,
+     40.9843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of the Anversa degli Abruzzi badlands area (Central Apennines, Italy)",
+    "DOI": "10.1080/17445647.2020.1780169",
+    "URL": "https://doi.org/10.1080/17445647.2020.1780169",
+    "Location": "Anversa degli Abruzzi (AQ)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.8114,
+     41.9881
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Montigiu Nieddu metamorphic basement, NE Sardinia (Italy)",
+    "DOI": "10.1080/17445647.2020.1785344",
+    "URL": "https://doi.org/10.1080/17445647.2020.1785344",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Groundwater vulnerability of principal aquifers of the Campania region (southern Italy)",
+    "DOI": "10.1080/17445647.2020.1787887",
+    "URL": "https://doi.org/10.1080/17445647.2020.1787887",
+    "Location": "Campania",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.8441,
+     40.8605
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Anthropogenic landforms in an urbanized alluvial-coastal plain (Rapallo city, Italy)",
+    "DOI": "10.1080/17445647.2020.1793818",
+    "URL": "https://doi.org/10.1080/17445647.2020.1793818",
+    "Location": "Rapallo (GE)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.2163,
+     44.368
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The influence of the geological–geomorphological setting on human settlements and historical urban development: the case study of Isernia (southern Italy)",
+    "DOI": "10.1080/17445647.2020.1794989",
+    "URL": "https://doi.org/10.1080/17445647.2020.1794989",
+    "Location": "Isernia (IS)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.2161,
+     41.6074
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of the town of Rimini and surrounding areas (Emilia-Romagna, Italy)",
+    "DOI": "10.1080/17445647.2020.1800527",
+    "URL": "https://doi.org/10.1080/17445647.2020.1800527",
+    "Location": "Rimini (RN)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.5305,
+     44.0388
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Seafloor Map of the Alghero Bay (Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2020.1805808",
+    "URL": "https://doi.org/10.1080/17445647.2020.1805808",
+    "Location": "Alghero (SS)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.299,
+     40.5998
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of landslide–flood-critical areas in hilly catchments and urban areas for EWS (Feltrino Stream and Lanciano town, Abruzzo, Central Italy)",
+    "DOI": "10.1080/17445647.2020.1819903",
+    "URL": "https://doi.org/10.1080/17445647.2020.1819903",
+    "Location": "Lanciano (CH)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.4004,
+     42.2077
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Soil types of Aosta Valley (NW-Italy)",
+    "DOI": "10.1080/17445647.2020.1821803",
+    "URL": "https://doi.org/10.1080/17445647.2020.1821803",
+    "Location": "Aosta (AO)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.3013,
+     45.7495
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Rockfall hazards of Mount Pellegrino area (Sicily, Southern Italy)",
+    "DOI": "10.1080/17445647.2020.1824826",
+    "URL": "https://doi.org/10.1080/17445647.2020.1824826",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological evidence of debris flows and landslides in the Pescara del Tronto area (Sibillini Mts, Marche Region, Central Italy)",
+    "DOI": "10.1080/17445647.2020.1827055",
+    "URL": "https://doi.org/10.1080/17445647.2020.1827055",
+    "Location": "Marche",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1421,
+     43.3452
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Ornamental stones of Piemonte (NW Italy): an updated geo-lithological map",
+    "DOI": "10.1080/17445647.2020.1837685",
+    "URL": "https://doi.org/10.1080/17445647.2020.1837685",
+    "Location": "Piemonte",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.9231,
+     45.0606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Rockfall susceptibility along the regional road network of Aosta Valley Region (northwestern Italy)",
+    "DOI": "10.1080/17445647.2020.1850534",
+    "URL": "https://doi.org/10.1080/17445647.2020.1850534",
+    "Location": "Aosta (AO)",
+    "Type": "Research Map",
+    "Anno": 2020,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.3013,
+     45.7495
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological features of Favignana Island (SW Italy)",
+    "DOI": "10.1080/17445647.2020.1866699",
+    "URL": "https://doi.org/10.1080/17445647.2020.1866699",
+    "Location": "Favignana (TP)",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.3183,
+     37.9281
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Flood-induced ground effects and flood-water dynamics for hydro-geomorphic hazard assessment: the 21–22 October 2019 extreme flood along the lower Orba River (Alessandria, NW Italy)",
+    "DOI": "10.1080/17445647.2020.1866702",
+    "URL": "https://doi.org/10.1080/17445647.2020.1866702",
+    "Location": "Alessandria (AL)",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.6444,
+     44.909
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Anthropogenic landforms and geo-hydrological hazards of the Bisagno Stream catchment (Liguria, Italy)",
+    "DOI": "10.1080/17445647.2020.1866704",
+    "URL": "https://doi.org/10.1080/17445647.2020.1866704",
+    "Location": "Liguria",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.7043,
+     44.2648
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphic effects caused by heavy rainfall in the Corigliano-Rossano area (NE Calabria, Italy) on 12 August 2015",
+    "DOI": "10.1080/17445647.2020.1867248",
+    "URL": "https://doi.org/10.1080/17445647.2020.1867248",
+    "Location": "Corigliano-Rossano (CS)",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.5562,
+     39.6063
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Large landslides in the Alpine valleys of the Giudicarie and Schio-Vicenza tectonic domains (NE Italy)",
+    "DOI": "10.1080/17445647.2021.1880979",
+    "URL": "https://doi.org/10.1080/17445647.2021.1880979",
+    "Location": "Vicenza (VI)",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.554,
+     45.5448
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "From traditional to modern ‘full coverage’ geomorphological mapping: a study case in the Chienti river basin (Marche region, central Italy)",
+    "DOI": "10.1080/17445647.2021.1904020",
+    "URL": "https://doi.org/10.1080/17445647.2021.1904020",
+    "Location": "Marche",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1421,
+     43.3452
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the southern Gran Paradiso Massif and Lower Piedmont Zone contact area (middle Ala Valley, Western Alps, Italy)",
+    "DOI": "10.1080/17445647.2021.1911869",
+    "URL": "https://doi.org/10.1080/17445647.2021.1911869",
+    "Location": "Piemonte",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.9231,
+     45.0606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Disentangling the stratigraphic architecture of the Rivoli-Avigliana end moraine system (Western Alps, NW Italy)",
+    "DOI": "10.1080/17445647.2021.1942252",
+    "URL": "https://doi.org/10.1080/17445647.2021.1942252",
+    "Location": "Avigliana (TO)",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.3922,
+     45.0751
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological map of the San Donato – Costa Thrust Zone, Belluno Thrust System, eastern Southern Alps (northern Italy)",
+    "DOI": "10.1080/17445647.2021.1946444",
+    "URL": "https://doi.org/10.1080/17445647.2021.1946444",
+    "Location": "Belluno (BL)",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.2192,
+     46.1407
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Forest accessibility, Madonie mountains (northern Sicily, Italy): implementing a GIS decision support system",
+    "DOI": "10.1080/17445647.2021.1962751",
+    "URL": "https://doi.org/10.1080/17445647.2021.1962751",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of late-Variscan Sàrrabus pluton (south-eastern Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2021.1982032",
+    "URL": "https://doi.org/10.1080/17445647.2021.1982032",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2021,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Landscape and geology as controls on Bronze Age human dispersal: a case study from Sardinia (Italy)",
+    "DOI": "10.1080/17445647.2021.1999339",
+    "URL": "https://doi.org/10.1080/17445647.2021.1999339",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2022,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Sea Floor of the Marine Protected Area of the Asinara Island (Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2022.2052765",
+    "URL": "https://doi.org/10.1080/17445647.2022.2052765",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2022,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Revealing patterns and connections in the historic landscape of the northern Apennines (Vetto, Italy)",
+    "DOI": "10.1080/17445647.2022.2088305",
+    "URL": "https://doi.org/10.1080/17445647.2022.2088305",
+    "Location": "Vetto (RE)",
+    "Type": "Research Map",
+    "Anno": 2022,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.3557,
+     44.4752
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "External effective dose from natural radiation for the Umbria region (Italy)",
+    "DOI": "10.1080/17445647.2022.2093659",
+    "URL": "https://doi.org/10.1080/17445647.2022.2093659",
+    "Location": "Umbria",
+    "Type": "Research Map",
+    "Anno": 2022,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.4901,
+     42.9657
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Indoor radon measurements in Calabria (Southern Italy)",
+    "DOI": "10.1080/17445647.2022.2132883",
+    "URL": "https://doi.org/10.1080/17445647.2022.2132883",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2022,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geosites and geological landscapes of Liguria (Italy)",
+    "DOI": "10.1080/17445647.2022.2145919",
+    "URL": "https://doi.org/10.1080/17445647.2022.2145919",
+    "Location": "Liguria",
+    "Type": "Research Map",
+    "Anno": 2022,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.7043,
+     44.2648
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "From floor to roof of a batholith: geology and petrography of the north-eastern Serre Batholith (Calabria, southern Italy)",
+    "DOI": "10.1080/17445647.2022.2149358",
+    "URL": "https://doi.org/10.1080/17445647.2022.2149358",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2022,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Plio-Quaternary coastal landscape evolution of north-western Sicily (Italy)",
+    "DOI": "10.1080/17445647.2022.2159889",
+    "URL": "https://doi.org/10.1080/17445647.2022.2159889",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Deep-Seated Gravitational Slope Deformations in Molise region (Italy): novel inventory and main geomorphological features",
+    "DOI": "10.1080/17445647.2022.2163198",
+    "URL": "https://doi.org/10.1080/17445647.2022.2163198",
+    "Location": "Molise",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.5953,
+     41.6843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geoarchaeology of the Cornia river coastal plain (Piombino, southern Tuscany, Italy)",
+    "DOI": "10.1080/17445647.2023.2173677",
+    "URL": "https://doi.org/10.1080/17445647.2023.2173677",
+    "Location": "Piombino (LI)",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.6039,
+     42.9753
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological features of the Special Nature Reserve of <i>Montalbano Jonico</i> Badlands (Basilicata, Southern Italy)",
+    "DOI": "10.1080/17445647.2023.2179435",
+    "URL": "https://doi.org/10.1080/17445647.2023.2179435",
+    "Location": "Montalbano Jonico (MT)",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.5754,
+     40.3039
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Structure of a Variscan migmatite-granite transition zone (N Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2023.2182721",
+    "URL": "https://doi.org/10.1080/17445647.2023.2182721",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The paleolandscape evolution of the southwestern coast of Sardinia (Italy) and its impact on Mesolithic settlements",
+    "DOI": "10.1080/17445647.2023.2182722",
+    "URL": "https://doi.org/10.1080/17445647.2023.2182722",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Combining multi-typologies landslide susceptibility maps: a case study for the Visso area (central Italy)",
+    "DOI": "10.1080/17445647.2023.2198148",
+    "URL": "https://doi.org/10.1080/17445647.2023.2198148",
+    "Location": "Visso (MC)",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.0438,
+     42.9297
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Tectonic coupling of oceanic and continental units in the Southwestern Alps (Western Liguria, Italy) revealed by structural mapping",
+    "DOI": "10.1080/17445647.2023.2214789",
+    "URL": "https://doi.org/10.1080/17445647.2023.2214789",
+    "Location": "Liguria",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.7043,
+     44.2648
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "3D Modelling of Late Quaternary coastal evolution between Albenga and Loano (Western Liguria, Italy)",
+    "DOI": "10.1080/17445647.2023.2227211",
+    "URL": "https://doi.org/10.1080/17445647.2023.2227211",
+    "Location": "Albenga (SV)",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.1842,
+     44.0638
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the lower Belice River valley, epicentral area of the M &gt; 5 1968 seismic sequence (south-western Sicily, Italy)",
+    "DOI": "10.1080/17445647.2023.2242725",
+    "URL": "https://doi.org/10.1080/17445647.2023.2242725",
+    "Location": "Sicilia",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.1552,
+     37.5878
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Holocene to near-future evolution of the southern Molise coast (Central Adriatic, Italy) under the influence of natural and anthropogenic controls",
+    "DOI": "10.1080/17445647.2023.2243973",
+    "URL": "https://doi.org/10.1080/17445647.2023.2243973",
+    "Location": "Molise",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.5953,
+     41.6843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Mapping and chronological classification of marine terraces along the southern side of the Sibari Plain (northern Calabria, Italy) by means of digital and analogue tools",
+    "DOI": "10.1080/17445647.2023.2243983",
+    "URL": "https://doi.org/10.1080/17445647.2023.2243983",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology and geoheritage in the Piana Crixia Natural Park (NW Italy)",
+    "DOI": "10.1080/17445647.2023.2257731",
+    "URL": "https://doi.org/10.1080/17445647.2023.2257731",
+    "Location": "Piana Crixia (SV)",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.2728,
+     44.4941
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "UAV and field survey observations on the November 26th 2022 Celario flowslide, Ischia Island (Southern Italy)",
+    "DOI": "10.1080/17445647.2023.2261484",
+    "URL": "https://doi.org/10.1080/17445647.2023.2261484",
+    "Location": "Ischia (NA)",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.9477,
+     40.7276
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of the upper sector of the Roncovetro active landslide (Emilia-Romagna Region, Italy)",
+    "DOI": "10.1080/17445647.2023.2277898",
+    "URL": "https://doi.org/10.1080/17445647.2023.2277898",
+    "Location": "Emilia-Romagna",
+    "Type": "Research Map",
+    "Anno": 2023,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.0419,
+     44.5234
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Asinara Island (Sardinia, Italy)",
+    "DOI": "10.1080/17445647.2024.2317136",
+    "URL": "https://doi.org/10.1080/17445647.2024.2317136",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geohydrologic units of Ischia Island (Southern Tyrrhenian Sea, Italy)",
+    "DOI": "10.1080/17445647.2024.2317142",
+    "URL": "https://doi.org/10.1080/17445647.2024.2317142",
+    "Location": "Ischia (NA)",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.9477,
+     40.7276
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Combining multi-source data to map vineyards in a specialized district of Basilicata (Southern Italy)",
+    "DOI": "10.1080/17445647.2024.2327859",
+    "URL": "https://doi.org/10.1080/17445647.2024.2327859",
+    "Location": "Basilicata",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.0817,
+     40.4998
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Hydrogeochemistry of the shallow aquifer in the western Po Plain (Piedmont, Italy): spatial and temporal variability",
+    "DOI": "10.1080/17445647.2024.2329164",
+    "URL": "https://doi.org/10.1080/17445647.2024.2329164",
+    "Location": "Piemonte",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.9231,
+     45.0606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Dual-proxy estimation of Vs30: the case study of the Marche Region (central Italy)",
+    "DOI": "10.1080/17445647.2024.2349787",
+    "URL": "https://doi.org/10.1080/17445647.2024.2349787",
+    "Location": "Marche",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1421,
+     43.3452
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Pleistocene volcano of Monte Amiata (Southern Tuscany, Italy)",
+    "DOI": "10.1080/17445647.2024.2360749",
+    "URL": "https://doi.org/10.1080/17445647.2024.2360749",
+    "Location": "Toscana",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.1359,
+     43.4596
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Subsurface geology of the Torino metropolitan area (Westernmost Po Plain, NW Italy)",
+    "DOI": "10.1080/17445647.2024.2391963",
+    "URL": "https://doi.org/10.1080/17445647.2024.2391963",
+    "Location": "Torino (TO)",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.6779,
+     45.0718
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geoheritage of the Sila National Park and surrounding areas (Northern Calabria, Italy)",
+    "DOI": "10.1080/17445647.2024.2411787",
+    "URL": "https://doi.org/10.1080/17445647.2024.2411787",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "A revised landslide inventory of the Calabria Region (Italy)",
+    "DOI": "10.1080/17445647.2024.2421292",
+    "URL": "https://doi.org/10.1080/17445647.2024.2421292",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geology of the Arera-Vedra Valley mining area (Gorno district, Orobic Alps, Italy)",
+    "DOI": "10.1080/17445647.2024.2422545",
+    "URL": "https://doi.org/10.1080/17445647.2024.2422545",
+    "Location": "Gorno (BG)",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.8431,
+     45.8663
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of the northeast Sardinian continental shelf between Olbia and Posada (Italy)",
+    "DOI": "10.1080/17445647.2024.2446249",
+    "URL": "https://doi.org/10.1080/17445647.2024.2446249",
+    "Location": "Posada (NU)",
+    "Type": "Research Map",
+    "Anno": 2025,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.7155,
+     40.644
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Historical damaging geo-hydrological events affecting the Catanzaro municipality (Calabria, Southern Italy), 1830–2023",
+    "DOI": "10.1080/17445647.2025.2498977",
+    "URL": "https://doi.org/10.1080/17445647.2025.2498977",
+    "Location": "Catanzaro (CZ)",
+    "Type": "Research Map",
+    "Anno": 2025,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6025,
+     38.89
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "A physical geography approach to predict vineyard occurrence using statistical methods in the Taurasi DOCG Terroir (Avellino Province, southern Italy)",
+    "DOI": "10.1080/17445647.2025.2525922",
+    "URL": "https://doi.org/10.1080/17445647.2025.2525922",
+    "Location": "Provincia di Avellino",
+    "Type": "Research Map",
+    "Anno": 2025,
+    "Licenza": "BY 4.0",
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.0775,
+     40.9767
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The Jurassic structure of the northern sector of Foligno mountains (Central Italy)",
+    "DOI": "10.1080/17445647.2025.2538734",
+    "URL": "https://doi.org/10.1080/17445647.2025.2538734",
+    "Location": "Foligno (PG)",
+    "Type": "Research Map",
+    "Anno": 2025,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.791,
+     42.9767
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Debris flow susceptibility in a touristic alpine area: the case study of the Bardonecchia town (Upper Susa Valley, NW Italy)",
+    "DOI": "10.1080/17445647.2025.2555342",
+    "URL": "https://doi.org/10.1080/17445647.2025.2555342",
+    "Location": "Bardonecchia (TO)",
+    "Type": "Research Map",
+    "Anno": 2025,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6.7312,
+     45.1008
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The Casamicciola fault system (Ischia Island, Campania region, Italy): mapping the surface trace of the 1883 and 2017 earthquake source from UAV LiDAR images and 2-D ERT profiles",
+    "DOI": "10.1080/17445647.2025.2565358",
+    "URL": "https://doi.org/10.1080/17445647.2025.2565358",
+    "Location": "Ischia (NA)",
+    "Type": "Research Map",
+    "Anno": 2025,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.9477,
+     40.7276
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Bathymetry and lakebed characterization of Bracciano lake (Lazio region, central Italy)",
+    "DOI": "10.1080/17445647.2026.2616072",
+    "URL": "https://doi.org/10.1080/17445647.2026.2616072",
+    "Location": "Bracciano (RM)",
+    "Type": "Research Map",
+    "Anno": 2026,
+    "Licenza": "BY-NC 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.163,
+     42.0915
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Radon activity concentrations in the soils of the Gioia Tauro Basin (Calabria, southern Italy), with insights on geo-structural control",
+    "DOI": "10.1080/17445647.2026.2641251",
+    "URL": "https://doi.org/10.1080/17445647.2026.2641251",
+    "Location": "Gioia Tauro (RC)",
+    "Type": "Research Map",
+    "Anno": 2026,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.9221,
+     38.4283
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphology of the Balzi Rossi archaeological area and of its shallow seafloor (Ventimiglia, NW Italy)",
+    "DOI": "10.1080/17445647.2026.2664928",
+    "URL": "https://doi.org/10.1080/17445647.2026.2664928",
+    "Location": "Ventimiglia (IM)",
+    "Type": "Research Map",
+    "Anno": 2026,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.5602,
+     43.8219
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Quaternary geology in Calabria (Southern Italy): an overview",
+    "DOI": "10.1080/17445647.2026.2664939",
+    "URL": "https://doi.org/10.1080/17445647.2026.2664939",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2026,
+    "Licenza": "BY 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Transgressive dune system of Piscinas, Western Sardinia (Italy)",
+    "DOI": "10.1080/17445647.2026.2675564",
+    "URL": "https://doi.org/10.1080/17445647.2026.2675564",
+    "Location": "Piscinas (CI)",
+    "Type": "Research Map",
+    "Anno": 2026,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.6663,
+     39.0693
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "A deep-seated roto-translational landslide in flysch rocks in the Northern Apennines (the Casale-Colla landslide, Ferriere, Italy)",
+    "DOI": "10.1080/17445647.2026.2693615",
+    "URL": "https://doi.org/10.1080/17445647.2026.2693615",
+    "Location": "Ferriere (PC)",
+    "Type": "Research Map",
+    "Anno": 2026,
+    "Licenza": "BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.4877,
+     44.6332
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Climatic characteristics of middle-southern Apulia (southern Italy)",
+    "DOI": "10.1080/jom.2007.9710849",
+    "URL": "https://doi.org/10.1080/jom.2007.9710849",
+    "Location": "Puglia",
+    "Type": "Research Map",
+    "Anno": 2007,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6197,
+     40.9843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Environmental Geological Maps of San Fruttuoso Bay (Portofino Park, Italy)",
+    "DOI": "10.4113/jom.2008.1018",
+    "URL": "https://doi.org/10.4113/jom.2008.1018",
+    "Location": "Portofino (GE)",
+    "Type": "Research Map",
+    "Anno": 2008,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.1976,
+     44.3097
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Applied geomorphological map of the Portofino Municipal Territory (Italy)",
+    "DOI": "10.4113/jom.2008.1023",
+    "URL": "https://doi.org/10.4113/jom.2008.1023",
+    "Location": "Portofino (GE)",
+    "Type": "Research Map",
+    "Anno": 2008,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.1976,
+     44.3097
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological Map of the Ionian Area between the Trionto and Colognati River Catchments (Calabria, Italy)",
+    "DOI": "10.4113/jom.2009.1044",
+    "URL": "https://doi.org/10.4113/jom.2009.1044",
+    "Location": "Calabria",
+    "Type": "Research Map",
+    "Anno": 2009,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Desertification Vulnerability Map of Tavoliere, Apulia (Southern Italy)",
+    "DOI": "10.4113/jom.2009.1050",
+    "URL": "https://doi.org/10.4113/jom.2009.1050",
+    "Location": "Puglia",
+    "Type": "Research Map",
+    "Anno": 2009,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.6197,
+     40.9843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological Map of the area between Frosolone and Trivento (Molise, Italy)",
+    "DOI": "10.4113/jom.2010.1039",
+    "URL": "https://doi.org/10.4113/jom.2010.1039",
+    "Location": "Frosolone (IS)",
+    "Type": "Research Map",
+    "Anno": 2010,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.4404,
+     41.6107
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The geological and metallogenic map of the Baccu Locci mine area (Sardinia, Italy)",
+    "DOI": "10.4113/jom.2011.1134",
+    "URL": "https://doi.org/10.4113/jom.2011.1134",
+    "Location": "Sardegna",
+    "Type": "Research Map",
+    "Anno": 2011,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.0328,
+     40.0849
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Fluvial landforms in relation to the geological setting in the “Murge Basse” karst of Apulia (Bari Metropolitan Area, Southern Italy)",
+    "DOI": "10.4113/jom.2011.1136",
+    "URL": "https://doi.org/10.4113/jom.2011.1136",
+    "Location": "Bari (BA)",
+    "Type": "Research Map",
+    "Anno": 2011,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.8458,
+     41.103
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological map of the Pliocene succession of the Northern Siena Basin (Tuscany, Italy)",
+    "DOI": "10.4113/jom.2011.1176",
+    "URL": "https://doi.org/10.4113/jom.2011.1176",
+    "Location": "Siena (SI)",
+    "Type": "Research Map",
+    "Anno": 2011,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.3336,
+     43.3104
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Physical land suitability map for <i>Tuber magnatum Pico</i> in Piana Crixia municipality territory (Liguria-Italy)",
+    "DOI": "10.4113/jom.2011.1180",
+    "URL": "https://doi.org/10.4113/jom.2011.1180",
+    "Location": "Piana Crixia (SV)",
+    "Type": "Research Map",
+    "Anno": 2011,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Comune",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.2728,
+     44.4941
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "The observed landscape: map of visible landscape values in the province of Enna (Italy)",
+    "DOI": "10.4113/jom.2011.1183",
+    "URL": "https://doi.org/10.4113/jom.2011.1183",
+    "Location": "Provincia di Enna",
+    "Type": "Research Map",
+    "Anno": 2011,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     14.43,
+     37.581
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological map of the Crotone Province (Calabria, South Italy)",
+    "DOI": "10.4113/jom.2011.1190",
+    "URL": "https://doi.org/10.4113/jom.2011.1190",
+    "Location": "Provincia di Crotone",
+    "Type": "Research Map",
+    "Anno": 2011,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.9465,
+     39.1776
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geomorphological map and land units at 1:200,000 scale of the Siena Province (Southern Tuscany, Italy)",
+    "DOI": "10.4113/jom.2011.1193",
+    "URL": "https://doi.org/10.4113/jom.2011.1193",
+    "Location": "Provincia di Siena",
+    "Type": "Research Map",
+    "Anno": 2011,
+    "Licenza": "Non indicata in Crossref",
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione: confini ISTAT"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.4561,
+     43.1911
+    ]
+   }
+  }
+ ]
+}

@@ -1,64 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>Geological Cartography Hub - Italy</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
-    <style>
-        body { margin: 0; padding: 0; }
-        #map { width: 100%; height: 100vh; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGC-Hub – Cartografia geologica italiana</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; }
+    #map { height: 100%; }
+    .legenda { background: #fff; padding: 6px 10px; border-radius: 4px; font-size: 12px; line-height: 1.6;
+               box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+    .legenda i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -2px;
+                 border: 1px solid #555; }
+    .leaflet-popup-content { font-size: 13px; }
+    .meta { color: #555; }
+  </style>
 </head>
 <body>
-
 <div id="map"></div>
-
 <script>
-    var map = L.map('map').setView([42.5, 12.5], 6);
+  const map = L.map('map').setView([42.2, 12.5], 6);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+  map.attributionControl.addAttribution('Fogli CARG: ISPRA · Confini: ISTAT (CC BY 4.0) · Metadati: Crossref');
 
-    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+  // Evita che testo nei dati venga interpretato come HTML
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const safeUrl = u => /^https:\/\//.test(u || '') ? u : '#';
+  const riga = (etichetta, v) => v ? `<br><span class="meta">${etichetta}:</span> ${esc(v)}` : '';
 
-    var styleJoM = { color: "#ff0000", weight: 2, opacity: 0.8, fillOpacity: 0.1 };
-    var styleCARG = { color: "#0000ff", weight: 1, opacity: 0.6, fillOpacity: 0.1, dashArray: '5, 5' };
+  const COLORI_CARG = { 'Realizzato': '#1f5fbf', 'Finanziato / in corso': '#f2a33a', 'Non avviato o non indicato': '#bdbdbd' };
 
-    function onEachFeature(feature, layer) {
-        if (feature.properties) {
-            layer.bindPopup(
-                "<b>" + feature.properties.Title + "</b><br>" +
-                "Location: " + feature.properties.Location + "<br>" +
-                "<a href='" + feature.properties.URL + "' target='_blank'>Vedi Risorsa</a>"
-            );
-        }
-    }
+  function popup(feature, layer) {
+    const p = feature.properties || {};
+    let html = `<b>${esc(p.Title)}</b>`;
+    html += riga('Descrizione', p.Description);
+    html += riga('Stato', p.Stato);
+    html += riga('Raster', p.Raster);
+    html += riga('Luogo', p.Type === 'Research Map' ? p.Location : null);
+    html += riga('Anno', p.Anno);
+    html += riga('Licenza', p.Licenza);
+    if (p.Precisione) html += riga('Posizione', `centroide del ${p.Precisione.toLowerCase()} citato nel titolo`);
+    const etichetta = p.URL_tipo === 'Pagina generale CARG' ? 'Pagina CARG (foglio senza pagina dedicata)' : 'Apri risorsa';
+    html += `<br><a href="${esc(safeUrl(p.URL))}" target="_blank" rel="noopener">${etichetta}</a>`;
+    layer.bindPopup(html);
+  }
 
-    // *** QUI È LA MODIFICA IMPORTANTE: AGGIUNTO "dati/" ***
-    var jomLayer = new L.GeoJSON.AJAX("dati/journal_of_maps_italy_top150.geojson", {
-        style: styleJoM,
-        onEachFeature: onEachFeature
-    });
+  const livelli = [
+    { nome: 'Progetto CARG 1:50.000', file: 'dati/carg/carg_50k_fogli.geojson', colore: '#1f5fbf',
+      opzioni: { style: f => ({ color: '#555', weight: 0.6, fillOpacity: 0.35,
+                                fillColor: COLORI_CARG[f.properties.Stato] || '#bdbdbd' }) } },
+    { nome: 'Geoportali regionali', file: 'dati/geoportali_regionali/geoportali_regionali.geojson', colore: '#2e8b57',
+      visibile: false,
+      opzioni: { style: { color: '#2e8b57', weight: 2, fillOpacity: 0.03 } } },
+    { nome: 'Journal of Maps', file: 'dati/journal_of_maps/jom_italia.geojson', colore: '#c62828',
+      opzioni: { pointToLayer: (f, ll) => L.circleMarker(ll, {
+        radius: f.properties.Precisione === 'Regione' ? 5 : 7, color: '#fff', weight: 1,
+        fillColor: '#c62828', fillOpacity: f.properties.Precisione === 'Regione' ? 0.5 : 0.9 }) } }
+  ];
 
-    var cargLayer = new L.GeoJSON.AJAX("dati/carg_italy_GRID_FIXED.geojson", {
-        style: styleCARG,
-        onEachFeature: onEachFeature
-    });
+  const controllo = L.control.layers(null, {}, { collapsed: window.innerWidth < 600 }).addTo(map);
+  livelli.forEach(l => {
+    fetch(l.file)
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(dati => {
+        const layer = L.geoJSON(dati, Object.assign({ onEachFeature: popup }, l.opzioni));
+        if (l.visibile !== false) layer.addTo(map);
+        controllo.addOverlay(layer, `<span style="color:${l.colore}">■</span> ${l.nome} (${dati.features.length})`);
+      })
+      .catch(e => console.error('Impossibile caricare', l.file, e));
+  });
 
-    jomLayer.addTo(map);
-    cargLayer.addTo(map);
-
-    var baseMaps = { "Base OpenStreetMap": osm };
-    var overlayMaps = {
-        "<span style='color:red'>■</span> Journal of Maps (Ricerca)": jomLayer,
-        "<span style='color:blue'>■</span> Progetto CARG (Ufficiale)": cargLayer
-    };
-
-    L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
+  const legenda = L.control({ position: 'bottomleft' });
+  legenda.onAdd = () => {
+    const d = L.DomUtil.create('div', 'legenda');
+    d.innerHTML = '<b>Fogli CARG</b><br>' +
+      Object.entries(COLORI_CARG).map(([k, c]) => `<i style="background:${c}"></i>${k}`).join('<br>') +
+      '<br><b>Journal of Maps</b><br><i style="background:#c62828;border-radius:50%"></i>comune o provincia' +
+      '<br><i style="background:#c62828;opacity:.5;border-radius:50%"></i>solo regione';
+    return d;
+  };
+  legenda.addTo(map);
 </script>
-
 </body>
 </html>

@@ -3,56 +3,78 @@
 
 **Progetto a cura di [Geologiaintasca](https://www.geologiaintasca.it)**
 
-Questo repository ospita il database geografico unificato (GeoJSON) delle risorse cartografiche geologiche italiane. L'obiettivo è aggregare in un'unica mappa interattiva i dati provenienti da istituzioni nazionali, enti regionali e ricerca accademica, facilitando la consultazione di risorse oggi distribuite su portali diversi.
+Questo repository ospita un indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. L'obiettivo è riunire in un'unica mappa i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi.
 
-[**🗺️ VAI ALLA MAPPA INTERATTIVA (uMap)**](https://umap.openstreetmap.fr/it/map/cartografia-geologica-italiana_1338725)
+[**Mappa interattiva (uMap)**](https://umap.openstreetmap.fr/it/map/cartografia-geologica-italiana_1338725) · [Anteprima Leaflet](index.html)
 
----
-
-## 📂 Dataset Attuali
-
-L'Hub integra attualmente tre livelli informativi complementari:
-
-### 1. 🔵 Cartografia Ufficiale (Progetto CARG)
-Il quadro d'unione completo della cartografia geologica ufficiale italiana alla scala 1:50.000.
-*   **Contenuto:** Griglia di tutti i 652 fogli geologici previsti dal progetto CARG.
-*   **Funzionalità:** Ogni poligono rimanda direttamente alla pagina ufficiale ISPRA per il download del foglio o la consultazione dei dati.
-*   **Fonte Dati:** Elaborazione basata sui dati pubblici del Servizio Geologico d'Italia (ISPRA).
-
-### 2. 🔴 Ricerca Scientifica (Journal of Maps)
-Una selezione curata di oltre 130 pubblicazioni scientifiche tratte dal *Journal of Maps*.
-*   **Contenuto:** Mappe di dettaglio, geomorfologia, rischi geologici e nuovi rilevamenti accademici che aggiornano o integrano la cartografia ufficiale.
-*   **Fonte Dati:** Metadati estratti da Crossref/Taylor & Francis.
-
-### 3. 🟢 Geoportali Regionali (Regional Gate)
-Il punto di accesso diretto alla cartografia geologica di dettaglio (spesso 1:10.000) gestita dalle Regioni.
-*   **Contenuto:** Quadro d'unione regionale.
-*   **Funzionalità:** Cliccando sulla regione di interesse, si accede direttamente al Geoportale/WebGIS specifico regionale per consultare la cartografia vettoriale di dettaglio.
-*   **Fonte Dati:** Selezione manuale dei migliori servizi cartografici regionali attivi.
+> [!NOTE]
+> **Dati ricostruiti a novembre 2026** da fonti ufficiali (ISPRA, ISTAT, Crossref). Cosa è cambiato e quali limiti restano: [REVISIONE.md](REVISIONE.md).
 
 ---
 
-## 🚀 Roadmap (Sviluppi futuri)
-Il progetto è in continua evoluzione. I prossimi obiettivi includono:
+## Dataset
 
-- [ ] **Carta Geologica d'Italia 1:100.000 (Vecchia Serie):** Digitalizzazione del quadro d'unione della storica carta geologica nazionale (277 fogli), ancora essenziale nelle aree non coperte dal CARG.
-- [ ] **Cartografia Geologica Marina:** Integrazione dei fogli geologici della piattaforma continentale (Progetto MaGIC/CARG Mare).
-- [ ] **Miglioramento precisione:** Affinamento manuale dei poligoni delle pubblicazioni scientifiche (Journal of Maps) tramite community.
+| Livello | File | Feature | Fonte |
+|---|---|---|---|
+| Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 636 fogli | Quadro d'unione ISPRA |
+| Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 226 pubblicazioni | Crossref + confini ISTAT |
+| Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 enti | Selezione manuale + confini ISTAT |
+
+Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`.
+
+### 1. Cartografia ufficiale (Progetto CARG)
+Quadro d'unione dei fogli geologici alla scala 1:50.000 (CARG e pre-CARG), con la posizione reale di ogni foglio.
+* **Campi:** `Foglio`, `Stato`, `Raster`, `Estensione` (fogli standard, estesi o accorpati), `URL`.
+* **Stato** (dal campo ISPRA `stato`): 214 *Realizzato*, 64 *Finanziato / in corso*, 358 *Non avviato o non indicato*. Le etichette interpretano i codici ISPRA (`bd`, `finanziati`), che il servizio non documenta.
+* **URL:** 243 fogli hanno la pagina dedicata ISPRA. Gli altri rimandano alla pagina generale CARG, e il campo `URL_tipo` lo indica.
+* I fogli accorpati (es. 1-7 Vipiteno) sono un'unica feature: un clic corrisponde a un foglio pubblicato.
+
+*Fonte: ISPRA – Servizio Geologico d'Italia, servizio [Antropico25k, layer "Quadro unione Fogli"](https://sinacloud.isprambiente.it/arcgisgeo/rest/services/servizi/Antropico25k/MapServer/0).*
+
+### 2. Ricerca scientifica (Journal of Maps)
+Pubblicazioni del *Journal of Maps* su aree italiane, ognuna con DOI verificato su Crossref.
+* **Posizione:** un punto sul centroide dell'unità ISTAT più specifica citata nel titolo. Le pubblicazioni sono 103 a livello di comune, 7 di provincia e 116 di regione, come indicato nel campo `Precisione`. **Non è l'area cartografata**: serve a trovare la pubblicazione, non a delimitarla.
+* **Non posizionate:** 128 pubblicazioni non hanno un toponimo ISTAT nel titolo (es. Etna, Campi Flegrei, Dolomiti) oppure citano più regioni. Sono elencate in `jom_da_localizzare.csv` e non vengono collocate a stima.
+* **Licenza:** il campo `Licenza` riporta quella dichiarata in Crossref: 95 CC BY 4.0, 20 CC BY-NC 4.0, 3 CC BY-NC-ND 4.0. Per 108 articoli Crossref non indica la licenza: va verificata sulla pagina dell'articolo prima di riusarne le figure.
+
+*Fonte: metadati [Crossref](https://www.crossref.org/) (ISSN 1744-5647); confini ISTAT per la localizzazione.*
+
+### 3. Geoportali regionali
+Accesso ai geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano (21 enti), dove si trova la cartografia geologica di dettaglio.
+
+*Fonte link: selezione manuale. Confini: ISTAT, 1° gennaio 2026 (CC BY 4.0), via [openpolis/geojson-italy](https://github.com/openpolis/geojson-italy), semplificati a circa 300 m.*
 
 ---
 
-## ⚖️ Licenze e Disclaimer
+## Rigenerare i dati
+Ogni livello ha uno script che lo ricostruisce dalla fonte. Le istruzioni per scaricare i dati di partenza sono nell'intestazione di ciascuno script.
 
-Questo repository funge da **indice e aggregatore** di collegamenti a risorse esterne.
+```bash
+python3 scripts/build_carg.py <quadro_unione_ispra.geojson>
+python3 scripts/build_jom.py <crossref.json> <regions> <provinces> <municipalities>
+python3 scripts/build_geoportali.py <regions> <provinces>
+python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni commit
+```
 
-*   **Codice e Struttura Dati:** Il codice di questo repository e la struttura dei file GeoJSON sono rilasciati sotto licenza **MIT** (Open Source).
-*   **Dati "CARG" e Regionali:** I riferimenti appartengono ai rispettivi Enti (ISPRA, Regioni). I dati sono trattati in conformità con la licenza **IODL 2.0 (Italian Open Data License)** ove applicabile.
-*   **Dati "Journal of Maps":** I metadati sono di pubblico dominio. I contenuti linkati sono proprietà degli editori e degli autori.
+## Roadmap
+- [x] Griglia CARG dal quadro d'unione ufficiale ISPRA
+- [x] Livello Journal of Maps da Crossref, con DOI verificati
+- [x] Confini regionali ufficiali ISTAT
+- [ ] Localizzare manualmente le 128 pubblicazioni in `jom_da_localizzare.csv`
+- [ ] Verificare i link dei geoportali regionali (6 sostituiti il 3/11/2026, da ricontrollare)
+- [ ] Carta Geologica d'Italia 1:100.000 (277 fogli)
+- [ ] Cartografia geologica marina (CARG Mare)
 
-*Geologiaintasca non è proprietaria dei dati cartografici linkati, ma fornisce esclusivamente il servizio di indicizzazione geografica.*
+## Licenze e disclaimer
+Il repository è un **indice di collegamenti** a risorse esterne.
 
-## 🤝 Contribuire
-Il progetto è aperto alla comunità geologica italiana.
-Hai una mappa da segnalare o vuoi proporre un nuovo livello informativo?
-1.  Apri una **Issue** per discutere la proposta.
-2.  Fai un **Fork** del repository e invia una Pull Request.
+* **Codice:** licenza [MIT](LICENSE).
+* **Quadro d'unione CARG:** © ISPRA – Servizio Geologico d'Italia, licenza **CC BY 4.0**, come per i dati CARG 1:50.000 nei metadati INSPIRE ISPRA (scelta confermata dal curatore del progetto il 3/11/2026).
+* **Confini amministrativi:** © ISTAT, licenza CC BY 4.0.
+* **Journal of Maps:** sono indicizzati solo i metadati bibliografici. Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
+
+*Geologiaintasca non è titolare dei dati cartografici collegati: fornisce solo il servizio di indicizzazione geografica.*
+
+## Contribuire
+1. Apri una **Issue** per segnalare una mappa, un errore o una localizzazione.
+2. Fai un **fork** e invia una pull request, dopo aver eseguito `scripts/valida_dati.py`.

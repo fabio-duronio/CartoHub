@@ -91,6 +91,30 @@ def controlla_file(path):
         if fuori:
             segnala("E", nome, f"{len(fuori)} DOI non appartengono al Journal of Maps (prefissi {JOM_PREFIX})")
 
+    if "carta_100k" in nome:
+        # Punti di controllo: il foglio deve contenere la località che gli dà il nome
+        controlli = {"Pescara": (14.21, 42.46), "Sulmona": (13.93, 42.05), "Lanciano": (14.39, 42.23)}
+        visti = set()
+        for f in fs:
+            loc = str(f["properties"].get("Location", ""))
+            if loc in controlli:
+                visti.add(loc)
+                x, y = controlli[loc]
+                g = f["geometry"]
+                anelli = g["coordinates"] if g["type"] == "Polygon" else [r for q in g["coordinates"] for r in q]
+                x0, y0, x1, y1 = bbox(anelli)
+                if not (x0 <= x <= x1 and y0 <= y <= y1):
+                    segnala("E", nome, f"il foglio {loc} non contiene {loc}: quadro d'unione non georeferenziato")
+        for loc in set(controlli) - visti:
+            segnala("E", nome, f"foglio di controllo '{loc}' assente")
+        if len(fs) < 270:
+            segnala("E", nome, f"solo {len(fs)} fogli: quadro d'unione ISPRA incompleto?")
+        senza = sum(1 for f in fs if not f["properties"].get("N_edizioni"))
+        if senza > 30:
+            segnala("E", nome, f"{senza} fogli senza schede: catalogo ISPRA non raggiunto o cambiato?")
+        elif senza:
+            segnala("W", nome, f"{senza} fogli senza schede nel catalogo ISPRA")
+
     if "carg" in nome:
         # Punti di controllo: località note che devono cadere nel foglio con quel nome.
         controlli = {"L'Aquila": (13.40, 42.35), "Napoli": (14.25, 40.85), "Genova": (8.93, 44.41),

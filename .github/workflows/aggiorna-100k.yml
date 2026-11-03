@@ -1,0 +1,50 @@
+# Aggiorna il livello della Carta Geologica d'Italia 1:100.000 (quadro d'unione + catalogo Biblioteca ISPRA).
+# Serie storica: basta un controllo al mese (primo lunedì), più avvio a mano e quando cambia lo script.
+name: Aggiorna Carta 1:100.000
+
+on:
+  schedule:
+    - cron: "47 5 1-7 * 1"   # primo lunedì del mese, 05:47 UTC
+  push:
+    branches: [main, carta-100k]
+    paths:
+      - "scripts/build_100k.py"
+      - ".github/workflows/aggiorna-100k.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aggiorna-100k
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ricostruisci il livello
+        run: python3 -I scripts/build_100k.py | tee "$RUNNER_TEMP/esito.txt"
+
+      - name: Valida
+        run: python3 -I scripts/valida_dati.py
+
+      - name: Commit se ci sono novità
+        run: |
+          git add -N dati/carta_100k
+          if git diff --quiet -- dati/carta_100k; then
+            echo "Nessuna novità."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dati/carta_100k
+          git commit -m "Carta 1:100.000: aggiornamento $(date -u +%Y-%m-%d)" -m "$(cat "$RUNNER_TEMP/esito.txt")"
+          git push

@@ -68,6 +68,8 @@ DOI;Comune;Provincia;Lat;Lon;Note
 * Si modifica direttamente da GitHub: icona della matita sul file, incolla la riga, *Commit changes*.
 * Un comune inesistente o una riga incompleta fanno fallire l'Action con il numero della riga, e GitHub invia una notifica.
 
+Gli articoli da non mettere sulla mappa (commenti, temi non cartografici, carte a scala nazionale, nessun luogo indicato) stanno in [`esclusioni.csv`](dati/journal_of_maps/esclusioni.csv) (`DOI;Categoria;Motivo`): non compaiono né sulla mappa né tra quelli da localizzare.
+
 La skill di Geologiaintasca produce la riga già pronta per ogni post su un articolo del Journal of Maps.
 
 ## Rigenerare i dati
@@ -86,7 +88,8 @@ python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni
 - [x] Livello Journal of Maps da Crossref, con DOI verificati
 - [x] Confini regionali ufficiali ISTAT
 - [x] Aggiornamento settimanale automatico del Journal of Maps e localizzazioni manuali
-- [ ] Localizzare le pubblicazioni in `jom_da_localizzare.csv` (anche gradualmente, con i post di Geologiaintasca)
+- [x] Localizzate 87 pubblicazioni, escluse 33 (3/11/2026)
+- [ ] Localizzare le 9 pubblicazioni rimaste in `jom_da_localizzare.csv` (servono i paper)
 - [ ] Verificare i link dei geoportali regionali (6 sostituiti il 3/11/2026, da ricontrollare)
 - [ ] Carta Geologica d'Italia 1:100.000 (277 fogli)
 - [ ] Cartografia geologica marina (CARG Mare)

@@ -20,6 +20,10 @@ Localizzazioni manuali (prevalgono su quelle automatiche):
   - con Lat e Lon: punto esatto (Precisione "Coordinate");
   - altrimenti Comune + sigla Provincia: centroide del comune ISTAT (Precisione "Comune").
   Un comune non trovato o una riga incompleta fanno fallire lo script, così l'errore si vede.
+
+Esclusioni: dati/journal_of_maps/esclusioni.csv, colonne DOI;Categoria;Motivo.
+  Articoli che non vanno sulla mappa (commenti, temi non cartografici, scala nazionale,
+  nessun luogo indicato): non compaiono né sulla mappa né tra quelli da localizzare.
 """
 import csv
 import json
@@ -33,6 +37,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "dati/journal_of_maps/jom_italia.geojson"
 OUT_CSV = ROOT / "dati/journal_of_maps/jom_da_localizzare.csv"
 MANUALI = ROOT / "dati/journal_of_maps/localizzazioni.csv"
+ESCLUSIONI = ROOT / "dati/journal_of_maps/esclusioni.csv"
 
 JOM_PREFIX = ("10.1080/17445647.", "10.1080/jom.", "10.4113/jom.")  # attuale e storici
 
@@ -142,6 +147,8 @@ def leggi_manuali(path, comuni):
     for f in comuni:
         p = f["properties"]
         per_comune[(norm(p["name"]), p["prov_acr"].upper())] = f
+        # nomi bilingui ("Santa Cristina Valgardena/St. Christina in Gröden"): basta il nome italiano
+        per_comune.setdefault((norm(p["name"].split("/")[0]), p["prov_acr"].upper()), f)
     out, errori = {}, []
     with open(path, encoding="utf-8-sig", newline="") as fh:
         for n, r in enumerate(csv.DictReader(fh, delimiter=";"), start=2):
@@ -174,6 +181,14 @@ def leggi_manuali(path, comuni):
     return out
 
 
+def leggi_esclusioni(path):
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8-sig", newline="") as fh:
+        return {r["DOI"].strip().lower(): (r.get("Categoria") or "").strip()
+                for r in csv.DictReader(fh, delimiter=";") if (r.get("DOI") or "").strip()}
+
+
 def main(p_cr, p_reg, p_prov, p_com):
     items = json.load(open(p_cr, encoding="utf-8"))["message"]["items"]
     regioni = json.load(open(p_reg, encoding="utf-8"))["features"]
@@ -181,6 +196,11 @@ def main(p_cr, p_reg, p_prov, p_com):
     comuni = json.load(open(p_com, encoding="utf-8"))["features"]
 
     manuali = leggi_manuali(MANUALI, comuni)
+    esclusi = leggi_esclusioni(ESCLUSIONI)
+    conflitti = sorted(set(manuali) & set(esclusi))
+    if conflitti:
+        sys.exit(f"DOI presenti sia in localizzazioni.csv sia in esclusioni.csv: {conflitti}")
+    n_esclusi = 0
     reg_by_name = {f["properties"]["reg_name"]: f for f in regioni}
     gaz_reg = {}
     for nome in reg_by_name:
@@ -208,6 +228,9 @@ def main(p_cr, p_reg, p_prov, p_com):
     for it in items:
         titolo = " ".join((it.get("title") or [""])[0].split())
         if not titolo:
+            continue
+        if it["DOI"].lower() in esclusi:
+            n_esclusi += 1
             continue
         if not it["DOI"].lower().startswith(JOM_PREFIX):
             anno = (it.get("issued", {}).get("date-parts") or [[None]])[0][0]
@@ -292,7 +315,8 @@ def main(p_cr, p_reg, p_prov, p_com):
     orfani = sorted(set(manuali) - usati)
     if orfani:
         print(f"ATTENZIONE: {len(orfani)} DOI in localizzazioni.csv non presenti nei dati Crossref: {orfani}")
-    print(f"Localizzati: {len(features)} (di cui manuali: {len(set(manuali) & usati)})  |  da localizzare: {len(scartati)}")
+    print(f"Localizzati: {len(features)} (di cui manuali: {len(set(manuali) & usati)})  |  "
+          f"esclusi: {n_esclusi}  |  da localizzare: {len(scartati)}")
 
 
 if __name__ == "__main__":

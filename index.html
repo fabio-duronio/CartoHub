@@ -24,7 +24,7 @@
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19, attribution: '© OpenStreetMap contributors'
   }).addTo(map);
-  map.attributionControl.addAttribution('Fogli CARG: ISPRA · Confini: ISTAT (CC BY 4.0) · Metadati: Crossref');
+  map.attributionControl.addAttribution('Fogli CARG: CARG-GATE, ISPRA (CC BY 4.0) · Confini: ISTAT (CC BY 4.0) · Metadati: Crossref');
 
   // Evita che testo nei dati venga interpretato come HTML
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
@@ -32,14 +32,19 @@
   const safeUrl = u => /^https:\/\//.test(u || '') ? u : '#';
   const riga = (etichetta, v) => v ? `<br><span class="meta">${etichetta}:</span> ${esc(v)}` : '';
 
-  const COLORI_CARG = { 'Realizzato': '#1f5fbf', 'Finanziato / in corso': '#f2a33a', 'Non avviato o non indicato': '#bdbdbd' };
+  // Stati e colori come nella legenda di CARG-GATE (ISPRA)
+  const COLORI_CARG = { 'Stampato': '#FF0000', 'In attesa di stampa': '#A87000',
+                        'In allestimento per la stampa': '#FFAA00', 'Rilevamento in corso': '#A3FF73' };
+  const COLORE_JOM = '#1a237e';
 
   function popup(feature, layer) {
     const p = feature.properties || {};
     let html = `<b>${esc(p.Title)}</b>`;
     html += riga('Descrizione', p.Description);
     html += riga('Stato', p.Stato);
-    html += riga('Raster', p.Raster);
+    html += riga('Anno di stampa', p.Anno_stampa);
+    html += riga('Coordinatori', p.Coordinatori);
+    html += riga('Banca dati', p.Banca_dati);
     html += riga('Luogo', p.Type === 'Research Map' ? p.Location : null);
     html += riga('Anno', p.Anno);
     html += riga('Licenza', p.Licenza);
@@ -49,22 +54,28 @@
         : `centroide del ${p.Precisione.toLowerCase()} ${manuale ? 'indicato dal curatore' : 'citato nel titolo'}`;
       html += riga('Posizione', pos);
     }
-    const etichetta = p.URL_tipo === 'Pagina generale CARG' ? 'Pagina CARG (foglio senza pagina dedicata)' : 'Apri risorsa';
-    html += `<br><a href="${esc(safeUrl(p.URL))}" target="_blank" rel="noopener">${etichetta}</a>`;
+    const link = (u, t) => u ? `<br><a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">${t}</a>` : '';
+    if (p.Type === 'Official Map') {
+      if (!p.Stato) html += '<br><span class="meta">Nessuno stato indicato su CARG-GATE</span>';
+      html += link(p.URL, 'Scheda su CARG-GATE') + link(p.DOI_carta, 'Carta (DOI)') + link(p.DOI_note, 'Note illustrative (DOI)');
+    } else {
+      html += link(p.URL, 'Apri risorsa');
+    }
     layer.bindPopup(html);
   }
 
   const livelli = [
-    { nome: 'Progetto CARG 1:50.000', file: 'dati/carg/carg_50k_fogli.geojson', colore: '#1f5fbf',
-      opzioni: { style: f => ({ color: '#555', weight: 0.6, fillOpacity: 0.35,
-                                fillColor: COLORI_CARG[f.properties.Stato] || '#bdbdbd' }) } },
+    { nome: 'Progetto CARG 1:50.000', file: 'dati/carg/carg_50k_fogli.geojson', colore: '#FF0000',
+      opzioni: { style: f => ({ color: '#555', weight: 0.6,
+                                fillOpacity: COLORI_CARG[f.properties.Stato] ? 0.45 : 0,
+                                fillColor: COLORI_CARG[f.properties.Stato] || '#ffffff' }) } },
     { nome: 'Geoportali regionali', file: 'dati/geoportali_regionali/geoportali_regionali.geojson', colore: '#2e8b57',
       visibile: false,
       opzioni: { style: { color: '#2e8b57', weight: 2, fillOpacity: 0.03 } } },
-    { nome: 'Journal of Maps', file: 'dati/journal_of_maps/jom_italia.geojson', colore: '#c62828',
+    { nome: 'Journal of Maps', file: 'dati/journal_of_maps/jom_italia.geojson', colore: COLORE_JOM,
       opzioni: { pointToLayer: (f, ll) => L.circleMarker(ll, {
         radius: f.properties.Precisione === 'Regione' ? 5 : 7, color: '#fff', weight: 1,
-        fillColor: '#c62828', fillOpacity: f.properties.Precisione === 'Regione' ? 0.5 : 0.9 }) } }
+        fillColor: COLORE_JOM, fillOpacity: f.properties.Precisione === 'Regione' ? 0.5 : 0.9 }) } }
   ];
 
   const controllo = L.control.layers(null, {}, { collapsed: window.innerWidth < 600 }).addTo(map);
@@ -82,10 +93,11 @@
   const legenda = L.control({ position: 'bottomleft' });
   legenda.onAdd = () => {
     const d = L.DomUtil.create('div', 'legenda');
-    d.innerHTML = '<b>Fogli CARG</b><br>' +
-      Object.entries(COLORI_CARG).map(([k, c]) => `<i style="background:${c}"></i>${k}`).join('<br>') +
-      '<br><b>Journal of Maps</b><br><i style="background:#c62828;border-radius:50%"></i>comune o provincia' +
-      '<br><i style="background:#c62828;opacity:.5;border-radius:50%"></i>solo regione';
+    d.innerHTML = '<b>Fogli CARG (stato su CARG-GATE)</b><br>' +
+      Object.entries(COLORI_CARG).map(([k, c]) => `<i style="background:${c};opacity:.75"></i>${k}`).join('<br>') +
+      '<br><i style="background:#fff"></i>Nessuno stato indicato' +
+      `<br><b>Journal of Maps</b><br><i style="background:${COLORE_JOM};border-radius:50%"></i>comune, provincia o coordinate` +
+      `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione`;
     return d;
   };
   legenda.addTo(map);

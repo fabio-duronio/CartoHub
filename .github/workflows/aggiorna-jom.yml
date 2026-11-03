@@ -1,0 +1,69 @@
+# Aggiorna il livello Journal of Maps da Crossref.
+# Parte ogni lunedì, a ogni modifica di localizzazioni.csv, oppure a mano (Actions → Run workflow).
+# Se i dati non cambiano non fa commit; se il validatore trova errori si ferma senza toccare nulla.
+name: Aggiorna Journal of Maps
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"   # lunedì 05:17 UTC
+  push:
+    branches: [main]
+    paths:
+      - "dati/journal_of_maps/localizzazioni.csv"
+      - "scripts/build_jom.py"
+      - "scripts/scarica_crossref.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aggiorna-jom
+  cancel-in-progress: false
+
+env:
+  # Confini ISTAT (CC BY 4.0) da openpolis/geojson-italy, fissati a un commit per riproducibilità.
+  OPENPOLIS: https://raw.githubusercontent.com/openpolis/geojson-italy/ba3347df3a53352891109f8198c597a0273684c0/geojson
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scarica confini ISTAT
+        run: |
+          mkdir -p "$RUNNER_TEMP/istat"
+          for f in regions provinces municipalities; do
+            curl -fsSL --retry 3 -o "$RUNNER_TEMP/istat/$f.geojson" "$OPENPOLIS/limits_IT_$f.geojson"
+          done
+
+      - name: Scarica metadati Crossref
+        run: python3 -I scripts/scarica_crossref.py "$RUNNER_TEMP/crossref.json"
+
+      - name: Ricostruisci il livello
+        run: |
+          python3 -I scripts/build_jom.py "$RUNNER_TEMP/crossref.json" \
+            "$RUNNER_TEMP/istat/regions.geojson" \
+            "$RUNNER_TEMP/istat/provinces.geojson" \
+            "$RUNNER_TEMP/istat/municipalities.geojson" | tee "$RUNNER_TEMP/esito.txt"
+
+      - name: Valida
+        run: python3 -I scripts/valida_dati.py
+
+      - name: Commit se ci sono novità
+        run: |
+          if git diff --quiet -- dati/journal_of_maps; then
+            echo "Nessuna novità."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dati/journal_of_maps
+          git commit -m "Journal of Maps: aggiornamento automatico $(date -u +%Y-%m-%d)" -m "$(cat "$RUNNER_TEMP/esito.txt")"
+          git push

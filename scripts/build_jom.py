@@ -14,6 +14,12 @@ Metodo di localizzazione (dichiarato nel campo "Precisione"):
   solo se il nome è univoco in Italia oppure se la regione è citata nel titolo.
   Le pubblicazioni senza toponimo riconoscibile NON vengono posizionate:
   finiscono in dati/journal_of_maps/jom_da_localizzare.csv.
+
+Localizzazioni manuali (prevalgono su quelle automatiche):
+  dati/journal_of_maps/localizzazioni.csv, colonne DOI;Comune;Provincia;Lat;Lon;Note
+  - con Lat e Lon: punto esatto (Precisione "Coordinate");
+  - altrimenti Comune + sigla Provincia: centroide del comune ISTAT (Precisione "Comune").
+  Un comune non trovato o una riga incompleta fanno fallire lo script, così l'errore si vede.
 """
 import csv
 import json
@@ -26,6 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "dati/journal_of_maps/jom_italia.geojson"
 OUT_CSV = ROOT / "dati/journal_of_maps/jom_da_localizzare.csv"
+MANUALI = ROOT / "dati/journal_of_maps/localizzazioni.csv"
 
 JOM_PREFIX = ("10.1080/17445647.", "10.1080/jom.", "10.4113/jom.")  # attuale e storici
 
@@ -122,7 +129,49 @@ def maiuscolo(titolo, nome_norm):
 
 
 def contiene(testo, nome):
+    if nome not in testo:  # filtro rapido: evita la regex per i ~7.900 comuni non citati
+        return False
     return re.search(r"(?<![a-z0-9])" + re.escape(nome) + r"(?![a-z0-9])", testo) is not None
+
+
+def leggi_manuali(path, comuni):
+    """DOI (minuscolo) -> (coordinate, precisione, luogo). Errori bloccanti con messaggio chiaro."""
+    if not path.exists():
+        return {}
+    per_comune = {}
+    for f in comuni:
+        p = f["properties"]
+        per_comune[(norm(p["name"]), p["prov_acr"].upper())] = f
+    out, errori = {}, []
+    with open(path, encoding="utf-8-sig", newline="") as fh:
+        for n, r in enumerate(csv.DictReader(fh, delimiter=";"), start=2):
+            r = {k.strip(): (v or "").strip() for k, v in r.items() if k}
+            doi = r.get("DOI", "").lower().removeprefix("https://doi.org/")
+            if not doi:
+                continue
+            if r.get("Lat") and r.get("Lon"):
+                try:
+                    lat, lon = float(r["Lat"].replace(",", ".")), float(r["Lon"].replace(",", "."))
+                except ValueError:
+                    errori.append(f"riga {n}: Lat/Lon non numeriche")
+                    continue
+                if not (35 <= lat <= 47.5 and 6 <= lon <= 19):
+                    errori.append(f"riga {n}: coordinate fuori dall'Italia ({lat}, {lon})")
+                    continue
+                luogo = r.get("Comune") or f"{lat:.4f}, {lon:.4f}"
+                out[doi] = ([round(lon, 5), round(lat, 5)], "Coordinate", luogo)
+            elif r.get("Comune") and r.get("Provincia"):
+                f = per_comune.get((norm(r["Comune"]), r["Provincia"].upper()))
+                if f is None:
+                    errori.append(f"riga {n}: comune '{r['Comune']}' ({r['Provincia']}) non trovato nei confini ISTAT")
+                    continue
+                p = f["properties"]
+                out[doi] = (centroide(f["geometry"]), "Comune", f"{p['name']} ({p['prov_acr']})")
+            else:
+                errori.append(f"riga {n}: servono Lat e Lon, oppure Comune e Provincia")
+    if errori:
+        sys.exit("Errori in " + str(path.relative_to(ROOT)) + ":\n  " + "\n  ".join(errori))
+    return out
 
 
 def main(p_cr, p_reg, p_prov, p_com):
@@ -131,6 +180,7 @@ def main(p_cr, p_reg, p_prov, p_com):
     province = json.load(open(p_prov, encoding="utf-8"))["features"]
     comuni = json.load(open(p_com, encoding="utf-8"))["features"]
 
+    manuali = leggi_manuali(MANUALI, comuni)
     reg_by_name = {f["properties"]["reg_name"]: f for f in regioni}
     gaz_reg = {}
     for nome in reg_by_name:
@@ -193,7 +243,10 @@ def main(p_cr, p_reg, p_prov, p_com):
         # Con più comuni citati si sceglie il nome più lungo (meno ambiguo).
         com.sort(key=lambda f: -len(f["properties"]["name"]))
 
-        if prov:
+        man = manuali.get(it["DOI"].lower())
+        if man:
+            punto, prec, luogo = man
+        elif prov:
             f = prov[0]
             geom, prec, luogo = f["geometry"], "Provincia", f"Provincia di {f['properties']['prov_name']}"
         elif com:
@@ -206,6 +259,11 @@ def main(p_cr, p_reg, p_prov, p_com):
             motivo = "più regioni citate" if len(reg_citate) > 1 else "nessun toponimo ISTAT riconosciuto"
             scartati.append({"DOI": it["DOI"], "Title": titolo, "Anno": anno, "Motivo": motivo})
             continue
+        if not man:
+            punto = centroide(geom)
+            fonte = "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT"
+        else:
+            fonte = "Crossref (metadati); localizzazione manuale (Geologiaintasca)"
 
         features.append({
             "type": "Feature",
@@ -218,9 +276,9 @@ def main(p_cr, p_reg, p_prov, p_com):
                 "Anno": anno,
                 "Licenza": licenza,
                 "Precisione": prec,
-                "Fonte": "Crossref (metadati); localizzazione: confini ISTAT",
+                "Fonte": fonte,
             },
-            "geometry": {"type": "Point", "coordinates": centroide(geom)},
+            "geometry": {"type": "Point", "coordinates": punto},
         })
 
     OUT.write_text(json.dumps({"type": "FeatureCollection", "features": features},
@@ -230,7 +288,11 @@ def main(p_cr, p_reg, p_prov, p_com):
         w.writeheader()
         w.writerows(scartati)
     print(f"Crossref: {len(items)} record, {len(per_titolo)} dopo dedup")
-    print(f"Localizzati: {len(features)}  |  da localizzare: {len(scartati)}")
+    usati = {f["properties"]["DOI"].lower() for f in features}
+    orfani = sorted(set(manuali) - usati)
+    if orfani:
+        print(f"ATTENZIONE: {len(orfani)} DOI in localizzazioni.csv non presenti nei dati Crossref: {orfani}")
+    print(f"Localizzati: {len(features)} (di cui manuali: {len(set(manuali) & usati)})  |  da localizzare: {len(scartati)}")
 
 
 if __name__ == "__main__":

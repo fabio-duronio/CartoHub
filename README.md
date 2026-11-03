@@ -32,8 +32,10 @@ Quadro d'unione dei fogli geologici alla scala 1:50.000 (CARG e pre-CARG), con l
 *Fonte: ISPRA – Servizio Geologico d'Italia, servizio [Antropico25k, layer "Quadro unione Fogli"](https://sinacloud.isprambiente.it/arcgisgeo/rest/services/servizi/Antropico25k/MapServer/0).*
 
 ### 2. Ricerca scientifica (Journal of Maps)
-Pubblicazioni del *Journal of Maps* su aree italiane, ognuna con DOI verificato su Crossref.
-* **Posizione:** un punto sul centroide dell'unità ISTAT più specifica citata nel titolo. Le pubblicazioni sono 103 a livello di comune, 7 di provincia e 116 di regione, come indicato nel campo `Precisione`. **Non è l'area cartografata**: serve a trovare la pubblicazione, non a delimitarla.
+Pubblicazioni del *Journal of Maps* su aree italiane, ognuna con DOI verificato su Crossref. **Il livello si aggiorna da solo ogni lunedì** (vedi *Aggiornamento automatico*).
+* **Posizione:** un punto, non l'area cartografata: serve a trovare la pubblicazione, non a delimitarla. Il campo `Precisione` dice come è stato ottenuto:
+  * `Coordinate`: coordinate indicate nel paper (localizzazione manuale);
+  * `Comune`, `Provincia`, `Regione`: centroide dell'unità ISTAT indicata dal curatore oppure, in automatico, citata nel titolo. Il campo `Fonte` distingue i due casi.
 * **Non posizionate:** 128 pubblicazioni non hanno un toponimo ISTAT nel titolo (es. Etna, Campi Flegrei, Dolomiti) oppure citano più regioni. Sono elencate in `jom_da_localizzare.csv` e non vengono collocate a stima.
 * **Licenza:** il campo `Licenza` riporta quella dichiarata in Crossref: 95 CC BY 4.0, 20 CC BY-NC 4.0, 3 CC BY-NC-ND 4.0. Per 108 articoli Crossref non indica la licenza: va verificata sulla pagina dell'articolo prima di riusarne le figure.
 
@@ -46,12 +48,35 @@ Accesso ai geoportali e WebGIS delle Regioni e delle Province autonome di Trento
 
 ---
 
+## Aggiornamento automatico
+Una GitHub Action ([`aggiorna-jom.yml`](.github/workflows/aggiorna-jom.yml)) rigenera il livello Journal of Maps:
+* **ogni lunedì**, scaricando da Crossref i nuovi articoli sull'Italia;
+* **a ogni modifica di `localizzazioni.csv`**, così una localizzazione aggiunta compare sulla mappa in pochi minuti;
+* **a mano**, da *Actions → Aggiorna Journal of Maps → Run workflow*.
+
+Se il validatore trova errori, l'Action si ferma e non modifica i dati. Se non ci sono novità, non fa commit.
+
+### Aggiungere una localizzazione
+Il file [`dati/journal_of_maps/localizzazioni.csv`](dati/journal_of_maps/localizzazioni.csv) (separatore `;`) prevale sulla localizzazione automatica e permette di aggiungere articoli che la ricerca per "Italy" non trova.
+
+```
+DOI;Comune;Provincia;Lat;Lon;Note
+10.1080/17445647.2012.668423;Gaiole in Chianti;SI;;;Monti del Chianti
+10.1080/17445647.2013.842508;;;40.827;14.139;Campi Flegrei, coordinate dal testo
+```
+* `Comune` (nome ufficiale ISTAT) + `Provincia` (sigla), **oppure** `Lat` + `Lon` in gradi decimali.
+* Si modifica direttamente da GitHub: icona della matita sul file, incolla la riga, *Commit changes*.
+* Un comune inesistente o una riga incompleta fanno fallire l'Action con il numero della riga, e GitHub invia una notifica.
+
+La skill di Geologiaintasca produce la riga già pronta per ogni post su un articolo del Journal of Maps.
+
 ## Rigenerare i dati
 Ogni livello ha uno script che lo ricostruisce dalla fonte. Le istruzioni per scaricare i dati di partenza sono nell'intestazione di ciascuno script.
 
 ```bash
 python3 scripts/build_carg.py <quadro_unione_ispra.geojson>
-python3 scripts/build_jom.py <crossref.json> <regions> <provinces> <municipalities>
+python3 scripts/scarica_crossref.py crossref.json   # serve accesso a api.crossref.org
+python3 scripts/build_jom.py crossref.json <regions> <provinces> <municipalities>
 python3 scripts/build_geoportali.py <regions> <provinces>
 python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni commit
 ```
@@ -60,7 +85,8 @@ python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni
 - [x] Griglia CARG dal quadro d'unione ufficiale ISPRA
 - [x] Livello Journal of Maps da Crossref, con DOI verificati
 - [x] Confini regionali ufficiali ISTAT
-- [ ] Localizzare manualmente le 128 pubblicazioni in `jom_da_localizzare.csv`
+- [x] Aggiornamento settimanale automatico del Journal of Maps e localizzazioni manuali
+- [ ] Localizzare le pubblicazioni in `jom_da_localizzare.csv` (anche gradualmente, con i post di Geologiaintasca)
 - [ ] Verificare i link dei geoportali regionali (6 sostituiti il 3/11/2026, da ricontrollare)
 - [ ] Carta Geologica d'Italia 1:100.000 (277 fogli)
 - [ ] Cartografia geologica marina (CARG Mare)

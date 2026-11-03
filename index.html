@@ -43,7 +43,12 @@
     html += riga('Luogo', p.Type === 'Research Map' ? p.Location : null);
     html += riga('Anno', p.Anno);
     html += riga('Licenza', p.Licenza);
-    if (p.Precisione) html += riga('Posizione', `centroide del ${p.Precisione.toLowerCase()} citato nel titolo`);
+    if (p.Precisione) {
+      const manuale = /manuale/.test(p.Fonte || '');
+      const pos = p.Precisione === 'Coordinate' ? 'coordinate indicate nel paper'
+        : `centroide del ${p.Precisione.toLowerCase()} ${manuale ? 'indicato dal curatore' : 'citato nel titolo'}`;
+      html += riga('Posizione', pos);
+    }
     const etichetta = p.URL_tipo === 'Pagina generale CARG' ? 'Pagina CARG (foglio senza pagina dedicata)' : 'Apri risorsa';
     html += `<br><a href="${esc(safeUrl(p.URL))}" target="_blank" rel="noopener">${etichetta}</a>`;
     layer.bindPopup(html);

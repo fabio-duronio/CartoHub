@@ -80,6 +80,7 @@ def formatta_nome(nome):
     for i, w in enumerate(" ".join(str(nome or "").split()).lower().split(" ")):
         out.append(w if i and w in MINUSCOLE else "-".join(x[:1].upper() + x[1:] for x in w.split("-")))
     testo = re.sub(r"(\w)'(\w)", lambda m: m.group(1) + "'" + m.group(2).upper(), " ".join(out))
+    testo = re.sub(r"\.(\w)", lambda m: "." + m.group(1).upper(), testo)  # S.efisio -> S.Efisio
     return re.sub(r" D'", " d'", testo)
 
 

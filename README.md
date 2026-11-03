@@ -1,7 +1,7 @@
 # Italian Geological Cartography Hub (IGC-Hub)
 ### L'Hub digitale aperto per la cartografia geologica in Italia.
 
-**Progetto a cura di [Geologiaintasca]([https://www.geologiaintasca.it](https://www.facebook.com/profile.php?id=61565694163261))**
+**Progetto a cura di [Geologiaintasca] (https://www.facebook.com/profile.php?id=61565694163261)**
 
 Questo repository ospita un indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. L'obiettivo è riunire in un'unica mappa i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi.
 

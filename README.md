@@ -16,20 +16,20 @@ Questo repository ospita un indice geografico (GeoJSON) delle risorse cartografi
 
 | Livello | File | Feature | Fonte |
 |---|---|---|---|
-| Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 636 fogli | Quadro d'unione ISPRA |
+| Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 634 fogli | CARG-GATE (ISPRA) |
 | Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 226 pubblicazioni | Crossref + confini ISTAT |
 | Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 enti | Selezione manuale + confini ISTAT |
 
 Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`.
 
 ### 1. Cartografia ufficiale (Progetto CARG)
-Quadro d'unione dei fogli geologici alla scala 1:50.000 (CARG e pre-CARG), con la posizione reale di ogni foglio.
-* **Campi:** `Foglio`, `Stato`, `Raster`, `Estensione` (fogli standard, estesi o accorpati), `URL`.
-* **Stato** (dal campo ISPRA `stato`): 214 *Realizzato*, 64 *Finanziato / in corso*, 358 *Non avviato o non indicato*. Le etichette interpretano i codici ISPRA (`bd`, `finanziati`), che il servizio non documenta.
-* **URL:** 243 fogli hanno la pagina dedicata ISPRA. Gli altri rimandano alla pagina generale CARG, e il campo `URL_tipo` lo indica.
-* I fogli accorpati (es. 1-7 Vipiteno) sono un'unica feature: un clic corrisponde a un foglio pubblicato.
+Fogli della Carta Geologica d'Italia alla scala 1:50.000, presi da **[CARG-GATE](https://progetto-carg.isprambiente.it/cartografiaCARG/index.php?source=cartageologica)**, il portale ufficiale del Servizio Geologico d'Italia (ISPRA). **Si aggiorna da solo ogni lunedì.**
+* **Stato:** copiato testualmente da CARG-GATE: *Stampato*, *In attesa di stampa*, *In allestimento per la stampa*, *Rilevamento in corso*. Se il portale non indica uno stato, il campo resta vuoto: nessuno stato viene dedotto.
+* **Colori:** gli stessi della legenda di CARG-GATE.
+* **Link:** la scheda del foglio sul portale, il DOI della carta e il DOI delle note illustrative (archivio Open Access di ISPRA, quando disponibili).
+* **Altri campi:** anno di stampa, coordinatori scientifici, stato della banca dati.
 
-*Fonte: ISPRA – Servizio Geologico d'Italia, servizio [Antropico25k, layer "Quadro unione Fogli"](https://sinacloud.isprambiente.it/arcgisgeo/rest/services/servizi/Antropico25k/MapServer/0).*
+*Fonte: CARG-GATE – ISPRA, Servizio Geologico d'Italia, licenza CC BY 4.0. La regione nel link alla scheda si ricava dai confini ISTAT.*
 
 ### 2. Ricerca scientifica (Journal of Maps)
 Pubblicazioni del *Journal of Maps* su aree italiane, ognuna con DOI verificato su Crossref. **Il livello si aggiorna da solo ogni lunedì** (vedi *Aggiornamento automatico*).
@@ -49,7 +49,7 @@ Accesso ai geoportali e WebGIS delle Regioni e delle Province autonome di Trento
 ---
 
 ## Aggiornamento automatico
-Una GitHub Action ([`aggiorna-jom.yml`](.github/workflows/aggiorna-jom.yml)) rigenera il livello Journal of Maps:
+Due GitHub Action aggiornano i dati ogni lunedì: [`aggiorna-carg.yml`](.github/workflows/aggiorna-carg.yml) rigenera i fogli CARG da CARG-GATE, [`aggiorna-jom.yml`](.github/workflows/aggiorna-jom.yml) il livello Journal of Maps. Quest'ultima parte:
 * **ogni lunedì**, scaricando da Crossref i nuovi articoli sull'Italia;
 * **a ogni modifica di `localizzazioni.csv`**, così una localizzazione aggiunta compare sulla mappa in pochi minuti;
 * **a mano**, da *Actions → Aggiorna Journal of Maps → Run workflow*.
@@ -76,7 +76,8 @@ La skill di Geologiaintasca produce la riga già pronta per ogni post su un arti
 Ogni livello ha uno script che lo ricostruisce dalla fonte. Le istruzioni per scaricare i dati di partenza sono nell'intestazione di ciascuno script.
 
 ```bash
-python3 scripts/build_carg.py <quadro_unione_ispra.geojson>
+python3 scripts/scarica_carggate.py carggate.json   # serve accesso a progetto-carg.isprambiente.it
+python3 scripts/build_carg.py carggate.json <regions>
 python3 scripts/scarica_crossref.py crossref.json   # serve accesso a api.crossref.org
 python3 scripts/build_jom.py crossref.json <regions> <provinces> <municipalities>
 python3 scripts/build_geoportali.py <regions> <provinces>
@@ -84,7 +85,7 @@ python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni
 ```
 
 ## Roadmap
-- [x] Griglia CARG dal quadro d'unione ufficiale ISPRA
+- [x] Fogli CARG da CARG-GATE, con stato ufficiale e aggiornamento settimanale
 - [x] Livello Journal of Maps da Crossref, con DOI verificati
 - [x] Confini regionali ufficiali ISTAT
 - [x] Aggiornamento settimanale automatico del Journal of Maps e localizzazioni manuali
@@ -98,7 +99,7 @@ python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni
 Il repository è un **indice di collegamenti** a risorse esterne.
 
 * **Codice:** licenza [MIT](LICENSE).
-* **Quadro d'unione CARG:** © ISPRA – Servizio Geologico d'Italia, licenza **CC BY 4.0**, come per i dati CARG 1:50.000 nei metadati INSPIRE ISPRA (scelta confermata dal curatore del progetto il 3/11/2026).
+* **Fogli CARG:** © ISPRA – Servizio Geologico d'Italia, dati di CARG-GATE con licenza **CC BY 4.0** dichiarata dal portale.
 * **Confini amministrativi:** © ISTAT, licenza CC BY 4.0.
 * **Journal of Maps:** sono indicizzati solo i metadati bibliografici. Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
 

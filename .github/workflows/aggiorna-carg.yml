@@ -1,0 +1,60 @@
+# Aggiorna il livello dei fogli CARG 1:50.000 da CARG-GATE (ISPRA).
+# Parte ogni lunedì, a mano (Actions → Aggiorna fogli CARG → Run workflow) e quando cambiano gli script.
+# Se i dati non cambiano non fa commit; se il validatore trova errori si ferma senza toccare nulla.
+name: Aggiorna fogli CARG
+
+on:
+  schedule:
+    - cron: "37 5 * * 1"   # lunedì 05:37 UTC
+  push:
+    branches: [main, carg-carggate]
+    paths:
+      - "scripts/build_carg.py"
+      - "scripts/scarica_carggate.py"
+      - ".github/workflows/aggiorna-carg.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aggiorna-carg
+  cancel-in-progress: false
+
+env:
+  OPENPOLIS: https://raw.githubusercontent.com/openpolis/geojson-italy/ba3347df3a53352891109f8198c597a0273684c0/geojson
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scarica confini regionali ISTAT
+        run: curl -fsSL --retry 3 -o "$RUNNER_TEMP/regions.geojson" "$OPENPOLIS/limits_IT_regions.geojson"
+
+      - name: Scarica fogli da CARG-GATE
+        run: python3 -I scripts/scarica_carggate.py "$RUNNER_TEMP/carggate.json"
+
+      - name: Ricostruisci il livello
+        run: python3 -I scripts/build_carg.py "$RUNNER_TEMP/carggate.json" "$RUNNER_TEMP/regions.geojson" | tee "$RUNNER_TEMP/esito.txt"
+
+      - name: Valida
+        run: python3 -I scripts/valida_dati.py
+
+      - name: Commit se ci sono novità
+        run: |
+          if git diff --quiet -- dati/carg; then
+            echo "Nessuna novità."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dati/carg
+          git commit -m "Fogli CARG: aggiornamento da CARG-GATE $(date -u +%Y-%m-%d)" -m "$(cat "$RUNNER_TEMP/esito.txt")"
+          git push

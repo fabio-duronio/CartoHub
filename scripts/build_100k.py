@@ -71,6 +71,18 @@ def scarica_catalogo():
     return list(record.values())
 
 
+MINUSCOLE = {"di", "del", "della", "delle", "dei", "e", "ed", "da", "in", "la", "le", "il", "sul", "al"}
+
+
+def formatta_nome(nome):
+    """'PASSO DEL BRENNERO' -> 'Passo del Brennero', "ISOLA D'ISCHIA" -> "Isola d'Ischia"."""
+    out = []
+    for i, w in enumerate(" ".join(str(nome or "").split()).lower().split(" ")):
+        out.append(w if i and w in MINUSCOLE else "-".join(x[:1].upper() + x[1:] for x in w.split("-")))
+    testo = re.sub(r"(\w)'(\w)", lambda m: m.group(1) + "'" + m.group(2).upper(), " ".join(out))
+    return re.sub(r" D'", " d'", testo)
+
+
 def norm_foglio(s):
     return re.sub(r"\s+", "", str(s)).upper().lstrip("0")
 
@@ -122,7 +134,7 @@ def main(p_quadro=None, p_catalogo=None):
     for f in sorted(quadro["features"], key=lambda f: (len(str(f["properties"]["SHEET"])), str(f["properties"]["SHEET"]))):
         p = f["properties"]
         foglio = str(p["SHEET"]).strip()
-        nome = " – ".join(t.strip().title() for t in str(p["TITLE"]).split(" - "))
+        nome = " – ".join(formatta_nome(t) for t in str(p["TITLE"]).split(" - "))
         eds = {}
         for parte in re.split(r"\s*-\s*", foglio):
             for e in per_foglio.get(norm_foglio(parte), []):

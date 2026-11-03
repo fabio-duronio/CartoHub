@@ -52,7 +52,7 @@ def controlla_file(path):
         if mancanti:
             segnala("E", nome, f"#{i} campi mancanti: {sorted(mancanti)}")
         url = str(p.get("URL", ""))
-        if not url.startswith("https://"):
+        if url and not url.startswith("https://"):
             segnala("W", nome, f"#{i} URL non https: {url}")
         titoli[str(p.get("Title", "")).strip().lower()] += 1
         if p.get("DOI"):

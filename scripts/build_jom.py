@@ -142,6 +142,8 @@ def leggi_manuali(path, comuni):
     for f in comuni:
         p = f["properties"]
         per_comune[(norm(p["name"]), p["prov_acr"].upper())] = f
+        # nomi bilingui ("Santa Cristina Valgardena/St. Christina in Gröden"): basta il nome italiano
+        per_comune.setdefault((norm(p["name"].split("/")[0]), p["prov_acr"].upper()), f)
     out, errori = {}, []
     with open(path, encoding="utf-8-sig", newline="") as fh:
         for n, r in enumerate(csv.DictReader(fh, delimiter=";"), start=2):

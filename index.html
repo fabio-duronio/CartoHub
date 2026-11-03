@@ -24,7 +24,7 @@
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19, attribution: '© OpenStreetMap contributors'
   }).addTo(map);
-  map.attributionControl.addAttribution('Fogli CARG: CARG-GATE, ISPRA (CC BY 4.0) · Confini: ISTAT (CC BY 4.0) · Metadati: Crossref');
+  map.attributionControl.addAttribution('Fogli CARG: CARG-GATE, ISPRA (CC BY 4.0) · Carta 1:100.000: ISPRA · Confini: ISTAT (CC BY 4.0) · Metadati: Crossref');
 
   // Evita che testo nei dati venga interpretato come HTML
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
@@ -55,7 +55,10 @@
       html += riga('Posizione', pos);
     }
     const link = (u, t) => u ? `<br><a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">${t}</a>` : '';
-    if (p.Type === 'Official Map') {
+    if (p.Type === 'Historical Map (1:100.000)') {
+      html += riga('Edizioni', p.Edizioni);
+      html += link(p.URL, 'Scheda nel catalogo ISPRA') + link(p.URL_note, 'Note illustrative (catalogo ISPRA)');
+    } else if (p.Type === 'Official Map') {
       if (!p.Stato) html += '<br><span class="meta">Nessuno stato indicato su CARG-GATE</span>';
       html += link(p.URL, 'Scheda su CARG-GATE') + link(p.DOI_carta, 'Carta (DOI)') + link(p.DOI_note, 'Note illustrative (DOI)');
     } else {
@@ -69,6 +72,10 @@
       opzioni: { style: f => ({ color: '#555', weight: 0.6,
                                 fillOpacity: COLORI_CARG[f.properties.Stato] ? 0.45 : 0,
                                 fillColor: COLORI_CARG[f.properties.Stato] || '#ffffff' }) } },
+    { nome: 'Carta Geologica d\'Italia 1:100.000', file: 'dati/carta_100k/carta_100k_fogli.geojson', colore: '#6d4c41',
+      visibile: false,
+      opzioni: { style: f => ({ color: '#6d4c41', weight: 1.2, dashArray: '6 3',
+                                fillColor: '#6d4c41', fillOpacity: f.properties.Copia_digitale === 'Sì' ? 0.12 : 0.03 }) } },
     { nome: 'Geoportali regionali', file: 'dati/geoportali_regionali/geoportali_regionali.geojson', colore: '#2e8b57',
       visibile: false,
       opzioni: { style: { color: '#2e8b57', weight: 2, fillOpacity: 0.03 } } },
@@ -96,6 +103,8 @@
     d.innerHTML = '<b>Fogli CARG (stato su CARG-GATE)</b><br>' +
       Object.entries(COLORI_CARG).map(([k, c]) => `<i style="background:${c};opacity:.75"></i>${k}`).join('<br>') +
       '<br><i style="background:#fff"></i>Nessuno stato indicato' +
+      '<br><b>Carta 1:100.000</b><br><i style="background:#6d4c41;opacity:.35"></i>con copia digitale' +
+      '<br><i style="background:#6d4c41;opacity:.1"></i>senza copia digitale' +
       `<br><b>Journal of Maps</b><br><i style="background:${COLORE_JOM};border-radius:50%"></i>comune, provincia o coordinate` +
       `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione`;
     return d;

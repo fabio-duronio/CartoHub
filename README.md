@@ -17,6 +17,7 @@ Questo repository ospita un indice geografico (GeoJSON) delle risorse cartografi
 | Livello | File | Feature | Fonte |
 |---|---|---|---|
 | Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 634 fogli | CARG-GATE (ISPRA) |
+| Carta Geologica d'Italia 1:100.000 | `dati/carta_100k/carta_100k_fogli.geojson` | 278 fogli | Quadro d'unione e catalogo Biblioteca ISPRA |
 | Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 226 pubblicazioni | Crossref + confini ISTAT |
 | Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 enti | Selezione manuale + confini ISTAT |
 
@@ -30,6 +31,16 @@ Fogli della Carta Geologica d'Italia alla scala 1:50.000, presi da **[CARG-GATE]
 * **Altri campi:** anno di stampa, coordinatori scientifici, stato della banca dati.
 
 *Fonte: CARG-GATE – ISPRA, Servizio Geologico d'Italia, licenza CC BY 4.0. La regione nel link alla scheda si ricava dai confini ISTAT.*
+
+### 1b. Carta Geologica d'Italia 1:100.000 (serie storica)
+I 278 fogli della Carta Geologica d'Italia alla scala 1:100.000, indispensabili dove il CARG 1:50.000 non è ancora arrivato.
+* **Geometria:** quadro d'unione ufficiale ISPRA (servizio `geologica100k`, layer `CGI100K_Quadro_di_unione`).
+* **Edizioni:** dal catalogo della Biblioteca ISPRA, che ha messo online l'intera serie (prima e seconda edizione). Per ogni foglio sono elencate tutte le edizioni trovate, con anno, eventuale titolo diverso (es. il 141 Pescara nella 1ª edizione si chiamava "Chieti") e presenza della copia digitale. Edizione e anno sono copiati dalla scheda; se l'edizione non è indicata, lo si dichiara.
+* **Link:** alla scheda del catalogo dell'edizione più recente con copia digitale e alle note illustrative. Le scansioni non vengono riprodotte, perché il catalogo non ne dichiara la licenza.
+* **Fogli senza schede:** restano sulla mappa con la dicitura "Nessuna scheda trovata nel catalogo ISPRA".
+* **Aggiornamento:** automatico il primo lunedì di ogni mese ([`aggiorna-100k.yml`](.github/workflows/aggiorna-100k.yml)).
+
+*Fonte: ISPRA – Servizio Geologico d'Italia (quadro d'unione 1:100.000; catalogo OPAC della Biblioteca ISPRA).*
 
 ### 2. Ricerca scientifica (Journal of Maps)
 Pubblicazioni del *Journal of Maps* su aree italiane, ognuna con DOI verificato su Crossref. **Il livello si aggiorna da solo ogni lunedì** (vedi *Aggiornamento automatico*).
@@ -92,7 +103,7 @@ python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni
 - [x] Localizzate 87 pubblicazioni, escluse 33 (3/11/2026)
 - [ ] Localizzare le 9 pubblicazioni rimaste in `jom_da_localizzare.csv` (servono i paper)
 - [ ] Verificare i link dei geoportali regionali (6 sostituiti il 3/11/2026, da ricontrollare)
-- [ ] Carta Geologica d'Italia 1:100.000 (277 fogli)
+- [x] Carta Geologica d'Italia 1:100.000 (278 fogli, edizioni dal catalogo ISPRA)
 - [ ] Cartografia geologica marina (CARG Mare)
 
 ## Licenze e disclaimer
@@ -100,6 +111,7 @@ Il repository è un **indice di collegamenti** a risorse esterne.
 
 * **Codice:** licenza [MIT](LICENSE).
 * **Fogli CARG:** © ISPRA – Servizio Geologico d'Italia, dati di CARG-GATE con licenza **CC BY 4.0** dichiarata dal portale.
+* **Carta 1:100.000:** © ISPRA – Servizio Geologico d'Italia. Sono indicizzati quadro d'unione e schede del catalogo; le scansioni restano sul sito ISPRA.
 * **Confini amministrativi:** © ISTAT, licenza CC BY 4.0.
 * **Journal of Maps:** sono indicizzati solo i metadati bibliografici. Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
 

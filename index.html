@@ -93,19 +93,23 @@
   map.createPane('geologia'); map.getPane('geologia').style.zIndex = 350;  // sotto i fogli e i punti
   const SINA = 'https://sinacloud.isprambiente.it/arcgisgeo/';
   const geologia = [
-    { nome: 'Geologia CARG 1:25.000 (ISPRA)', servizio: 'geo/SGI_ISPRA_Geologia25k', wms: '0,3', identifica: 9, zoomMin: 11,
-      scheda: a => [
+    // WMS, dal basso: unità geologiche, depositi quaternari, limiti geologici, elementi tettonici,
+    // elementi strutturali e plicativi, giaciture. Al clic: unità (REST 9) e deposito quaternario (REST 8).
+    { nome: 'Geologia CARG 1:25.000 (ISPRA)', servizio: 'geo/SGI_ISPRA_Geologia25k', wms: '0,1,2,3,4,7', identifica: '9,8', zoomMin: 11,
+      scheda: r => { const u = (r.find(x => x.layerId === 9) || {}).attributes, d = (r.find(x => x.layerId === 8) || {}).attributes;
+        const a = u || {}; return [
         a.nome && `<b>${esc(a.nome)}</b>${a.sigla_unita_geologica ? ` (${esc(a.sigla_unita_geologica.trim())})` : ''}`,
         a.siglatipo && `<span class="meta">Tipo:</span> ${esc(maiuscola(a.siglatipo))}`,
         a.eta_inferiore && `<span class="meta">Età:</span> ${esc(maiuscola(a.eta_inferiore))}` +
           (a.eta_superiore && a.eta_superiore !== a.eta_inferiore ? ` – ${esc(maiuscola(a.eta_superiore))}` : ''),
-        a.foglio && `<span class="meta">Foglio:</span> ${esc(nomeProprio(a.foglio))}`
-      ] },
-    { nome: 'Geologia 1:100.000 (ISPRA)', servizio: 'servizi/geologica100k', wms: '0,1,2', identifica: 16, zoomMin: 10,
-      scheda: a => [
+        d && d.tipo && `<span class="meta">Deposito quaternario:</span> ${esc(maiuscola(d.tipo))}`,
+        (a.foglio || (d && d.foglio)) && `<span class="meta">Foglio:</span> ${esc(nomeProprio(a.foglio || d.foglio))}`
+      ]; } },
+    { nome: 'Geologia 1:100.000 (ISPRA)', servizio: 'servizi/geologica100k', wms: '0,1,2', identifica: '16', zoomMin: 10,
+      scheda: r => { const a = (r[0] || {}).attributes || {}; return [
         a.NOME_FORMAZIONE && `<b>${esc(maiuscola(a.NOME_FORMAZIONE))}</b>${(a.Sigla || '').trim() ? ` (${esc(a.Sigla.trim())})` : ''}`,
         a.ETA_FORMAZIONE && `<span class="meta">Età:</span> ${esc(maiuscola(a.ETA_FORMAZIONE))}`
-      ] }
+      ]; } }
   ];
   geologia.forEach(g => {
     g.layer = L.tileLayer.wms(SINA + 'services/' + g.servizio + '/MapServer/WMSServer', {
@@ -183,9 +187,8 @@
     const popup = L.popup({ maxWidth: 320 }).setLatLng(e.latlng).setContent(box).openOn(map);
     attive.forEach((g, i) => identifica(g, e.latlng)
       .then(d => {
-        const r = (d.results || [])[0];
-        const righe = r ? g.scheda(r.attributes).filter(Boolean).join('<br>') : '<span class="meta">Nessuna unità in questo punto.</span>';
-        return righe;
+        const righe = (d.results || []).length ? g.scheda(d.results).filter(Boolean).join('<br>') : '';
+        return righe || '<span class="meta">Nessuna unità in questo punto.</span>';
       })
       .catch(() => '<span class="meta">Servizio ISPRA non raggiungibile.</span>')
       .then(righe => {

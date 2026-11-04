@@ -48,9 +48,9 @@ Articoli del *Journal of Maps* su aree italiane. Il punto indica la località, n
 
 ### 4. Geologia ISPRA (solo nella mappa web)
 Due livelli di visualizzazione forniti dai servizi WMS del Servizio Geologico d'Italia, spenti all'apertura. Le immagini e le informazioni al clic arrivano direttamente da ISPRA: il repository non ne conserva copia.
-* **Geologia CARG 1:25.000:** unità geologiche ed elementi tettonici dei fogli CARG disponibili nel servizio (210 a novembre 2026), visibili da zoom 11.
+* **Geologia CARG 1:25.000:** unità geologiche, depositi quaternari, limiti geologici, elementi tettonici, elementi strutturali e giaciture dei fogli CARG disponibili nel servizio (210 a novembre 2026), visibili da zoom 11.
 * **Geologia 1:100.000:** unità geologiche, limiti e tettonica della Carta Geologica d'Italia 1:100.000 su tutto il territorio, visibili da zoom 10.
-* **Clic sulla mappa:** nome, sigla, tipo ed età dell'unità nel punto.
+* **Clic sulla mappa:** nome, sigla, tipo ed età dell'unità nel punto; per la 1:25.000 anche il tipo di deposito quaternario.
 
 *Fonte: servizi `geo/SGI_ISPRA_Geologia25k` e `servizi/geologica100k` su sinacloud.isprambiente.it (ISPRA – Servizio Geologico d'Italia).*
 

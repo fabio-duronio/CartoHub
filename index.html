@@ -178,6 +178,11 @@
   }
   map.on('overlayadd overlayremove', stileCarg);
 
+  // Il popup del clic riassume i livelli accesi in quel momento: se si accende o spegne un livello
+  // non è più valido e si chiude.
+  let popupClic = null;
+  map.on('overlayadd overlayremove', () => { if (popupClic) { map.closePopup(popupClic); popupClic = null; } });
+
   // ---------- Clic sulla mappa: fogli, geoportali e geologia nello stesso popup ----------
   map.on('click', e => {
     const { lat, lng } = e.latlng;
@@ -192,7 +197,7 @@
     if (!html) return;
     // Il contenuto è un elemento DOM: popup.update() lo conserva quando arrivano le risposte di ISPRA
     const box = document.createElement('div'); box.innerHTML = html;
-    const popup = L.popup({ maxWidth: 320 }).setLatLng(e.latlng).setContent(box).openOn(map);
+    const popup = popupClic = L.popup({ maxWidth: 320 }).setLatLng(e.latlng).setContent(box).openOn(map);
     attive.forEach((g, i) => identifica(g, e.latlng)
       .then(d => {
         const righe = (d.results || []).length ? g.scheda(d.results).filter(Boolean).join('<br>') : '';

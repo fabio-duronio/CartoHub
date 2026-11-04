@@ -114,7 +114,7 @@
   let nJsonp = 0;
   function jsonp(url, ms = 10000) {
     return new Promise((ok, ko) => {
-      const cb = '__igc' + (++nJsonp), s = document.createElement('script');
+      const cb = 'igcJsonp' + (++nJsonp), s = document.createElement('script');
       const fine = () => { delete window[cb]; s.remove(); clearTimeout(t); };
       const t = setTimeout(() => { fine(); ko(new Error('timeout')); }, ms);
       window[cb] = d => { fine(); ok(d); };
@@ -133,22 +133,33 @@
 
   // ---------- Controllo dei livelli (ordine fisso) ----------
   const controllo = L.control.layers(null, {}, { collapsed: window.innerWidth < 900, position: 'topright' }).addTo(map);
+  const etichetta = l => `<span style="color:${l.colore}">■</span> ${l.nome}` + (l.dati ? ` (${l.dati.length})` : '');
+  function riempiControllo() {  // ordine fisso: dati del progetto, poi geologia ISPRA
+    [...livelli, ...geologia].forEach(x => controllo.removeLayer(x.layer));
+    livelli.forEach(l => controllo.addOverlay(l.layer, etichetta(l)));
+    geologia.forEach(g => controllo.addOverlay(g.layer, `<span style="color:#8d6e63">▦</span> ${g.nome}`));
+  }
   livelli.forEach(l => {
     l.layer = L.geoJSON(null, l.opzioni);
     if (l.visibile !== false) l.layer.addTo(map);
-    l.etichetta = n => `<span style="color:${l.colore}">■</span> ${l.nome}` + (n != null ? ` (${n})` : '');
-    controllo.addOverlay(l.layer, l.etichetta());
-    fetch(l.file)
-      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(dati => {
-        l.dati = dati.features;
-        l.layer.addData(dati);
-        if (l.punti) l.layer.eachLayer(m => m.bindPopup(`<b>${esc(m.feature.properties.Title)}</b><br>${daDettagli(m.feature.properties.Dettagli)}`));
-        controllo.removeLayer(l.layer); controllo.addOverlay(l.layer, l.etichetta(dati.features.length));
-      })
-      .catch(e => console.error('Impossibile caricare', l.file, e));
   });
-  geologia.forEach(g => controllo.addOverlay(g.layer, `<span style="color:#8d6e63">▦</span> ${g.nome}`));
+  riempiControllo();
+  Promise.allSettled(livelli.map(l => fetch(l.file)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(dati => {
+      l.dati = dati.features;
+      l.layer.addData(dati);
+      if (l.punti) l.layer.eachLayer(m => m.bindPopup(`<b>${esc(m.feature.properties.Title)}</b><br>${daDettagli(m.feature.properties.Dettagli)}`));
+    })
+    .catch(e => console.error('Impossibile caricare', l.file, e))))
+    .then(() => { riempiControllo(); stileCarg(); });
+
+  // Con la geologia accesa i fogli CARG diventano quasi trasparenti, per non coprirne i colori
+  function stileCarg() {
+    const geo = geologia.some(g => map.hasLayer(g.layer));
+    livelli[1].layer.setStyle(f => ({ fillOpacity: COLORI_CARG[f.properties.Stato] ? (geo ? 0.08 : 0.45) : 0 }));
+  }
+  map.on('overlayadd overlayremove', stileCarg);
 
   // ---------- Clic sulla mappa: fogli, geoportali e geologia nello stesso popup ----------
   map.on('click', e => {

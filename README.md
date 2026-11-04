@@ -107,6 +107,7 @@ python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni
 - [ ] Verificare i link dei geoportali regionali (6 sostituiti il 3/11/2026, da ricontrollare)
 - [x] Carta Geologica d'Italia 1:100.000 (278 fogli, edizioni dal catalogo ISPRA)
 - [ ] Cartografia geologica marina (CARG Mare)
+- [ ] Carta geologica CARG 1:25.000 (GeoSciencesIR, ISPRA) come livello WMS: servizio non raggiungibile a novembre 2026, da riverificare
 
 ## Licenze e disclaimer
 Il repository è un **indice di collegamenti** a risorse esterne.

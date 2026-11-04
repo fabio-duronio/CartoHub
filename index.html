@@ -173,7 +173,9 @@
     const attive = geologia.filter(g => map.hasLayer(g.layer) && map.getZoom() >= g.zoomMin);
     attive.forEach((g, i) => { html += `<div class="sezione" id="geo${i}"><h3>${esc(g.nome)}</h3><span class="meta">Interrogazione in corso…</span></div>`; });
     if (!html) return;
-    const popup = L.popup({ maxWidth: 320 }).setLatLng(e.latlng).setContent(html).openOn(map);
+    // Il contenuto è un elemento DOM: popup.update() lo conserva quando arrivano le risposte di ISPRA
+    const box = document.createElement('div'); box.innerHTML = html;
+    const popup = L.popup({ maxWidth: 320 }).setLatLng(e.latlng).setContent(box).openOn(map);
     attive.forEach((g, i) => identifica(g, e.latlng)
       .then(d => {
         const r = (d.results || [])[0];
@@ -182,8 +184,8 @@
       })
       .catch(() => '<span class="meta">Servizio ISPRA non raggiungibile.</span>')
       .then(righe => {
-        const el = popup.getElement() && popup.getElement().querySelector('#geo' + i);
-        if (el) { el.innerHTML = `<h3>${esc(g.nome)}</h3>${righe}`; popup.update(); }
+        const el = box.querySelector('#geo' + i);
+        if (el) { el.innerHTML = `<h3>${esc(g.nome)}</h3>${righe}`; if (popup.isOpen()) popup.update(); }
       }));
   });
 

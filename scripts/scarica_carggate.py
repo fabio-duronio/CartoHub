@@ -17,7 +17,7 @@ import urllib.request
 from pathlib import Path
 
 URL = "https://progetto-carg.isprambiente.it/assets/db/jcartografia.php"
-HEADERS = {"User-Agent": "CartoHub/1.0 (https://github.com/fabio-duronio/CartoHub)",
+HEADERS = {"User-Agent": "geologiaintasca/1.0 (https://github.com/fabio-duronio/geologiaintasca)",
            "Content-Type": "application/x-www-form-urlencoded"}
 
 

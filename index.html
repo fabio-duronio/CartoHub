@@ -137,7 +137,11 @@
     });
   }
   function identifica(g, ll) {
-    const b = map.getBounds(), sz = map.getSize();
+    // Oltre lo zoom nativo il servizio non risponde più alla scala reale: si interroga con l'estensione
+    // che la mappa avrebbe allo zoom nativo massimo, centrata sul punto cliccato.
+    const z = map.getZoom(), zn = Math.min(z, g.zoomNativoMax || z), sz = map.getSize();
+    const c = map.project(ll, zn), meta = sz.divideBy(2);
+    const b = L.latLngBounds(map.unproject(c.subtract(meta), zn), map.unproject(c.add(meta), zn));
     const q = new URLSearchParams({ geometry: `${ll.lng},${ll.lat}`, geometryType: 'esriGeometryPoint', sr: 4326,
       layers: 'visible:' + g.identifica, tolerance: 2, returnGeometry: false, f: 'json',
       mapExtent: [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()].join(','), imageDisplay: `${sz.x},${sz.y},96` });

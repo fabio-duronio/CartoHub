@@ -25,6 +25,14 @@ jobs:
               return lon * 20037508.34 / 180, math.log(math.tan((90 + lat) * math.pi / 360)) * 20037508.34 / math.pi
           B = "https://sinacloud.isprambiente.it/arcgisgeo/services/"
           punti = {"L'Aquila": (13.40, 42.35), "Pescara": (14.21, 42.46), "Sciacca": (13.08, 37.51)}
+          for nome, svc, lay in [("25k", "geo/SGI_ISPRA_Geologia25k", "9,6"), ("100k", "servizi/geologica100k", "16,14")]:
+              for lab, (lon, lat) in punti.items():
+                  q = urllib.parse.urlencode({"geometry": f"{lon},{lat}", "geometryType": "esriGeometryPoint", "sr": 4326,
+                                              "layers": "visible:" + lay, "tolerance": 3, "mapExtent": f"{lon-0.05},{lat-0.05},{lon+0.05},{lat+0.05}",
+                                              "imageDisplay": "800,600,96", "returnGeometry": "false", "f": "json", "callback": "cbProva"})
+                  s, h, b, t = get("https://sinacloud.isprambiente.it/arcgisgeo/rest/services/" + svc + "/MapServer/identify?" + q)
+                  print(f"JSONP {nome} {lab}: {s} {h.get('Content-Type')} {t}s | {b[:1200].decode('utf-8','replace')}")
+
           for nome, path, layers in [("25k", "geo/SGI_ISPRA_Geologia25k/MapServer/WMSServer", ["0", "3", "0,3"]),
                                      ("100k", "servizi/geologica100k/MapServer/WMSServer", ["0", "2", "0,2"])]:
               for ly in layers:

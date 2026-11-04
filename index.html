@@ -51,7 +51,9 @@
     if (p.Precisione) {
       const manuale = /manuale/.test(p.Fonte || '');
       const pos = p.Precisione === 'Coordinate' ? 'coordinate indicate nel paper'
-        : `centroide del ${p.Precisione.toLowerCase()} ${manuale ? 'indicato dal curatore' : 'citato nel titolo'}`;
+        : (p.Precisione === 'Comune' ? 'centroide del comune ' : `centroide della ${p.Precisione.toLowerCase()} `) +
+          (p.Precisione === 'Comune' ? (manuale ? 'indicato dal curatore' : 'citato nel titolo')
+                                     : (manuale ? 'indicata dal curatore' : 'citata nel titolo'));
       html += riga('Posizione', pos);
     }
     const link = (u, t) => u ? `<br><a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">${t}</a>` : '';
@@ -61,8 +63,10 @@
     } else if (p.Type === 'Official Map') {
       if (!p.Stato) html += '<br><span class="meta">Nessuno stato indicato su CARG-GATE</span>';
       html += link(p.URL, 'Scheda su CARG-GATE') + link(p.DOI_carta, 'Carta (DOI)') + link(p.DOI_note, 'Note illustrative (DOI)');
+    } else if (p.Type === 'Research Map') {
+      html += link(p.URL, 'Articolo (DOI)');
     } else {
-      html += link(p.URL, 'Apri risorsa');
+      html += link(p.URL, 'Vai al geoportale');
     }
     layer.bindPopup(html);
   }

@@ -21,7 +21,7 @@ Indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. Riu
 | Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 313 pubblicazioni | Crossref + confini ISTAT |
 | Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 enti | Selezione manuale + confini ISTAT |
 
-Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`.
+Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`. Il campo `Dettagli` contiene il testo del popup di uMap (stesse etichette e link di `index.html`), generato da `scripts/dettagli_popup.py`.
 
 ### 1. Cartografia ufficiale (Progetto CARG)
 Fogli della Carta Geologica d'Italia alla scala 1:50.000, presi da **[CARG-GATE](https://progetto-carg.isprambiente.it/cartografiaCARG/index.php?source=cartageologica)**, il portale ufficiale del Servizio Geologico d'Italia (ISPRA). **Si aggiorna da solo ogni lunedì.**
@@ -93,6 +93,7 @@ python3 scripts/build_100k.py                      # serve accesso ai siti ISPRA
 python3 scripts/scarica_crossref.py crossref.json   # serve accesso a api.crossref.org
 python3 scripts/build_jom.py crossref.json <regions> <provinces> <municipalities>
 python3 scripts/build_geoportali.py <regions> <provinces>
+python3 scripts/dettagli_popup.py   # testo dei popup di uMap (campo Dettagli)
 python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni commit
 ```
 

@@ -24,7 +24,7 @@ Indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. Riu
 Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`.
 
 ### 1. Cartografia ufficiale (Progetto CARG)
-Fogli della Carta Geologica d'Italia alla scala 1:50.000, presi da **[CARG-GATE](https://progetto-carg.isprambiente.it/cartografiaCARG/index.php?source=cartageologica)**, il portale ufficiale del Servizio Geologico d'Italia (ISPRA). **Si aggiorna da solo ogni lunedì.**
+Fogli della Carta Geologica d'Italia alla scala 1:50.000, con lo stato di realizzazione indicato su **[CARG-GATE](https://progetto-carg.isprambiente.it/cartografiaCARG/index.php?source=cartageologica)** (ISPRA). **Si aggiorna da solo ogni lunedì.**
 * **Stato:** copiato testualmente da CARG-GATE: *Stampato*, *In attesa di stampa*, *In allestimento per la stampa*, *Rilevamento in corso*. Se il portale non indica uno stato, il campo resta vuoto: nessuno stato viene dedotto.
 * **Colori:** gli stessi della legenda di CARG-GATE.
 * **Link:** la scheda del foglio sul portale, il DOI della carta e il DOI delle note illustrative (archivio Open Access di ISPRA, quando disponibili).
@@ -33,7 +33,7 @@ Fogli della Carta Geologica d'Italia alla scala 1:50.000, presi da **[CARG-GATE]
 *Fonte: CARG-GATE – ISPRA, Servizio Geologico d'Italia, licenza CC BY 4.0. La regione nel link alla scheda si ricava dai confini ISTAT.*
 
 ### 1b. Carta Geologica d'Italia 1:100.000 (serie storica)
-I 278 fogli della Carta Geologica d'Italia alla scala 1:100.000, indispensabili dove il CARG 1:50.000 non è ancora arrivato.
+Fogli della Carta Geologica d'Italia alla scala 1:100.000, con le edizioni presenti nel catalogo della Biblioteca ISPRA.
 * **Geometria:** quadro d'unione ufficiale ISPRA (servizio `geologica100k`, layer `CGI100K_Quadro_di_unione`).
 * **Edizioni:** dal catalogo della Biblioteca ISPRA, che ha messo online l'intera serie (prima e seconda edizione). Per ogni foglio sono elencate tutte le edizioni trovate, con anno, eventuale titolo diverso (es. il 141 Pescara nella 1ª edizione si chiamava "Chieti") e presenza della copia digitale. Edizione e anno sono copiati dalla scheda; se l'edizione non è indicata, lo si dichiara.
 * **Link:** alla scheda del catalogo dell'edizione più recente con copia digitale e alle note illustrative. Le scansioni non vengono riprodotte, perché il catalogo non ne dichiara la licenza.
@@ -43,8 +43,8 @@ I 278 fogli della Carta Geologica d'Italia alla scala 1:100.000, indispensabili 
 *Fonte: ISPRA – Servizio Geologico d'Italia (quadro d'unione 1:100.000; catalogo OPAC della Biblioteca ISPRA).*
 
 ### 2. Ricerca scientifica (Journal of Maps)
-Pubblicazioni del *Journal of Maps* su aree italiane, ognuna con DOI verificato su Crossref. **Il livello si aggiorna da solo ogni lunedì** (vedi *Aggiornamento automatico*).
-* **Posizione:** un punto, non l'area cartografata: serve a trovare la pubblicazione, non a delimitarla. Il campo `Precisione` dice come è stato ottenuto:
+Articoli del *Journal of Maps* su aree italiane. Il punto indica la località, non l'area cartografata. **Il livello si aggiorna da solo ogni lunedì** (vedi *Aggiornamento automatico*).
+* **Posizione:** il campo `Precisione` dice come è stato ottenuto il punto:
   * `Coordinate`: coordinate indicate nel paper (localizzazione manuale);
   * `Comune`, `Provincia`, `Regione`: centroide dell'unità ISTAT indicata dal curatore oppure, in automatico, citata nel titolo. Il campo `Fonte` distingue i due casi.
 * **Non posizionate:** 9 pubblicazioni non hanno un toponimo ISTAT nel titolo (es. Etna, Campi Flegrei, Dolomiti) oppure citano più regioni, e non hanno ancora una localizzazione manuale. Sono elencate in `jom_da_localizzare.csv` e non vengono collocate a stima.
@@ -53,7 +53,7 @@ Pubblicazioni del *Journal of Maps* su aree italiane, ognuna con DOI verificato 
 *Fonte: metadati [Crossref](https://www.crossref.org/) (ISSN 1744-5647); confini ISTAT per la localizzazione.*
 
 ### 3. Geoportali regionali
-Accesso ai geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano (21 enti), dove si trova la cartografia geologica di dettaglio.
+Geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano.
 
 *Fonte link: selezione manuale. Confini: ISTAT, 1° gennaio 2026 (CC BY 4.0), via [openpolis/geojson-italy](https://github.com/openpolis/geojson-italy), semplificati a circa 300 m.*
 

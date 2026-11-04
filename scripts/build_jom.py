@@ -57,6 +57,12 @@ ALIAS_COMUNI = {"rome": "Roma", "naples": "Napoli", "florence": "Firenze", "veni
 ESCLUSI = {"Italia", "Mare", "Monte", "Valle", "Lago", "Isola", "Porto", "Salento"}
 
 
+def nome_licenza(url):
+    """'http://creativecommons.org/licenses/by-nc/4.0/)' -> 'CC BY-NC 4.0' (ignora caratteri spuri nell'URL)."""
+    m = re.search(r"licenses/([a-z-]+)/(\d+\.\d+)", url.lower())
+    return f"CC {m.group(1).upper()} {m.group(2)}" if m else ""
+
+
 def norm(s):
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
     return re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
@@ -245,8 +251,8 @@ def main(p_cr, p_reg, p_prov, p_com):
         titolo = " ".join(it["title"][0].split())
         t = norm(titolo)
         anno = (it.get("issued", {}).get("date-parts") or [[None]])[0][0]
-        lic = sorted({l["URL"].rstrip("/") for l in it.get("license", []) if "creativecommons" in l["URL"]})
-        licenza = lic[0].split("licenses/")[-1].upper().replace("/", " ").strip() if lic else "Non indicata in Crossref"
+        lic = sorted({nome_licenza(l["URL"]) for l in it.get("license", []) if "creativecommons" in l["URL"]} - {""})
+        licenza = lic[0] if lic else "Non indicata in Crossref"
 
         # Maiuscola obbligatoria: "Adriatic piedmont" è la fascia pedemontana, non il Piemonte
         reg_citate = {nome for k, nome in gaz_reg.items() if contiene(t, k) and maiuscolo(titolo, k)}

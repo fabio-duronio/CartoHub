@@ -3,9 +3,9 @@
 
 **Progetto a cura di [Geologiaintasca](https://www.facebook.com/profile.php?id=61565694163261)**
 
-Questo repository ospita un indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. L'obiettivo è riunire in un'unica mappa i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi.
+Indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. Riunisce i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi.
 
-[**Mappa interattiva (uMap)**](https://umap.openstreetmap.fr/it/map/cartografia-geologica-italiana_1338725) · [Anteprima Leaflet](index.html)
+[**Mappa interattiva (uMap)**](https://umap.openstreetmap.fr/it/map/italian-geological-cartography-hub-igc-hub_1338725) · [Anteprima Leaflet](index.html)
 
 > [!NOTE]
 > **Dati ricostruiti a novembre 2026** da fonti ufficiali (ISPRA, ISTAT, Crossref). Cosa è cambiato e quali limiti restano: [REVISIONE.md](REVISIONE.md).
@@ -18,7 +18,7 @@ Questo repository ospita un indice geografico (GeoJSON) delle risorse cartografi
 |---|---|---|---|
 | Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 634 fogli | CARG-GATE (ISPRA) |
 | Carta Geologica d'Italia 1:100.000 | `dati/carta_100k/carta_100k_fogli.geojson` | 278 fogli | Quadro d'unione e catalogo Biblioteca ISPRA |
-| Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 226 pubblicazioni | Crossref + confini ISTAT |
+| Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 313 pubblicazioni | Crossref + confini ISTAT |
 | Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 enti | Selezione manuale + confini ISTAT |
 
 Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`.
@@ -47,8 +47,8 @@ Pubblicazioni del *Journal of Maps* su aree italiane, ognuna con DOI verificato 
 * **Posizione:** un punto, non l'area cartografata: serve a trovare la pubblicazione, non a delimitarla. Il campo `Precisione` dice come è stato ottenuto:
   * `Coordinate`: coordinate indicate nel paper (localizzazione manuale);
   * `Comune`, `Provincia`, `Regione`: centroide dell'unità ISTAT indicata dal curatore oppure, in automatico, citata nel titolo. Il campo `Fonte` distingue i due casi.
-* **Non posizionate:** 128 pubblicazioni non hanno un toponimo ISTAT nel titolo (es. Etna, Campi Flegrei, Dolomiti) oppure citano più regioni. Sono elencate in `jom_da_localizzare.csv` e non vengono collocate a stima.
-* **Licenza:** il campo `Licenza` riporta quella dichiarata in Crossref: 95 CC BY 4.0, 20 CC BY-NC 4.0, 3 CC BY-NC-ND 4.0. Per 108 articoli Crossref non indica la licenza: va verificata sulla pagina dell'articolo prima di riusarne le figure.
+* **Non posizionate:** 9 pubblicazioni non hanno un toponimo ISTAT nel titolo (es. Etna, Campi Flegrei, Dolomiti) oppure citano più regioni, e non hanno ancora una localizzazione manuale. Sono elencate in `jom_da_localizzare.csv` e non vengono collocate a stima.
+* **Licenza:** il campo `Licenza` riporta quella dichiarata in Crossref: 132 CC BY 4.0, 33 CC BY-NC 4.0, 4 CC BY-NC-ND 4.0. Per 144 articoli Crossref non indica la licenza: va verificata sulla pagina dell'articolo prima di riusarne le figure.
 
 *Fonte: metadati [Crossref](https://www.crossref.org/) (ISSN 1744-5647); confini ISTAT per la localizzazione.*
 
@@ -60,7 +60,7 @@ Accesso ai geoportali e WebGIS delle Regioni e delle Province autonome di Trento
 ---
 
 ## Aggiornamento automatico
-Due GitHub Action aggiornano i dati ogni lunedì: [`aggiorna-carg.yml`](.github/workflows/aggiorna-carg.yml) rigenera i fogli CARG da CARG-GATE, [`aggiorna-jom.yml`](.github/workflows/aggiorna-jom.yml) il livello Journal of Maps. Quest'ultima parte:
+Tre GitHub Action aggiornano i dati: [`aggiorna-carg.yml`](.github/workflows/aggiorna-carg.yml) rigenera ogni lunedì i fogli CARG da CARG-GATE, [`aggiorna-100k.yml`](.github/workflows/aggiorna-100k.yml) la Carta 1:100.000 il primo lunedì del mese, [`aggiorna-jom.yml`](.github/workflows/aggiorna-jom.yml) il livello Journal of Maps. Quest'ultima parte:
 * **ogni lunedì**, scaricando da Crossref i nuovi articoli sull'Italia;
 * **a ogni modifica di `localizzazioni.csv`**, così una localizzazione aggiunta compare sulla mappa in pochi minuti;
 * **a mano**, da *Actions → Aggiorna Journal of Maps → Run workflow*.
@@ -89,6 +89,7 @@ Ogni livello ha uno script che lo ricostruisce dalla fonte. Le istruzioni per sc
 ```bash
 python3 scripts/scarica_carggate.py carggate.json   # serve accesso a progetto-carg.isprambiente.it
 python3 scripts/build_carg.py carggate.json <regions>
+python3 scripts/build_100k.py                      # serve accesso ai siti ISPRA (quadro d'unione e catalogo)
 python3 scripts/scarica_crossref.py crossref.json   # serve accesso a api.crossref.org
 python3 scripts/build_jom.py crossref.json <regions> <provinces> <municipalities>
 python3 scripts/build_geoportali.py <regions> <provinces>

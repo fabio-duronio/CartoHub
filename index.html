@@ -3,114 +3,232 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IGC-Hub – Cartografia geologica italiana</title>
+  <title>Italian Geological Cartography Hub (IGC-Hub)</title>
+  <meta name="description" content="Indice geografico delle risorse cartografiche geologiche italiane.">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
-    html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; }
+    html, body { margin: 0; height: 100%; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #222; }
     #map { height: 100%; }
-    .legenda { background: #fff; padding: 6px 10px; border-radius: 4px; font-size: 12px; line-height: 1.6;
-               box-shadow: 0 1px 4px rgba(0,0,0,.3); }
-    .legenda i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -2px;
-                 border: 1px solid #555; }
-    .leaflet-popup-content { font-size: 13px; }
+    .riquadro { background: #fff; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.3); font-size: 12px; line-height: 1.5; }
+    .testata { padding: 6px 10px; max-width: 320px; }
+    .testata h1 { font-size: 14px; margin: 0; }
+    .testata p { margin: 2px 0 0; color: #555; }
+    .testata button { margin-top: 4px; font: inherit; color: #1a237e; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+    .info { display: none; margin-top: 6px; border-top: 1px solid #ddd; padding-top: 6px; max-height: 50vh; overflow: auto; }
+    .info.aperto { display: block; }
+    .info p { color: #222; }
+    .legenda { padding: 6px 10px; line-height: 1.6; }
+    .legenda i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -2px; border: 1px solid #555; }
+    .avviso { padding: 4px 8px; display: none; }
+    .avviso.attivo { display: block; }
+    .leaflet-popup-content { font-size: 13px; max-height: 50vh; overflow: auto; }
+    .sezione + .sezione { margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd; }
+    .sezione h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: #666; margin: 0 0 2px; }
     .meta { color: #555; }
+    @media (max-width: 600px) { .testata { max-width: 220px; } .testata p { display: none; } .legenda { display: none; } }
   </style>
 </head>
 <body>
 <div id="map"></div>
 <script>
-  const map = L.map('map').setView([42.2, 12.5], 6);
+  const map = L.map('map', { zoomControl: false }).setView([41.9, 12.6], 6);
+  L.control.zoom({ position: 'topright' }).addTo(map);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19, attribution: '© OpenStreetMap contributors'
   }).addTo(map);
-  map.attributionControl.addAttribution('Fogli CARG: CARG-GATE, ISPRA (CC BY 4.0) · Carta 1:100.000: ISPRA · Confini: ISTAT (CC BY 4.0) · Metadati: Crossref');
+  map.attributionControl.addAttribution('Dati: ISPRA, Journal of Maps, Crossref, ISTAT');
 
-  // Evita che testo nei dati venga interpretato come HTML
+  // ---------- Utilità ----------
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const safeUrl = u => /^https:\/\//.test(u || '') ? u : '#';
-  const riga = (etichetta, v) => v ? `<br><span class="meta">${etichetta}:</span> ${esc(v)}` : '';
+  // Il campo "Dettagli" usa la sintassi di uMap (**grassetto**, [[url|testo]]): stessa resa nelle due mappe
+  const daDettagli = t => esc(t)
+    .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+    .replace(/\[\[(https?:\/\/[^|\]]+)\|([^\]]+)\]\]/g, (m, u, txt) => `<a href="${u}" target="_blank" rel="noopener">${txt}</a>`)
+    .replace(/\n/g, '<br>');
+  const sezione = (titolo, corpo) => `<div class="sezione"><h3>${esc(titolo)}</h3>${corpo}</div>`;
+  const maiuscola = s => { s = String(s || '').trim().toLowerCase(); return s ? s[0].toUpperCase() + s.slice(1) : ''; };
 
-  // Stati e colori come nella legenda di CARG-GATE (ISPRA)
+  function nelPoligono(x, y, anelli) {
+    const dentro = r => { let c = false;
+      for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+        const [xi, yi] = r[i], [xj, yj] = r[j];
+        if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c;
+      } return c; };
+    return dentro(anelli[0]) && !anelli.slice(1).some(dentro);
+  }
+  function contiene(f, lng, lat) {
+    const g = f.geometry; if (!g) return false;
+    const pol = g.type === 'MultiPolygon' ? g.coordinates : g.type === 'Polygon' ? [g.coordinates] : [];
+    return pol.some(p => nelPoligono(lng, lat, p));
+  }
+
+  // ---------- Livelli dei dati (GeoJSON del repository) ----------
   const COLORI_CARG = { 'Stampato': '#FF0000', 'In attesa di stampa': '#A87000',
                         'In allestimento per la stampa': '#FFAA00', 'Rilevamento in corso': '#A3FF73' };
   const COLORE_JOM = '#1a237e';
 
-  function popup(feature, layer) {
-    const p = feature.properties || {};
-    let html = `<b>${esc(p.Title)}</b>`;
-    html += riga('Descrizione', p.Description);
-    html += riga('Stato', p.Stato);
-    html += riga('Anno di stampa', p.Anno_stampa);
-    html += riga('Coordinatori', p.Coordinatori);
-    html += riga('Banca dati', p.Banca_dati);
-    html += riga('Luogo', p.Type === 'Research Map' ? p.Location : null);
-    html += riga('Anno', p.Anno);
-    html += riga('Licenza', p.Licenza);
-    if (p.Precisione) {
-      const manuale = /manuale/.test(p.Fonte || '');
-      const pos = p.Precisione === 'Coordinate' ? 'coordinate indicate nel paper'
-        : (p.Precisione === 'Comune' ? 'centroide del comune ' : `centroide della ${p.Precisione.toLowerCase()} `) +
-          (p.Precisione === 'Comune' ? (manuale ? 'indicato dal curatore' : 'citato nel titolo')
-                                     : (manuale ? 'indicata dal curatore' : 'citata nel titolo'));
-      html += riga('Posizione', pos);
-    }
-    const link = (u, t) => u ? `<br><a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">${t}</a>` : '';
-    if (p.Type === 'Historical Map (1:100.000)') {
-      html += riga('Edizioni', p.Edizioni);
-      html += link(p.URL, 'Scheda nel catalogo ISPRA') + link(p.URL_note, 'Note illustrative (catalogo ISPRA)');
-    } else if (p.Type === 'Official Map') {
-      if (!p.Stato) html += '<br><span class="meta">Nessuno stato indicato su CARG-GATE</span>';
-      html += link(p.URL, 'Scheda su CARG-GATE') + link(p.DOI_carta, 'Carta (DOI)') + link(p.DOI_note, 'Note illustrative (DOI)');
-    } else if (p.Type === 'Research Map') {
-      html += link(p.URL, 'Articolo (DOI)');
-    } else {
-      html += link(p.URL, 'Vai al geoportale');
-    }
-    layer.bindPopup(html);
-  }
-
   const livelli = [
-    { nome: 'Progetto CARG 1:50.000', file: 'dati/carg/carg_50k_fogli.geojson', colore: '#FF0000',
-      opzioni: { style: f => ({ color: '#555', weight: 0.6,
-                                fillOpacity: COLORI_CARG[f.properties.Stato] ? 0.45 : 0,
-                                fillColor: COLORI_CARG[f.properties.Stato] || '#ffffff' }) } },
-    { nome: 'Carta Geologica d\'Italia 1:100.000', file: 'dati/carta_100k/carta_100k_fogli.geojson', colore: '#6d4c41',
-      visibile: false,
-      opzioni: { style: f => ({ color: '#6d4c41', weight: 1.2, dashArray: '6 3',
-                                fillColor: '#6d4c41', fillOpacity: f.properties.Copia_digitale === 'Sì' ? 0.12 : 0.03 }) } },
-    { nome: 'Geoportali regionali', file: 'dati/geoportali_regionali/geoportali_regionali.geojson', colore: '#2e8b57',
-      visibile: false,
-      opzioni: { style: { color: '#2e8b57', weight: 2, fillOpacity: 0.03 } } },
-    { nome: 'Journal of Maps', file: 'dati/journal_of_maps/jom_italia.geojson', colore: COLORE_JOM,
+    { nome: 'Journal of Maps', file: 'dati/journal_of_maps/jom_italia.geojson', colore: COLORE_JOM, punti: true,
       opzioni: { pointToLayer: (f, ll) => L.circleMarker(ll, {
-        radius: f.properties.Precisione === 'Regione' ? 5 : 7, color: '#fff', weight: 1,
-        fillColor: COLORE_JOM, fillOpacity: f.properties.Precisione === 'Regione' ? 0.5 : 0.9 }) } }
+        radius: f.properties.Precisione === 'Regione' ? 5 : 7, color: '#fff', weight: 1, bubblingMouseEvents: false,
+        fillColor: COLORE_JOM, fillOpacity: f.properties.Precisione === 'Regione' ? 0.5 : 0.9 }) } },
+    { nome: 'Progetto CARG 1:50.000', file: 'dati/carg/carg_50k_fogli.geojson', colore: '#FF0000',
+      opzioni: { interactive: false, style: f => ({ color: '#555', weight: 0.6,
+        fillOpacity: COLORI_CARG[f.properties.Stato] ? 0.45 : 0, fillColor: COLORI_CARG[f.properties.Stato] || '#ffffff' }) } },
+    { nome: "Carta Geologica d'Italia 1:100.000", file: 'dati/carta_100k/carta_100k_fogli.geojson', colore: '#6d4c41', visibile: false,
+      opzioni: { interactive: false, style: f => ({ color: '#6d4c41', weight: 1.2, dashArray: '6 3',
+        fillColor: '#6d4c41', fillOpacity: f.properties.Copia_digitale === 'Sì' ? 0.12 : 0.03 }) } },
+    { nome: 'Geoportali regionali', file: 'dati/geoportali_regionali/geoportali_regionali.geojson', colore: '#2e8b57', visibile: false,
+      opzioni: { interactive: false, style: { color: '#2e8b57', weight: 2, fillOpacity: 0.03 } } }
   ];
 
-  const controllo = L.control.layers(null, {}, { collapsed: window.innerWidth < 600 }).addTo(map);
+  // ---------- Geologia ISPRA (servizi WMS, interrogabili al clic) ----------
+  map.createPane('geologia'); map.getPane('geologia').style.zIndex = 350;  // sotto i fogli e i punti
+  const SINA = 'https://sinacloud.isprambiente.it/arcgisgeo/';
+  const geologia = [
+    { nome: 'Geologia CARG 1:25.000 (ISPRA)', servizio: 'geo/SGI_ISPRA_Geologia25k', wms: '0,3', identifica: 9, zoomMin: 11,
+      scheda: a => [
+        a.nome && `<b>${esc(a.nome)}</b>${a.sigla_unita_geologica ? ` (${esc(a.sigla_unita_geologica.trim())})` : ''}`,
+        a.siglatipo && `<span class="meta">Tipo:</span> ${esc(maiuscola(a.siglatipo))}`,
+        a.eta_inferiore && `<span class="meta">Età:</span> ${esc(maiuscola(a.eta_inferiore))}` +
+          (a.eta_superiore && a.eta_superiore !== a.eta_inferiore ? ` – ${esc(maiuscola(a.eta_superiore))}` : ''),
+        a.foglio && `<span class="meta">Foglio:</span> ${esc(maiuscola(a.foglio))}`
+      ] },
+    { nome: 'Geologia 1:100.000 (ISPRA)', servizio: 'servizi/geologica100k', wms: '0,1,2', identifica: 16, zoomMin: 10,
+      scheda: a => [
+        a.NOME_FORMAZIONE && `<b>${esc(maiuscola(a.NOME_FORMAZIONE))}</b>${(a.Sigla || '').trim() ? ` (${esc(a.Sigla.trim())})` : ''}`,
+        a.ETA_FORMAZIONE && `<span class="meta">Età:</span> ${esc(maiuscola(a.ETA_FORMAZIONE))}`
+      ] }
+  ];
+  geologia.forEach(g => {
+    g.layer = L.tileLayer.wms(SINA + 'services/' + g.servizio + '/MapServer/WMSServer', {
+      layers: g.wms, format: 'image/png', transparent: true, version: '1.3.0', opacity: 0.75,
+      pane: 'geologia', minZoom: g.zoomMin, maxZoom: 19,
+      attribution: 'Geologia: © ISPRA – Servizio Geologico d\'Italia'
+    });
+  });
+
+  // JSONP: i servizi ISPRA non abilitano CORS, ma il REST di ArcGIS accetta il parametro "callback"
+  let nJsonp = 0;
+  function jsonp(url, ms = 10000) {
+    return new Promise((ok, ko) => {
+      const cb = '__igc' + (++nJsonp), s = document.createElement('script');
+      const fine = () => { delete window[cb]; s.remove(); clearTimeout(t); };
+      const t = setTimeout(() => { fine(); ko(new Error('timeout')); }, ms);
+      window[cb] = d => { fine(); ok(d); };
+      s.onerror = () => { fine(); ko(new Error('rete')); };
+      s.src = url + '&callback=' + cb;
+      document.head.appendChild(s);
+    });
+  }
+  function identifica(g, ll) {
+    const b = map.getBounds(), sz = map.getSize();
+    const q = new URLSearchParams({ geometry: `${ll.lng},${ll.lat}`, geometryType: 'esriGeometryPoint', sr: 4326,
+      layers: 'visible:' + g.identifica, tolerance: 2, returnGeometry: false, f: 'json',
+      mapExtent: [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()].join(','), imageDisplay: `${sz.x},${sz.y},96` });
+    return jsonp(SINA + 'rest/services/' + g.servizio + '/MapServer/identify?' + q);
+  }
+
+  // ---------- Controllo dei livelli (ordine fisso) ----------
+  const controllo = L.control.layers(null, {}, { collapsed: window.innerWidth < 900, position: 'topright' }).addTo(map);
   livelli.forEach(l => {
+    l.layer = L.geoJSON(null, l.opzioni);
+    if (l.visibile !== false) l.layer.addTo(map);
+    l.etichetta = n => `<span style="color:${l.colore}">■</span> ${l.nome}` + (n != null ? ` (${n})` : '');
+    controllo.addOverlay(l.layer, l.etichetta());
     fetch(l.file)
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(dati => {
-        const layer = L.geoJSON(dati, Object.assign({ onEachFeature: popup }, l.opzioni));
-        if (l.visibile !== false) layer.addTo(map);
-        controllo.addOverlay(layer, `<span style="color:${l.colore}">■</span> ${l.nome} (${dati.features.length})`);
+        l.dati = dati.features;
+        l.layer.addData(dati);
+        if (l.punti) l.layer.eachLayer(m => m.bindPopup(`<b>${esc(m.feature.properties.Title)}</b><br>${daDettagli(m.feature.properties.Dettagli)}`));
+        controllo.removeLayer(l.layer); controllo.addOverlay(l.layer, l.etichetta(dati.features.length));
       })
       .catch(e => console.error('Impossibile caricare', l.file, e));
   });
+  geologia.forEach(g => controllo.addOverlay(g.layer, `<span style="color:#8d6e63">▦</span> ${g.nome}`));
 
+  // ---------- Clic sulla mappa: fogli, geoportali e geologia nello stesso popup ----------
+  map.on('click', e => {
+    const { lat, lng } = e.latlng;
+    let html = '';
+    livelli.filter(l => !l.punti && l.dati && map.hasLayer(l.layer)).forEach(l => {
+      l.dati.filter(f => contiene(f, lng, lat)).forEach(f => {
+        html += sezione(l.nome, `<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}`);
+      });
+    });
+    const attive = geologia.filter(g => map.hasLayer(g.layer) && map.getZoom() >= g.zoomMin);
+    attive.forEach((g, i) => { html += `<div class="sezione" id="geo${i}"><h3>${esc(g.nome)}</h3><span class="meta">Interrogazione in corso…</span></div>`; });
+    if (!html) return;
+    const popup = L.popup({ maxWidth: 320 }).setLatLng(e.latlng).setContent(html).openOn(map);
+    attive.forEach((g, i) => identifica(g, e.latlng)
+      .then(d => {
+        const r = (d.results || [])[0];
+        const righe = r ? g.scheda(r.attributes).filter(Boolean).join('<br>') : '<span class="meta">Nessuna unità in questo punto.</span>';
+        return righe;
+      })
+      .catch(() => '<span class="meta">Servizio ISPRA non raggiungibile.</span>')
+      .then(righe => {
+        const el = popup.getElement() && popup.getElement().querySelector('#geo' + i);
+        if (el) { el.innerHTML = `<h3>${esc(g.nome)}</h3>${righe}`; popup.update(); }
+      }));
+  });
+
+  // ---------- Avviso di scala per la geologia ----------
+  const avviso = L.control({ position: 'bottomright' });
+  avviso.onAdd = () => L.DomUtil.create('div', 'riquadro avviso');
+  avviso.addTo(map);
+  function aggiornaAvviso() {
+    const lontane = geologia.filter(g => map.hasLayer(g.layer) && map.getZoom() < g.zoomMin);
+    const el = avviso.getContainer();
+    el.innerHTML = lontane.map(g => `${esc(g.nome)}: avvicinati per vederla`).join('<br>');
+    el.classList.toggle('attivo', lontane.length > 0);
+  }
+  map.on('zoomend overlayadd overlayremove', aggiornaAvviso);
+
+  // ---------- Testata e informazioni (stessi testi di uMap e del README) ----------
+  const testata = L.control({ position: 'topleft' });
+  testata.onAdd = () => {
+    const d = L.DomUtil.create('div', 'riquadro testata');
+    d.innerHTML = `
+      <h1>Italian Geological Cartography Hub (IGC-Hub)</h1>
+      <p>L'Hub digitale aperto per la cartografia geologica in Italia.</p>
+      <button type="button" aria-expanded="false">Informazioni e fonti</button>
+      <div class="info">
+        <p>Indice geografico delle risorse cartografiche geologiche italiane. Riunisce i rimandi a dati di istituzioni nazionali,
+        enti regionali e ricerca accademica, oggi distribuiti su portali diversi.</p>
+        <p>Progetto a cura di Geologiaintasca. Dati, fonti e licenze:
+        <a href="https://github.com/fabio-duronio/cartografia-geologica-italiana" target="_blank" rel="noopener">GitHub</a>.</p>
+        <p><b>Fonti</b><br>
+        Fogli CARG: © ISPRA – Servizio Geologico d'Italia, dati di CARG-GATE, licenza CC BY 4.0.<br>
+        Carta 1:100.000: © ISPRA – Servizio Geologico d'Italia; indicizzati quadro d'unione e schede del catalogo, le scansioni restano sul sito ISPRA.<br>
+        Geologia 1:25.000 e 1:100.000: © ISPRA – Servizio Geologico d'Italia, servizi di visualizzazione WMS; le immagini e le informazioni al clic sono fornite direttamente da ISPRA.<br>
+        Confini amministrativi: © ISTAT, licenza CC BY 4.0.<br>
+        Journal of Maps: indicizzati solo i metadati bibliografici; gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.<br>
+        Codice: licenza MIT.</p>
+        <p class="meta">Geologiaintasca non è titolare dei dati cartografici collegati: fornisce solo il servizio di indicizzazione geografica.</p>
+      </div>`;
+    const b = d.querySelector('button'), info = d.querySelector('.info');
+    b.onclick = () => { const a = info.classList.toggle('aperto'); b.setAttribute('aria-expanded', a); };
+    L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+    return d;
+  };
+  testata.addTo(map);
+
+  // ---------- Legenda ----------
   const legenda = L.control({ position: 'bottomleft' });
   legenda.onAdd = () => {
-    const d = L.DomUtil.create('div', 'legenda');
+    const d = L.DomUtil.create('div', 'riquadro legenda');
     d.innerHTML = '<b>Fogli CARG (stato su CARG-GATE)</b><br>' +
       Object.entries(COLORI_CARG).map(([k, c]) => `<i style="background:${c};opacity:.75"></i>${k}`).join('<br>') +
       '<br><i style="background:#fff"></i>Nessuno stato indicato' +
       '<br><b>Carta 1:100.000</b><br><i style="background:#6d4c41;opacity:.35"></i>con copia digitale' +
       '<br><i style="background:#6d4c41;opacity:.1"></i>senza copia digitale' +
       `<br><b>Journal of Maps</b><br><i style="background:${COLORE_JOM};border-radius:50%"></i>comune, provincia o coordinate` +
-      `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione`;
+      `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione` +
+      '<br><b>Geologia ISPRA</b><br><span class="meta">colori della carta ufficiale; clic per i dettagli</span>';
     return d;
   };
   legenda.addTo(map);

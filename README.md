@@ -5,7 +5,7 @@
 
 Indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. Riunisce i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi.
 
-[**Mappa interattiva (uMap)**](https://umap.openstreetmap.fr/it/map/italian-geological-cartography-hub-igc-hub_1338725) · [Anteprima Leaflet](index.html)
+[**Mappa web (GitHub Pages)**](https://fabio-duronio.github.io/cartografia-geologica-italiana/) · [Mappa uMap](https://umap.openstreetmap.fr/it/map/italian-geological-cartography-hub-igc-hub_1338725)
 
 > [!NOTE]
 > **Dati ricostruiti a novembre 2026** da fonti ufficiali (ISPRA, ISTAT, Crossref). Cosa è cambiato e quali limiti restano: [REVISIONE.md](REVISIONE.md).
@@ -52,7 +52,15 @@ Articoli del *Journal of Maps* su aree italiane. Il punto indica la località, n
 
 *Fonte: metadati [Crossref](https://www.crossref.org/) (ISSN 1744-5647); confini ISTAT per la localizzazione.*
 
-### 3. Geoportali regionali
+### 3. Geologia ISPRA (solo nella mappa web)
+Due livelli di visualizzazione forniti dai servizi WMS del Servizio Geologico d'Italia, spenti all'apertura. Le immagini e le informazioni al clic arrivano direttamente da ISPRA: il repository non ne conserva copia.
+* **Geologia CARG 1:25.000:** unità geologiche ed elementi tettonici dei fogli CARG disponibili nel servizio (210 a novembre 2026), visibili da zoom 11.
+* **Geologia 1:100.000:** unità geologiche, limiti e tettonica della Carta Geologica d'Italia 1:100.000 su tutto il territorio, visibili da zoom 10.
+* **Clic sulla mappa:** nome, sigla, tipo ed età dell'unità nel punto.
+
+*Fonte: servizi `geo/SGI_ISPRA_Geologia25k` e `servizi/geologica100k` su sinacloud.isprambiente.it (ISPRA – Servizio Geologico d'Italia).*
+
+### 4. Geoportali regionali
 Geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano.
 
 *Fonte link: selezione manuale. Confini: ISTAT, 1° gennaio 2026 (CC BY 4.0), via [openpolis/geojson-italy](https://github.com/openpolis/geojson-italy), semplificati a circa 300 m.*
@@ -107,7 +115,7 @@ python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni
 - [ ] Verificare i link dei geoportali regionali (6 sostituiti il 3/11/2026, da ricontrollare)
 - [x] Carta Geologica d'Italia 1:100.000 (278 fogli, edizioni dal catalogo ISPRA)
 - [ ] Cartografia geologica marina (CARG Mare)
-- [ ] Carta geologica CARG 1:25.000 (GeoSciencesIR, ISPRA) come livello WMS: servizio non raggiungibile a novembre 2026, da riverificare
+- [x] Geologia CARG 1:25.000 e 1:100.000 come livelli WMS ISPRA nella mappa web (i servizi indicati nel catalogo GeoSciencesIR non erano raggiungibili a novembre 2026)
 
 ## Licenze e disclaimer
 Il repository è un **indice di collegamenti** a risorse esterne.
@@ -115,6 +123,7 @@ Il repository è un **indice di collegamenti** a risorse esterne.
 * **Codice:** licenza [MIT](LICENSE).
 * **Fogli CARG:** © ISPRA – Servizio Geologico d'Italia, dati di CARG-GATE con licenza **CC BY 4.0** dichiarata dal portale.
 * **Carta 1:100.000:** © ISPRA – Servizio Geologico d'Italia. Sono indicizzati quadro d'unione e schede del catalogo; le scansioni restano sul sito ISPRA.
+* **Geologia 1:25.000 e 1:100.000:** © ISPRA – Servizio Geologico d'Italia, servizi di visualizzazione WMS; immagini e informazioni al clic sono fornite direttamente da ISPRA.
 * **Confini amministrativi:** © ISTAT, licenza CC BY 4.0.
 * **Journal of Maps:** sono indicizzati solo i metadati bibliografici. Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
 

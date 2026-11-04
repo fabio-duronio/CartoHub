@@ -6,7 +6,7 @@ on:
   schedule:
     - cron: "47 5 1-7 * 1"   # primo lunedì del mese, 05:47 UTC
   push:
-    branches: [main, carta-100k]
+    branches: [main]
     paths:
       - "scripts/build_100k.py"
       - "scripts/dettagli_popup.py"

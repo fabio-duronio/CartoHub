@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MANUALI = ROOT / "dati/journal_of_maps/localizzazioni.csv"
 API = "https://api.crossref.org/works"
 CAMPI = "DOI,title,issued,license,container-title,ISSN"
-HEADERS = {"User-Agent": "IGC-Hub/1.0 (https://github.com/fabio-duronio/cartografia-geologica-italiana)"}
+HEADERS = {"User-Agent": "CartoHub/1.0 (https://github.com/fabio-duronio/CartoHub)"}
 
 
 def get(url, tentativi=4):

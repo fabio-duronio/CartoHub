@@ -4,14 +4,11 @@ Indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. Riu
 
 [**Mappa web (GitHub Pages)**](https://fabio-duronio.github.io/geologiaintasca/) · [Mappa uMap](https://umap.openstreetmap.fr/it/map/italian-geological-cartography-hub-igc-hub_1338725)
 
-> [!NOTE]
-> **Dati ricostruiti a novembre 2026** da fonti ufficiali (ISPRA, ISTAT, Crossref). Cosa è cambiato e quali limiti restano: [REVISIONE.md](REVISIONE.md).
-
 ---
 
 ## Dataset
 
-| Livello | File | Feature | Fonte |
+| Livello | File | Elementi (nov. 2026) | Fonte |
 |---|---|---|---|
 | Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 634 fogli | CARG-GATE (ISPRA) |
 | Carta Geologica d'Italia 1:100.000 | `dati/carta_100k/carta_100k_fogli.geojson` | 278 fogli | Quadro d'unione e catalogo Biblioteca ISPRA |
@@ -29,7 +26,7 @@ Fogli della Carta Geologica d'Italia alla scala 1:50.000, con lo stato di realiz
 
 *Fonte: CARG-GATE – ISPRA, Servizio Geologico d'Italia, licenza CC BY 4.0. La regione nel link alla scheda si ricava dai confini ISTAT.*
 
-### 1b. Carta Geologica d'Italia 1:100.000 (serie storica)
+### 2. Carta Geologica d'Italia 1:100.000 (serie storica)
 Fogli della Carta Geologica d'Italia alla scala 1:100.000, con le edizioni presenti nel catalogo della Biblioteca ISPRA.
 * **Geometria:** quadro d'unione ufficiale ISPRA (servizio `geologica100k`, layer `CGI100K_Quadro_di_unione`).
 * **Edizioni:** dal catalogo della Biblioteca ISPRA, che ha messo online l'intera serie (prima e seconda edizione). Per ogni foglio sono elencate tutte le edizioni trovate, con anno, eventuale titolo diverso (es. il 141 Pescara nella 1ª edizione si chiamava "Chieti") e presenza della copia digitale. Edizione e anno sono copiati dalla scheda; se l'edizione non è indicata, lo si dichiara.
@@ -39,17 +36,17 @@ Fogli della Carta Geologica d'Italia alla scala 1:100.000, con le edizioni prese
 
 *Fonte: ISPRA – Servizio Geologico d'Italia (quadro d'unione 1:100.000; catalogo OPAC della Biblioteca ISPRA).*
 
-### 2. Ricerca scientifica (Journal of Maps)
+### 3. Ricerca scientifica (Journal of Maps)
 Articoli del *Journal of Maps* su aree italiane. Il punto indica la località, non l'area cartografata. **Il livello si aggiorna da solo ogni lunedì** (vedi *Aggiornamento automatico*).
 * **Posizione:** il campo `Precisione` dice come è stato ottenuto il punto:
   * `Coordinate`: coordinate indicate nel paper (localizzazione manuale);
   * `Comune`, `Provincia`, `Regione`: centroide dell'unità ISTAT indicata dal curatore oppure, in automatico, citata nel titolo. Il campo `Fonte` distingue i due casi.
-* **Non posizionate:** 9 pubblicazioni non hanno un toponimo ISTAT nel titolo (es. Etna, Campi Flegrei, Dolomiti) oppure citano più regioni, e non hanno ancora una localizzazione manuale. Sono elencate in `jom_da_localizzare.csv` e non vengono collocate a stima.
-* **Licenza:** il campo `Licenza` riporta quella dichiarata in Crossref: 132 CC BY 4.0, 33 CC BY-NC 4.0, 4 CC BY-NC-ND 4.0. Per 144 articoli Crossref non indica la licenza: va verificata sulla pagina dell'articolo prima di riusarne le figure.
+* **Non posizionate:** le pubblicazioni senza un toponimo ISTAT nel titolo (es. Etna, Campi Flegrei, Dolomiti) o che citano più regioni, e senza una localizzazione manuale, sono elencate in `jom_da_localizzare.csv` e non vengono collocate a stima.
+* **Licenza:** il campo `Licenza` riporta quella dichiarata in Crossref (CC BY 4.0, CC BY-NC 4.0, CC BY-NC-ND 4.0). Quando Crossref non la indica, va verificata sulla pagina dell'articolo prima di riusarne le figure.
 
 *Fonte: metadati [Crossref](https://www.crossref.org/) (ISSN 1744-5647); confini ISTAT per la localizzazione.*
 
-### 3. Geologia ISPRA (solo nella mappa web)
+### 4. Geologia ISPRA (solo nella mappa web)
 Due livelli di visualizzazione forniti dai servizi WMS del Servizio Geologico d'Italia, spenti all'apertura. Le immagini e le informazioni al clic arrivano direttamente da ISPRA: il repository non ne conserva copia.
 * **Geologia CARG 1:25.000:** unità geologiche ed elementi tettonici dei fogli CARG disponibili nel servizio (210 a novembre 2026), visibili da zoom 11.
 * **Geologia 1:100.000:** unità geologiche, limiti e tettonica della Carta Geologica d'Italia 1:100.000 su tutto il territorio, visibili da zoom 10.
@@ -57,7 +54,7 @@ Due livelli di visualizzazione forniti dai servizi WMS del Servizio Geologico d'
 
 *Fonte: servizi `geo/SGI_ISPRA_Geologia25k` e `servizi/geologica100k` su sinacloud.isprambiente.it (ISPRA – Servizio Geologico d'Italia).*
 
-### 4. Geoportali regionali
+### 5. Geoportali regionali
 Geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano.
 
 *Fonte link: selezione manuale. Confini: ISTAT, 1° gennaio 2026 (CC BY 4.0), via [openpolis/geojson-italy](https://github.com/openpolis/geojson-italy), semplificati a circa 300 m.*
@@ -86,33 +83,37 @@ DOI;Comune;Provincia;Lat;Lon;Note
 
 Gli articoli da non mettere sulla mappa (commenti, temi non cartografici, carte a scala nazionale, nessun luogo indicato) stanno in [`esclusioni.csv`](dati/journal_of_maps/esclusioni.csv) (`DOI;Categoria;Motivo`): non compaiono né sulla mappa né tra quelli da localizzare.
 
-La skill di Geologiaintasca produce la riga già pronta per ogni post su un articolo del Journal of Maps.
+Per ogni post di Geologiaintasca su un articolo del Journal of Maps viene preparata la riga da aggiungere.
 
 ## Rigenerare i dati
 Ogni livello ha uno script che lo ricostruisce dalla fonte. Le istruzioni per scaricare i dati di partenza sono nell'intestazione di ciascuno script.
 
 ```bash
-python3 scripts/scarica_carggate.py carggate.json   # serve accesso a progetto-carg.isprambiente.it
-python3 scripts/build_carg.py carggate.json <regions>
-python3 scripts/build_100k.py                      # serve accesso ai siti ISPRA (quadro d'unione e catalogo)
-python3 scripts/scarica_crossref.py crossref.json   # serve accesso a api.crossref.org
-python3 scripts/build_jom.py crossref.json <regions> <provinces> <municipalities>
-python3 scripts/build_geoportali.py <regions> <provinces>
-python3 scripts/dettagli_popup.py   # testo dei popup di uMap (campo Dettagli)
-python3 scripts/valida_dati.py   # controllo qualità: va eseguito prima di ogni commit
+python3 -I scripts/scarica_carggate.py carggate.json   # serve accesso a progetto-carg.isprambiente.it
+python3 -I scripts/build_carg.py carggate.json <regions>
+python3 -I scripts/build_100k.py                       # serve accesso ai siti ISPRA (quadro d'unione e catalogo)
+python3 -I scripts/scarica_crossref.py crossref.json   # serve accesso a api.crossref.org
+python3 -I scripts/build_jom.py crossref.json <regions> <provinces> <municipalities>
+python3 -I scripts/build_geoportali.py <regions> <provinces>
+python3 -I scripts/dettagli_popup.py                   # testo dei popup (campo Dettagli)
+python3 -I scripts/valida_dati.py                      # controllo qualità: va eseguito prima di ogni commit
 ```
+
+## Limiti noti
+* **Journal of Maps:** il punto indica una località, non l'area cartografata. Con precisione `Regione` il punto è il centro della regione.
+* **Carta 1:100.000:** alcuni fogli non hanno schede nel catalogo ISPRA; le scansioni non sono riprodotte perché il catalogo non ne dichiara la licenza.
+* **Geologia ISPRA:** è servita dai server ISPRA; se il servizio non risponde, il livello resta vuoto. I servizi non dichiarano una licenza: si cita la fonte.
+* **Geoportali regionali:** i link sono scelti a mano e possono cambiare senza preavviso; quello dell'Abruzzo è solo in http.
 
 ## Roadmap
 - [x] Fogli CARG da CARG-GATE, con stato ufficiale e aggiornamento settimanale
-- [x] Livello Journal of Maps da Crossref, con DOI verificati
-- [x] Confini regionali ufficiali ISTAT
-- [x] Aggiornamento settimanale automatico del Journal of Maps e localizzazioni manuali
-- [x] Localizzate 87 pubblicazioni, escluse 33 (3/11/2026)
-- [ ] Localizzare le 9 pubblicazioni rimaste in `jom_da_localizzare.csv` (servono i paper)
-- [ ] Verificare i link dei geoportali regionali (6 sostituiti il 3/11/2026, da ricontrollare)
-- [x] Carta Geologica d'Italia 1:100.000 (278 fogli, edizioni dal catalogo ISPRA)
+- [x] Carta Geologica d'Italia 1:100.000, con edizioni dal catalogo ISPRA
+- [x] Journal of Maps da Crossref, con DOI verificati, localizzazioni manuali e aggiornamento settimanale
+- [x] Geoportali regionali su confini ISTAT
+- [x] Geologia CARG 1:25.000 e 1:100.000 come livelli WMS ISPRA nella mappa web
+- [ ] Localizzare le pubblicazioni rimaste in `jom_da_localizzare.csv` (servono i paper)
+- [ ] Verificare i link dei geoportali regionali
 - [ ] Cartografia geologica marina (CARG Mare)
-- [x] Geologia CARG 1:25.000 e 1:100.000 come livelli WMS ISPRA nella mappa web (i servizi indicati nel catalogo GeoSciencesIR non erano raggiungibili a novembre 2026)
 
 ## Licenze e disclaimer
 Il repository è un **indice di collegamenti** a risorse esterne.

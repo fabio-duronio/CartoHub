@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Ricostruisce dati/geoportali_regionali/geoportali_regionali.geojson
-sostituendo i rettangoli con i confini amministrativi ISTAT (CC BY 4.0).
+sui confini amministrativi ISTAT (CC BY 4.0).
 
 Uso:
   python3 -I scripts/build_geoportali.py <limits_IT_regions.geojson> <limits_IT_provinces.geojson>

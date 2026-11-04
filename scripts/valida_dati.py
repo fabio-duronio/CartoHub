@@ -6,7 +6,6 @@ Esce con codice 1 se trova errori bloccanti (E), 0 se ci sono solo avvisi (W).
 Non richiede librerie esterne.
 """
 import json
-import re
 import sys
 from collections import Counter
 from pathlib import Path

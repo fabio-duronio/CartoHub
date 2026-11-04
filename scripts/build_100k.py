@@ -35,7 +35,7 @@ QUERY = ["foglio della Carta Geologica d'Italia 1:100.000", "foglio della Carta 
          "Carta geologica d'Italia alla scala 1:100.000", "carta geologica d'italia 100000",
          "Carta geologica delle Tre Venezie"]
 HEADERS = {"Content-Type": "application/json", "Accept": "application/json",
-           "User-Agent": "IGC-Hub/1.0 (https://github.com/fabio-duronio/cartografia-geologica-italiana)",
+           "User-Agent": "CartoHub/1.0 (https://github.com/fabio-duronio/CartoHub)",
            "Referer": "https://sbnweb.isprambiente.it/opac2/GEA/result"}
 FONTE = "ISPRA – Servizio Geologico d'Italia: quadro d'unione 1:100.000 e catalogo della Biblioteca ISPRA"
 

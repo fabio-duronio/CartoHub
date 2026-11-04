@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Controllo qualità dei GeoJSON di IGC-Hub.
+"""Controllo qualità dei GeoJSON di CartoHub.
 
 Uso:  python3 scripts/valida_dati.py
 Esce con codice 1 se trova errori bloccanti (E), 0 se ci sono solo avvisi (W).

@@ -49,6 +49,11 @@
     .replace(/\n/g, '<br>');
   const sezione = (titolo, corpo) => `<div class="sezione"><h3>${esc(titolo)}</h3>${corpo}</div>`;
   const maiuscola = s => { s = String(s || '').trim().toLowerCase(); return s ? s[0].toUpperCase() + s.slice(1) : ''; };
+  // 'L'AQUILA' -> 'L'Aquila', 'S. GIOVANNI IN FIORE' -> 'S. Giovanni in Fiore'
+  const nomeProprio = s => String(s || '').trim().toLowerCase()
+    .replace(/(^|[\s'.-])([a-zà-ù])/g, (m, p, c) => p + c.toUpperCase())
+    .replace(/ (Di|Del|Della|Dei|Delle|In|E|Al|Sul|Nel|De') /g, m => m.toLowerCase())
+    .replace(/ (D|Dell|Nell|Sull)'/g, m => m.toLowerCase());
 
   function nelPoligono(x, y, anelli) {
     const dentro = r => { let c = false;
@@ -94,7 +99,7 @@
         a.siglatipo && `<span class="meta">Tipo:</span> ${esc(maiuscola(a.siglatipo))}`,
         a.eta_inferiore && `<span class="meta">Età:</span> ${esc(maiuscola(a.eta_inferiore))}` +
           (a.eta_superiore && a.eta_superiore !== a.eta_inferiore ? ` – ${esc(maiuscola(a.eta_superiore))}` : ''),
-        a.foglio && `<span class="meta">Foglio:</span> ${esc(maiuscola(a.foglio))}`
+        a.foglio && `<span class="meta">Foglio:</span> ${esc(nomeProprio(a.foglio))}`
       ] },
     { nome: 'Geologia 1:100.000 (ISPRA)', servizio: 'servizi/geologica100k', wms: '0,1,2', identifica: 16, zoomMin: 10,
       scheda: a => [

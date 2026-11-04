@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Controllo qualità dei GeoJSON di CartoHub.
+"""Controllo qualità dei GeoJSON del progetto Geologiaintasca – Cartografia geologica italiana.
 
 Uso:  python3 scripts/valida_dati.py
 Esce con codice 1 se trova errori bloccanti (E), 0 se ci sono solo avvisi (W).

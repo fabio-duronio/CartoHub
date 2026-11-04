@@ -1,11 +1,11 @@
-# CartoHub
+# Geologiaintasca – Cartografia geologica italiana
 ### L'Hub digitale aperto per la cartografia geologica in Italia.
 
 **Progetto a cura di [Geologiaintasca](https://www.facebook.com/profile.php?id=61565694163261)**
 
 Indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. Riunisce i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi.
 
-[**Mappa web (GitHub Pages)**](https://fabio-duronio.github.io/CartoHub/) · [Mappa uMap](https://umap.openstreetmap.fr/it/map/italian-geological-cartography-hub-igc-hub_1338725)
+[**Mappa web (GitHub Pages)**](https://fabio-duronio.github.io/geologiaintasca/) · [Mappa uMap](https://umap.openstreetmap.fr/it/map/italian-geological-cartography-hub-igc-hub_1338725)
 
 > [!NOTE]
 > **Dati ricostruiti a novembre 2026** da fonti ufficiali (ISPRA, ISTAT, Crossref). Cosa è cambiato e quali limiti restano: [REVISIONE.md](REVISIONE.md).

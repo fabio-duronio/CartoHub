@@ -13,7 +13,7 @@
     .riquadro { background: #fff; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.3); font-size: 12px; line-height: 1.5; }
     .testata { padding: 6px 10px; max-width: 320px; }
     .testata h1 { font-size: 14px; margin: 0; }
-    .testata p { margin: 2px 0 0; color: #555; }
+    .testata > p { margin: 2px 0 0; color: #555; }
     .testata button { margin-top: 4px; font: inherit; color: #1a237e; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
     .info { display: none; margin-top: 6px; border-top: 1px solid #ddd; padding-top: 6px; max-height: 50vh; overflow: auto; }
     .info.aperto { display: block; }
@@ -26,7 +26,7 @@
     .sezione + .sezione { margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd; }
     .sezione h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: #666; margin: 0 0 2px; }
     .meta { color: #555; }
-    @media (max-width: 600px) { .testata { max-width: 220px; } .testata p { display: none; } .legenda { display: none; } }
+    @media (max-width: 600px) { .testata { max-width: 220px; } .legenda { display: none; } }
   </style>
 </head>
 <body>
@@ -212,12 +212,11 @@
     const d = L.DomUtil.create('div', 'riquadro testata');
     d.innerHTML = `
       <h1>Geologiaintasca – Cartografia geologica italiana</h1>
-      <p>L'Hub digitale aperto per la cartografia geologica in Italia.</p>
       <button type="button" aria-expanded="false">Informazioni e fonti</button>
       <div class="info">
         <p>Indice geografico delle risorse cartografiche geologiche italiane. Riunisce i rimandi a dati di istituzioni nazionali,
         enti regionali e ricerca accademica, oggi distribuiti su portali diversi.</p>
-        <p>Progetto a cura di Geologiaintasca. Dati, fonti e licenze:
+        <p>Dati, fonti e licenze:
         <a href="https://github.com/fabio-duronio/geologiaintasca" target="_blank" rel="noopener">GitHub</a>.</p>
         <p><b>Fonti</b><br>
         Fogli CARG: © ISPRA – Servizio Geologico d'Italia, dati di CARG-GATE, licenza CC BY 4.0.<br>

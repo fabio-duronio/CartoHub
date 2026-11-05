@@ -1,0 +1,3 @@
+# Gli script di aggiornamento non sono il contenuto del progetto: GitHub non li conteggia
+# nel linguaggio del repository, che risulta quindi quello della mappa web (HTML).
+scripts/*.py linguist-detectable=false

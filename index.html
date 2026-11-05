@@ -26,12 +26,9 @@
     .sezione + .sezione { margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd; }
     .sezione h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: #666; margin: 0 0 2px; }
     .meta { color: #555; }
-    .strumenti { padding: 6px 10px; width: 210px; }
-    .strumenti label { display: block; margin-top: 4px; }
-    .titolo-strumenti { font: inherit; font-weight: bold; background: none; border: 0; padding: 0; cursor: pointer; color: #222; }
-    .titolo-strumenti::after { content: ' ▾'; color: #666; }
-    .titolo-strumenti[aria-expanded="false"]::after { content: ' ▸'; }
-    .strumenti input[type=range] { width: 100%; margin: 0; }
+    .opacita { display: flex; align-items: center; gap: 6px; margin: 0 0 4px 22px; font-size: 11px; color: #555; }
+    .opacita input { flex: 1; min-width: 70px; margin: 0; }
+    .opacita output { width: 32px; text-align: right; }
     .ricerca { padding: 6px 8px; width: 260px; }
     .ricerca form { display: flex; gap: 4px; }
     .ricerca input { flex: 1; min-width: 0; font: inherit; padding: 3px 6px; border: 1px solid #bbb; border-radius: 3px; }
@@ -40,7 +37,7 @@
     .ricerca li { padding: 3px 0; border-top: 1px solid #eee; cursor: pointer; color: #1a237e; }
     .ricerca li:hover { text-decoration: underline; }
     .scala-num { padding: 2px 6px; margin-bottom: 2px !important; }
-    @media (max-width: 600px) { .testata { max-width: 220px; } .legenda { display: none; } .ricerca { width: 200px; } .strumenti { width: auto; max-width: 180px; } }
+    @media (max-width: 600px) { .testata { max-width: 220px; } .legenda { display: none; } .ricerca { width: 200px; } }
   </style>
 </head>
 <body>
@@ -55,9 +52,6 @@
     'OpenTopoMap (curve di livello)': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
       maxZoom: 17, subdomains: 'abc',
       attribution: '© OpenStreetMap contributors, SRTM · stile © OpenTopoMap (CC BY-SA)' }),
-    'Satellite Sentinel-2 2016': L.tileLayer('https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless_3857/default/g/{z}/{y}/{x}.jpg', {
-      maxZoom: 19, maxNativeZoom: 15,
-      attribution: 'Sentinel-2 cloudless 2016 © EOX IT Services (CC BY 4.0), dati Copernicus Sentinel modificati' }),
     'Rilievo ombreggiato TINITALY': L.tileLayer.wms('https://tinitaly.pi.ingv.it/TINItaly_1_1/wms', {
       layers: 'tinitaly_hshd', format: 'image/png', version: '1.3.0', maxZoom: 19,
       attribution: 'TINITALY/1.1 © INGV (CC BY 4.0), doi:10.13127/tinitaly/1.1' })
@@ -175,12 +169,33 @@
   }
 
   // ---------- Controllo dei livelli (ordine fisso) ----------
-  const controllo = L.control.layers(sfondi, {}, { collapsed: window.innerWidth < 900, position: 'topright' }).addTo(map);
+  // Controllo dei livelli: per la geologia ISPRA un cursore di opacità sotto la voce, visibile solo a livello acceso.
+  const ControlloLivelli = L.Control.Layers.extend({
+    _addItem(obj) {
+      const label = L.Control.Layers.prototype._addItem.call(this, obj);
+      const g = geologia.find(x => x.layer === obj.layer);
+      if (!g) return label;
+      const d = document.createElement('div'), pct = Math.round(g.layer.options.opacity * 100);
+      d.className = 'opacita';
+      d.innerHTML = `<span>Opacità</span><input type="range" min="0" max="100" value="${pct}" aria-label="Opacità ${esc(g.nome)}"><output>${pct}%</output>`;
+      const r = d.querySelector('input'), o = d.querySelector('output');
+      r.oninput = () => { g.layer.setOpacity(r.value / 100); o.textContent = r.value + '%'; };
+      d.hidden = !this._map.hasLayer(obj.layer);
+      label.querySelector('input').addEventListener('change', e => { d.hidden = !e.target.checked; });
+      L.DomEvent.disableClickPropagation(d);
+      label.after(d);
+      return label;
+    }
+  });
+  const controllo = new ControlloLivelli(sfondi, {}, { collapsed: window.innerWidth < 900, position: 'topright' }).addTo(map);
   const etichetta = l => `<span style="color:${l.colore}">■</span> ${l.nome}` + (l.dati ? ` (${l.dati.length})` : '');
-  function riempiControllo() {  // ordine fisso: dati del progetto, poi geologia ISPRA
-    [...livelli, ...geologia].forEach(x => controllo.removeLayer(x.layer));
-    livelli.forEach(l => controllo.addOverlay(l.layer, etichetta(l)));
-    geologia.forEach(g => controllo.addOverlay(g.layer, `<span style="color:#8d6e63">▦</span> ${g.nome}`));
+  const etichettaGeo = g => `<span style="color:#8d6e63">▦</span> ${g.nome}`;
+  function riempiControllo() {
+    // Ordine per scala e priorità: 1:100.000, 1:50.000, 1:25.000, geoportali, Journal of Maps
+    const ordine = [[livelli[2], etichetta], [geologia[1], etichettaGeo], [livelli[1], etichetta],
+                    [geologia[0], etichettaGeo], [livelli[3], etichetta], [livelli[0], etichetta]];
+    ordine.forEach(([x]) => controllo.removeLayer(x.layer));
+    ordine.forEach(([x, f]) => controllo.addOverlay(x.layer, f(x)));
   }
   livelli.forEach(l => {
     l.layer = L.geoJSON(null, l.opzioni);
@@ -198,40 +213,11 @@
     .then(() => { riempiControllo(); stileCarg(); });
 
   // Con la geologia accesa i fogli CARG diventano quasi trasparenti, per non coprirne i colori
-  // ---------- Trasparenza ----------
-  // Un cursore per ciascun livello di geologia e uno per il riempimento dei fogli CARG.
-  // Quando si accende la geologia, il riempimento CARG scende in automatico, per non coprirne i colori.
-  const CARG_PIENO = 45, CARG_CON_GEOLOGIA = 8;
-  let opacitaCarg = CARG_PIENO;
   function stileCarg() {
-    livelli[1].layer.setStyle(f => ({ fillOpacity: COLORI_CARG[f.properties.Stato] ? opacitaCarg / 100 : 0 }));
-  }
-  const strumenti = L.control({ position: 'topright' });
-  strumenti.onAdd = () => {
-    const d = L.DomUtil.create('div', 'riquadro strumenti');
-    d.innerHTML = '<button type="button" class="titolo-strumenti" aria-expanded="true">Opacità</button><div class="cursori">' +
-      geologia.map((g, i) => `<label>${esc(g.nome.replace(' (ISPRA)', ''))}<input type="range" min="0" max="100" value="75" data-geo="${i}"></label>`).join('') +
-      `<label>Riempimento fogli CARG<input type="range" min="0" max="100" value="${CARG_PIENO}" data-carg></label></div>`;
-    // Su schermi piccoli il riquadro parte chiuso, come il pannello dei livelli
-    const tb = d.querySelector('.titolo-strumenti'), cur = d.querySelector('.cursori');
-    const apri = a => { cur.hidden = !a; tb.setAttribute('aria-expanded', a); };
-    apri(window.innerWidth >= 900);
-    tb.onclick = () => apri(cur.hidden);
-    d.querySelectorAll('[data-geo]').forEach(r => r.oninput = () => geologia[r.dataset.geo].layer.setOpacity(r.value / 100));
-    const rc = d.querySelector('[data-carg]');
-    rc.oninput = () => { opacitaCarg = +rc.value; stileCarg(); };
-    strumenti.cursoreCarg = rc;
-    L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
-    return d;
-  };
-  strumenti.addTo(map);
-  map.on('overlayadd overlayremove', e => {
-    if (!geologia.some(g => g.layer === e.layer)) return;
     const geo = geologia.some(g => map.hasLayer(g.layer));
-    if (geo && opacitaCarg === CARG_PIENO) opacitaCarg = CARG_CON_GEOLOGIA;
-    else if (!geo && opacitaCarg === CARG_CON_GEOLOGIA) opacitaCarg = CARG_PIENO;
-    strumenti.cursoreCarg.value = opacitaCarg; stileCarg();
-  });
+    livelli[1].layer.setStyle(f => ({ fillOpacity: COLORI_CARG[f.properties.Stato] ? (geo ? 0.08 : 0.45) : 0 }));
+  }
+  map.on('overlayadd overlayremove', stileCarg);
 
   // Il popup del clic riassume i livelli accesi in quel momento: se si accende o spegne un livello
   // non è più valido e si chiude.
@@ -345,7 +331,7 @@
         Carta 1:100.000: © ISPRA – Servizio Geologico d'Italia; indicizzati quadro d'unione e schede del catalogo, le scansioni restano sul sito ISPRA.<br>
         Geologia 1:25.000 e 1:100.000: © ISPRA – Servizio Geologico d'Italia, servizi di visualizzazione WMS; le immagini e le informazioni al clic sono fornite direttamente da ISPRA.<br>
         Confini amministrativi: © ISTAT, licenza CC BY 4.0.<br>
-        Sfondi: © OpenStreetMap contributors (ODbL); OpenTopoMap (CC BY-SA); Sentinel-2 cloudless 2016 © EOX IT Services (CC BY 4.0, dati Copernicus Sentinel modificati); TINITALY/1.1 © INGV, Tarquini et al. 2023, doi:10.13127/tinitaly/1.1 (CC BY 4.0).<br>
+        Sfondi: © OpenStreetMap contributors (ODbL); OpenTopoMap (CC BY-SA); TINITALY/1.1 © INGV, Tarquini et al. 2023, doi:10.13127/tinitaly/1.1 (CC BY 4.0).<br>
         Ricerca delle località: Nominatim, © OpenStreetMap contributors.<br>
         Journal of Maps: indicizzati solo i metadati bibliografici; gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.<br>
         Codice: licenza MIT.</p>
@@ -363,14 +349,15 @@
   const legenda = L.control({ position: 'bottomleft' });
   legenda.onAdd = () => {
     const d = L.DomUtil.create('div', 'riquadro legenda');
-    d.innerHTML = '<b>Fogli CARG (stato su CARG-GATE)</b><br>' +
+    // Stesso ordine del pannello dei livelli
+    d.innerHTML = '<b>Carta 1:100.000</b><br><i style="background:#6d4c41;opacity:.35"></i>con copia digitale' +
+      '<br><i style="background:#6d4c41;opacity:.1"></i>senza copia digitale' +
+      '<br><b>Fogli CARG (stato su CARG-GATE)</b><br>' +
       Object.entries(COLORI_CARG).map(([k, c]) => `<i style="background:${c};opacity:.75"></i>${k}`).join('<br>') +
       '<br><i style="background:#fff"></i>Nessuno stato indicato' +
-      '<br><b>Carta 1:100.000</b><br><i style="background:#6d4c41;opacity:.35"></i>con copia digitale' +
-      '<br><i style="background:#6d4c41;opacity:.1"></i>senza copia digitale' +
+      '<br><b>Geologia ISPRA</b><br><span class="meta">colori della carta ufficiale; clic per i dettagli</span>' +
       `<br><b>Journal of Maps</b><br><i style="background:${COLORE_JOM};border-radius:50%"></i>comune, provincia o coordinate` +
-      `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione` +
-      '<br><b>Geologia ISPRA</b><br><span class="meta">colori della carta ufficiale; clic per i dettagli</span>';
+      `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione`;
     return d;
   };
   legenda.addTo(map);

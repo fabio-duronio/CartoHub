@@ -51,8 +51,15 @@ def dettagli(p):
                  link(p.get("URL"), "Scheda nel catalogo ISPRA"),
                  link(p.get("URL_note"), "Note illustrative (catalogo ISPRA)")]
     elif t == "Research Map":  # Journal of Maps
+        unita = "provincia" if p.get("Precisione") == "Provincia" else "regione"
+        if p.get("Ambito") == "Regionale":  # studio a scala regionale confermato (regionali.csv)
+            pos = riga("Area di studio", f"intera {unita} / area vasta")
+        elif p.get("Ambito") == "Da localizzare":  # ripiego automatico: studio locale non ancora posizionato
+            pos = riga("Posizione", f"localizzazione da completare ({unita} citata nel titolo)")
+        else:
+            pos = riga("Posizione", posizione(p))
         righe = [riga("Luogo", p.get("Location")), riga("Anno", p.get("Anno")), riga("Licenza", p.get("Licenza")),
-                 riga("Posizione", posizione(p)), link(p.get("URL"), "Articolo (DOI)")]
+                 pos, link(p.get("URL"), "Articolo (DOI)")]
     else:  # Geoportali regionali
         righe = [str(p.get("Description") or "").strip(), link(p.get("URL"), "Vai al geoportale")]
     return "\n".join(r for r in righe if r)

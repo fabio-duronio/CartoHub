@@ -1,0 +1,26 @@
+# TEMPORANEO: ricerca dei toponimi con Nominatim (1 richiesta/s), solo per proporre il comune ISTAT. Da rimuovere prima del merge.
+name: Sonda Nominatim
+on:
+  push:
+    branches: [jom-localizzazioni-b]
+    paths: [".github/workflows/sonda-nominatim.yml", "nominatim_query.json"]
+jobs:
+  sonda:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - shell: python3 {0}
+        run: |
+          import json, time, urllib.request, urllib.parse
+          H = {"User-Agent": "geologiaintasca/1.0 (https://github.com/fabio-duronio/geologiaintasca)"}
+          for q, reg, (x0, y1, x1, y0) in json.load(open("nominatim_query.json")):
+              u = "https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode({"q": q, "format": "jsonv2", "limit": 3, "countrycodes": "it",
+                  "viewbox": f"{x0},{y1},{x1},{y0}", "bounded": 1})
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(u, headers=H), timeout=30) as r:
+                      res = json.load(r)
+              except Exception as e:
+                  res = [{"errore": str(e)}]
+              print("NOM|" + json.dumps({"q": q, "reg": reg, "res": [{k: x.get(k) for k in ("lat", "lon", "display_name", "category", "type", "errore")} for x in res]}, ensure_ascii=False))
+              time.sleep(1.2)

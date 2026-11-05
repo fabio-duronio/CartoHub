@@ -34,5 +34,5 @@ jobs:
           json.dump(out, open("out/openalex.json", "w"), ensure_ascii=False)
           print(len(out), "record;", sum(1 for v in out.values() if v.get("abstract")), "con abstract")
           PY
-      - uses: actions/upload-artifact@v4
-        with: { name: dati, path: out/ }
+      - name: Stampa i dati nel log (base64)
+        run: tar czf - out | base64 -w 4000 | sed 's/^/DAT|/' 

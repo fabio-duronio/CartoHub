@@ -26,6 +26,12 @@
     .sezione + .sezione { margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd; }
     .sezione h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: #666; margin: 0 0 2px; }
     .meta { color: #555; }
+    .gruppo-jom { box-sizing: border-box; border-radius: 50%; background: #1a237e; color: #fff; border: 1.5px solid #fff;
+                  font: bold 11px/1 system-ui, sans-serif; display: flex; align-items: center; justify-content: center;
+                  box-shadow: 0 0 2px rgba(0,0,0,.5); }
+    .gruppo-jom.regionale { background: #5c6bc0; }
+    .elenco-jom { margin: 6px 0 0; padding-left: 20px; max-height: 40vh; overflow: auto; }
+    .elenco-jom li { margin-bottom: 6px; }
     .opacita { display: flex; align-items: center; gap: 6px; margin: 0 0 4px 22px; font-size: 11px; color: #555; }
     .opacita input { flex: 1; min-width: 70px; margin: 0; }
     .opacita output { width: 32px; text-align: right; }
@@ -176,6 +182,46 @@
   }
 
   // ---------- Controllo dei livelli (ordine fisso) ----------
+  // Journal of Maps: più articoli possono avere le stesse coordinate (centroide dello stesso comune o della
+  // stessa regione). Un solo articolo: il cerchio di sempre. Più articoli: un cerchio con il numero e,
+  // al clic, l'elenco di tutti, dal più recente.
+  function aggiungiPunti(gruppo, features) {
+    const perPunto = new Map();
+    features.forEach(f => {
+      const k = f.geometry.coordinates.join(',');
+      if (!perPunto.has(k)) perPunto.set(k, []);
+      perPunto.get(k).push(f);
+    });
+    perPunto.forEach(fs => {
+      if (fs.length === 1) {
+        const f = fs[0], ll = L.GeoJSON.coordsToLatLng(f.geometry.coordinates);
+        const m = livelli[0].opzioni.pointToLayer(f, ll);
+        m.feature = f;
+        m.bindPopup(`<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}`);
+        gruppo.addLayer(m);
+        return;
+      }
+      fs.sort((a, b) => (b.properties.Anno || 0) - (a.properties.Anno || 0));
+      const p0 = fs[0].properties, regionale = p0.Precisione === 'Regione';
+      const lato = fs.length < 10 ? 20 : 24;
+      const m = L.marker(L.GeoJSON.coordsToLatLng(fs[0].geometry.coordinates), {
+        icon: L.divIcon({ className: '', iconSize: [lato, lato],
+          html: `<div class="gruppo-jom${regionale ? ' regionale' : ''}" style="width:${lato}px;height:${lato}px">${fs.length}</div>` }),
+        title: `${fs.length} articoli – ${p0.Location}`, keyboard: true });
+      // Riga «Posizione» di ciascun articolo (stesso punto, ma l'origine può essere manuale o automatica)
+      const posizione = [...new Set(fs.map(f => (f.properties.Dettagli || '').split('\n')
+        .find(r => r.startsWith('**Posizione:**'))).filter(Boolean))].join('\n');
+      m.bindPopup(`<b>${fs.length} articoli – ${esc(p0.Location)}</b>` +
+        (posizione ? `<br><span class="meta">${daDettagli(posizione)}</span>` : '') +
+        '<ol class="elenco-jom">' + fs.map(f => {
+          const pr = f.properties, url = /^https:\/\//.test(pr.URL || '') ? pr.URL : '';
+          return `<li><b>${esc(pr.Title)}</b><br><span class="meta">${esc(pr.Anno || 's.d.')} · ${esc(pr.Licenza || '')}</span>` +
+            (url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener">Articolo (DOI)</a>` : '') + '</li>';
+        }).join('') + '</ol>', { maxWidth: 340 });
+      gruppo.addLayer(m);
+    });
+  }
+
   // Controllo dei livelli: per la geologia ISPRA un cursore di opacità sotto la voce, visibile solo a livello acceso.
   const ControlloLivelli = L.Control.Layers.extend({
     _addItem(obj) {
@@ -213,8 +259,7 @@
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(dati => {
       l.dati = dati.features;
-      l.layer.addData(dati);
-      if (l.punti) l.layer.eachLayer(m => m.bindPopup(`<b>${esc(m.feature.properties.Title)}</b><br>${daDettagli(m.feature.properties.Dettagli)}`));
+      if (l.punti) aggiungiPunti(l.layer, dati.features); else l.layer.addData(dati);
     })
     .catch(e => console.error('Impossibile caricare', l.file, e))))
     .then(() => { riempiControllo(); stileCarg(); });
@@ -364,7 +409,8 @@
       '<br><i style="background:#fff"></i>Nessuno stato indicato' +
       '<br><b>Geologia ISPRA</b><br><span class="meta">colori della carta ufficiale; clic per i dettagli</span>' +
       `<br><b>Journal of Maps</b><br><i style="background:${COLORE_JOM};border-radius:50%"></i>comune, provincia o coordinate` +
-      `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione`;
+      `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione` +
+      `<br><i style="background:${COLORE_JOM};border-radius:50%;width:14px;height:14px;color:#fff;font:bold 9px/14px sans-serif;text-align:center;font-style:normal;vertical-align:-3px">3</i>più articoli nello stesso punto`;
     return d;
   };
   legenda.addTo(map);

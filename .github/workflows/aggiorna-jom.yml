@@ -1,5 +1,6 @@
 # Aggiorna il livello Journal of Maps da Crossref.
-# Parte ogni lunedì, a ogni modifica di localizzazioni.csv, oppure a mano (Actions → Run workflow).
+# Parte ogni lunedì, a ogni modifica dei CSV di dati/journal_of_maps/ (localizzazioni, regionali,
+# esclusioni), oppure a mano (Actions → Run workflow).
 # Se i dati non cambiano non fa commit; se il validatore trova errori si ferma senza toccare nulla.
 name: Aggiorna Journal of Maps
 
@@ -9,7 +10,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "dati/journal_of_maps/localizzazioni.csv"
+      - "dati/journal_of_maps/*.csv"
       - "scripts/build_jom.py"
       - "scripts/scarica_crossref.py"
   workflow_dispatch:

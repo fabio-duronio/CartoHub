@@ -1,0 +1,62 @@
+# Prova temporanea della pagina (da rimuovere prima del merge).
+name: Prova pagina
+on:
+  push:
+    branches: [jom-localizzazioni]
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.12" }
+      - run: pip install -q playwright==1.48.0 && python -m playwright install --with-deps chromium > /dev/null
+      - run: python3 -I scripts/valida_dati.py | tail -4
+      - name: Prova
+        shell: python3 {0}
+        run: |
+          import subprocess, time, base64
+          srv = subprocess.Popen(["python3", "-m", "http.server", "8000"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+          time.sleep(2)
+          from playwright.sync_api import sync_playwright
+          def dump(nome, png):
+              b = base64.b64encode(png).decode()
+              for i in range(0, len(b), 4000):
+                  print("IMG|" + nome + "|" + b[i:i+4000])
+          U = "http://localhost:8000/index.html"
+          with sync_playwright() as p:
+              br = p.chromium.launch()
+              ctx = br.new_context(viewport={"width": 1280, "height": 800})
+              errori = []
+              def apri(url, attesa=6000):
+                  pg = ctx.new_page(); pg.on("pageerror", lambda e: errori.append(f"pageerror: {e}"))
+                  pg.on("console", lambda m: m.type == "error" and errori.append("console: " + m.text))
+                  pg.goto(url); pg.wait_for_timeout(attesa); return pg
+              pop = lambda pg: pg.inner_text(".leaflet-popup-content").replace(chr(10), " / ")[:400] if pg.query_selector(".leaflet-popup-content") else None
+              pg = apri(U + "#6/42.0/12.5")
+              print("caricati:", pg.evaluate("livelli.map(l => l.nome + ': ' + (l.dati||[]).length + (map.hasLayer(l.layer) ? ' acceso' : ' spento'))"))
+              print("pannello:", pg.eval_on_selector_all(".leaflet-control-layers-overlays label", "els => els.map(e => e.textContent.trim())"))
+              dump("principale", pg.screenshot(type="jpeg", quality=60))
+              pg.evaluate("map.addLayer(livelli[4].layer)"); pg.wait_for_timeout(1500)
+              print("targhe:", pg.eval_on_selector_all(".targa-jom", "els => els.map(e => e.textContent)"))
+              dump("regionale-italia", pg.screenshot(type="jpeg", quality=60))
+              pg.evaluate("map.setView([42.2, 13.9], 8)"); pg.wait_for_timeout(2000)
+              t = pg.query_selector(".targa-jom >> text=Abruzzo"); t.click(); pg.wait_for_timeout(800)
+              print("popup Abruzzo:", pop(pg))
+              dump("regionale-abruzzo", pg.screenshot(type="jpeg", quality=60))
+              pg = apri(U + "?doi=10.1080/17445647.2016.1237899"); print("?doi Simbruini →", pop(pg), "| regionale acceso:", pg.evaluate("map.hasLayer(livelli[4].layer)"))
+              pg = apri(U + "?doi=10.4113/jom.2011.1190"); print("?doi Crotone →", pop(pg))
+              dump("crotone", pg.screenshot(type="jpeg", quality=60))
+              pg = apri(U + "?doi=10.1080/17445647.2016.1171804"); print("?doi Garigliano →", pop(pg))
+              pg = apri(U)
+              pg.fill(".ricerca input", "Simbruini"); pg.wait_for_timeout(800)
+              print("ricerca Simbruini:", pg.eval_on_selector_all(".ricerca li", "els => els.map(e => e.textContent)"))
+              pg.fill(".ricerca input", "Calabria"); pg.wait_for_timeout(800)
+              print("ricerca Calabria:", pg.eval_on_selector_all(".ricerca li", "els => els.map(e => e.textContent)")[:6])
+              m = br.new_context(viewport={"width": 390, "height": 760}, device_scale_factor=2)
+              pm = m.new_page(); pm.goto(U + "#7/42.2/13.9"); pm.wait_for_timeout(5000)
+              pm.evaluate("map.addLayer(livelli[4].layer)"); pm.wait_for_timeout(1200)
+              dump("telefono", pm.screenshot(type="jpeg", quality=55))
+              print("ERRORI:", errori); br.close()
+          srv.terminate()

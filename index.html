@@ -39,7 +39,10 @@
     .gruppo-jom { box-sizing: border-box; border-radius: 50%; background: #1a237e; color: #fff; border: 1.5px solid #fff;
                   font: bold 11px/1 system-ui, sans-serif; display: flex; align-items: center; justify-content: center;
                   box-shadow: 0 0 2px rgba(0,0,0,.5); }
-    .gruppo-jom.regionale { background: #5c6bc0; }
+    .targa-jom { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; background: #5c6bc0; color: #fff;
+                 border: 1.5px solid #fff; border-radius: 4px; padding: 3px 6px; font: bold 11px/1 system-ui, sans-serif;
+                 box-shadow: 0 0 2px rgba(0,0,0,.5); }
+    .targa-jom b { display: inline-block; margin-left: 4px; padding: 1px 4px; border-radius: 3px; background: #fff; color: #3949ab; }
     .elenco-jom { margin: 6px 0 0; padding-left: 20px; max-height: 40vh; overflow: auto; }
     .elenco-jom li { margin-bottom: 6px; }
     .opacita { display: flex; align-items: center; gap: 6px; margin: 0 0 4px 22px; font-size: 11px; color: #555; }
@@ -170,13 +173,12 @@
   // ---------- Livelli dei dati (GeoJSON del repository) ----------
   const COLORI_CARG = { 'Stampato': '#FF0000', 'In attesa di stampa': '#A87000',
                         'In allestimento per la stampa': '#FFAA00', 'Rilevamento in corso': '#A3FF73' };
-  const COLORE_JOM = '#1a237e';
+  const COLORE_JOM = '#1a237e', COLORE_JOM_REG = '#5c6bc0';
 
   const livelli = [
     { nome: 'Journal of Maps', file: 'dati/journal_of_maps/jom_italia.geojson', colore: COLORE_JOM, punti: true,
       opzioni: { pointToLayer: (f, ll) => L.circleMarker(ll, {
-        radius: f.properties.Precisione === 'Regione' ? 5 : 7, color: '#fff', weight: 1, bubblingMouseEvents: false,
-        fillColor: COLORE_JOM, fillOpacity: f.properties.Precisione === 'Regione' ? 0.5 : 0.9 }) } },
+        radius: 7, color: '#fff', weight: 1, bubblingMouseEvents: false, fillColor: COLORE_JOM, fillOpacity: 0.9 }) } },
     { nome: 'Progetto CARG 1:50.000', file: 'dati/carg/carg_50k_fogli.geojson', colore: '#FF0000', parametro: 'carg',
       opzioni: { interactive: false, style: f => ({ color: '#555', weight: 0.6,
         fillOpacity: COLORI_CARG[f.properties.Stato] ? 0.45 : 0, fillColor: COLORI_CARG[f.properties.Stato] || '#ffffff' }) } },
@@ -184,8 +186,12 @@
       opzioni: { interactive: false, style: f => ({ color: '#6d4c41', weight: 1.2, dashArray: '6 3',
         fillColor: '#6d4c41', fillOpacity: f.properties.Copia_digitale === 'Sì' ? 0.12 : 0.03 }) } },
     { nome: 'Geoportali regionali', file: 'dati/geoportali_regionali/geoportali_regionali.geojson', colore: '#2e8b57', visibile: false,
-      opzioni: { interactive: false, style: { color: '#2e8b57', weight: 2, fillOpacity: 0.03 } } }
+      opzioni: { interactive: false, style: { color: '#2e8b57', weight: 2, fillOpacity: 0.03 } } },
+    // Studi su un'intera regione o provincia (area vasta) e articoli con la sola regione nel titolo, ancora da localizzare
+    { nome: 'JoM – studi a scala regionale', file: 'dati/journal_of_maps/jom_regionali.geojson', colore: COLORE_JOM_REG,
+      punti: true, regionale: true, visibile: false, opzioni: {} }
   ];
+  const livelliJom = () => [livelli[0], livelli[4]];
 
   // ---------- Geologia ISPRA (servizi WMS, interrogabili al clic) ----------
   map.createPane('geologia'); map.getPane('geologia').style.zIndex = 350;  // sotto i fogli e i punti
@@ -248,9 +254,11 @@
 
   // ---------- Controllo dei livelli (ordine fisso) ----------
   // Journal of Maps: più articoli possono avere le stesse coordinate (centroide dello stesso comune o della
-  // stessa regione). Un solo articolo: il cerchio di sempre. Più articoli: un cerchio con il numero e,
-  // al clic, l'elenco di tutti, dal più recente.
-  function aggiungiPunti(gruppo, features) {
+  // stessa regione). Livello principale: un articolo è un cerchio, più articoli un cerchio con il numero.
+  // Livello regionale: sempre una targhetta con il nome dell'area (e il numero, se più di uno).
+  // Al clic su un gruppo: l'elenco di tutti gli articoli, dal più recente.
+  function aggiungiPunti(l, features) {
+    const gruppo = l.layer;
     const perPunto = new Map();
     features.forEach(f => {
       const k = f.geometry.coordinates.join(',');
@@ -258,6 +266,8 @@
       perPunto.get(k).push(f);
     });
     perPunto.forEach(fs => {
+      fs.forEach(f => { f._livello = l; });
+      if (l.regionale) return aggiungiTarga(gruppo, fs);
       if (fs.length === 1) {
         const f = fs[0], ll = L.GeoJSON.coordsToLatLng(f.geometry.coordinates);
         const m = livelli[0].opzioni.pointToLayer(f, ll);
@@ -269,26 +279,51 @@
         return;
       }
       fs.sort((a, b) => (b.properties.Anno || 0) - (a.properties.Anno || 0));
-      const p0 = fs[0].properties, regionale = p0.Precisione === 'Regione';
+      const p0 = fs[0].properties;
       const lato = fs.length < 10 ? 20 : 24;
       const m = L.marker(L.GeoJSON.coordsToLatLng(fs[0].geometry.coordinates), {
         icon: L.divIcon({ className: '', iconSize: [lato, lato],
-          html: `<div class="gruppo-jom${regionale ? ' regionale' : ''}" style="width:${lato}px;height:${lato}px">${fs.length}</div>` }),
+          html: `<div class="gruppo-jom" style="width:${lato}px;height:${lato}px">${fs.length}</div>` }),
         title: `${fs.length} articoli – ${p0.Location}`, keyboard: true });
       // Riga «Posizione» di ciascun articolo (stesso punto, ma l'origine può essere manuale o automatica)
       const posizione = [...new Set(fs.map(f => (f.properties.Dettagli || '').split('\n')
         .find(r => r.startsWith('**Posizione:**'))).filter(Boolean))].join('\n');
       m.bindPopup(`<b>${fs.length} articoli – ${esc(p0.Location)}</b>` +
         (posizione ? `<br><span class="meta">${daDettagli(posizione)}</span>` : '') +
-        '<ol class="elenco-jom">' + fs.map(f => {
-          const pr = f.properties, url = /^https:\/\//.test(pr.URL || '') ? pr.URL : '';
-          return `<li><b>${esc(pr.Title)}</b><br><span class="meta">${esc(pr.Anno || 's.d.')} · ${esc(pr.Licenza || '')}</span>` +
-            (url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener">Articolo (DOI)</a>` : '') +
-            (pr.DOI ? ' · ' + pulsanteLink(linkArticolo(f), 'link') : '') + '</li>';
-        }).join('') + '</ol>', { maxWidth: 340 });
+        elencoJom(fs), { maxWidth: 340 });
       fs.forEach(f => { f._simbolo = m; });
       gruppo.addLayer(m);
     });
+  }
+  // Elenco degli articoli di un gruppo; nel livello regionale ogni voce dice anche l'area e lo stato
+  function elencoJom(fs, regionale) {
+    return '<ol class="elenco-jom">' + fs.map(f => {
+      const pr = f.properties, url = /^https:\/\//.test(pr.URL || '') ? pr.URL : '';
+      const stato = !regionale ? '' : pr.Ambito === 'Regionale' ? ` · ${esc(pr.Location)}, area vasta` : ' · localizzazione da completare';
+      return `<li><b>${esc(pr.Title)}</b><br><span class="meta">${esc(pr.Anno || 's.d.')} · ${esc(pr.Licenza || '')}${stato}</span>` +
+        (url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener">Articolo (DOI)</a>` : '') +
+        (pr.DOI ? ' · ' + pulsanteLink(linkArticolo(f), 'link') : '') + '</li>';
+    }).join('') + '</ol>';
+  }
+  function aggiungiTarga(gruppo, fs) {
+    fs.sort((a, b) => (b.properties.Anno || 0) - (a.properties.Anno || 0));
+    // Nome della targhetta: il luogo più frequente nel gruppo (di solito la regione)
+    const conta = new Map();
+    fs.forEach(f => conta.set(f.properties.Location, (conta.get(f.properties.Location) || 0) + 1));
+    const nome = [...conta].sort((a, b) => b[1] - a[1])[0][0];
+    const m = L.marker(L.GeoJSON.coordsToLatLng(fs[0].geometry.coordinates), {
+      icon: L.divIcon({ className: '', iconSize: null,
+        html: `<div class="targa-jom">${esc(nome)}${fs.length > 1 ? `<b>${fs.length}</b>` : ''}</div>` }),
+      title: fs.length > 1 ? `${fs.length} articoli – ${nome}` : `${fs[0].properties.Title}`, keyboard: true });
+    if (fs.length === 1) {
+      const f = fs[0];
+      m.bindPopup(`<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}` +
+        (f.properties.DOI ? `<div class="azioni">${pulsanteLink(linkArticolo(f), "Copia link all'articolo")}</div>` : ''));
+    } else {
+      m.bindPopup(`<b>${fs.length} articoli – ${esc(nome)}</b>` + elencoJom(fs, true), { maxWidth: 340 });
+    }
+    fs.forEach(f => { f._simbolo = m; });
+    gruppo.addLayer(m);
   }
 
   // Controllo dei livelli: per la geologia ISPRA un cursore di opacità sotto la voce, visibile solo a livello acceso.
@@ -315,7 +350,7 @@
   function riempiControllo() {
     // Ordine per scala e priorità: 1:100.000, 1:50.000, 1:25.000, geoportali, Journal of Maps
     const ordine = [[livelli[2], etichetta], [geologia[1], etichettaGeo], [livelli[1], etichetta],
-                    [geologia[0], etichettaGeo], [livelli[3], etichetta], [livelli[0], etichetta]];
+                    [geologia[0], etichettaGeo], [livelli[3], etichetta], [livelli[0], etichetta], [livelli[4], etichetta]];
     ordine.forEach(([x]) => controllo.removeLayer(x.layer));
     ordine.forEach(([x, f]) => controllo.addOverlay(x.layer, f(x)));
   }
@@ -328,7 +363,7 @@
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(dati => {
       l.dati = dati.features;
-      if (l.punti) aggiungiPunti(l.layer, dati.features); else l.layer.addData(dati);
+      if (l.punti) aggiungiPunti(l, dati.features); else l.layer.addData(dati);
     })
     .catch(e => console.error('Impossibile caricare', l.file, e))))
     .then(() => { riempiControllo(); stileCarg(); aggiornaEtichette(); apriDaIndirizzo(); });
@@ -342,7 +377,7 @@
     });
     const doi = (q.get('doi') || '').trim().toLowerCase().replace(/^https?:\/\/(dx\.)?doi\.org\//, '');
     if (doi && !fatto) {
-      const f = (livelli[0].dati || []).find(x => String(x.properties.DOI || '').toLowerCase() === doi);
+      const f = livelliJom().flatMap(l => l.dati || []).find(x => String(x.properties.DOI || '').toLowerCase() === doi);
       if (f) { vaiArticolo(f); fatto = true; }
     }
     // L'indirizzo torna «pulito»: da qui in poi conta solo la vista (#zoom/lat/lon)
@@ -470,9 +505,10 @@
         `<div class="azioni">${pulsanteLink(linkFoglio(l, f), 'Copia link al foglio')}</div>`).openOn(map);
   }
   function vaiArticolo(f) {
-    if (!map.hasLayer(livelli[0].layer)) map.addLayer(livelli[0].layer);
+    const l = f._livello || livelli[0];
+    if (!map.hasLayer(l.layer)) map.addLayer(l.layer);
     const ll = L.GeoJSON.coordsToLatLng(f.geometry.coordinates);
-    map.setView(ll, Math.max(map.getZoom(), f.properties.Precisione === 'Regione' ? 8 : 11));
+    map.setView(ll, Math.max(map.getZoom(), l.regionale ? 8 : 11));
     if (f._simbolo) f._simbolo.openPopup();
   }
   function cercaNeiDati(q) {
@@ -483,9 +519,11 @@
       return String(p.Foglio || '').split('-').map(numeroFoglio).includes(num) || (nq.length >= 2 && norm(p.Location).includes(nq));
     }).slice(0, 5).map(f => ({ gruppo, testo: f.properties.Title, vai: () => vaiFoglio(l, f) }));
     out.push(...fogli(livelli[1], 'Fogli CARG 1:50.000'), ...fogli(livelli[2], "Fogli Carta Geologica d'Italia 1:100.000"));
-    const jom = nq.length < 3 ? [] : (livelli[0].dati || []).filter(f => norm(f.properties.Title).includes(nq) || norm(f.properties.Location).includes(nq))
-      .sort((a, b) => (b.properties.Anno || 0) - (a.properties.Anno || 0)).slice(0, 8);
-    out.push(...jom.map(f => ({ gruppo: 'Journal of Maps', testo: `${f.properties.Title} (${f.properties.Anno || 's.d.'})`, vai: () => vaiArticolo(f) })));
+    livelliJom().forEach(l => {
+      const jom = nq.length < 3 ? [] : (l.dati || []).filter(f => norm(f.properties.Title).includes(nq) || norm(f.properties.Location).includes(nq))
+        .sort((a, b) => (b.properties.Anno || 0) - (a.properties.Anno || 0)).slice(0, 8);
+      out.push(...jom.map(f => ({ gruppo: l.nome, testo: `${f.properties.Title} (${f.properties.Anno || 's.d.'})`, vai: () => vaiArticolo(f) })));
+    });
     return out;
   }
   ricerca.onAdd = () => {
@@ -592,9 +630,9 @@
       Object.entries(COLORI_CARG).map(([k, c]) => `<i style="background:${c};opacity:.75"></i>${k}`).join('<br>') +
       '<br><i style="background:#fff"></i>Nessuno stato indicato' +
       '<br><b>Geologia ISPRA</b><br><span class="meta">colori della carta ufficiale; clic per i dettagli</span>' +
-      `<br><b>Journal of Maps</b><br><i style="background:${COLORE_JOM};border-radius:50%"></i>comune, provincia o coordinate` +
-      `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione` +
-      `<br><i style="background:${COLORE_JOM};border-radius:50%;width:14px;height:14px;color:#fff;font:bold 9px/14px sans-serif;text-align:center;font-style:normal;vertical-align:-3px">3</i>più articoli nello stesso punto</div>`;
+      `<br><b>Journal of Maps</b><br><i style="background:${COLORE_JOM};border-radius:50%"></i>comune o coordinate` +
+      `<br><i style="background:${COLORE_JOM};border-radius:50%;width:14px;height:14px;color:#fff;font:bold 9px/14px sans-serif;text-align:center;font-style:normal;vertical-align:-3px">3</i>più articoli nello stesso punto` +
+      `<br><i style="background:${COLORE_JOM_REG};border-radius:3px;width:22px"></i>studi a scala regionale e da localizzare</div>`;
     const tb = d.querySelector('.titolo-legenda'), voci = d.querySelector('.voci-legenda');
     const apri = x => { voci.hidden = !x; tb.setAttribute('aria-expanded', x); };
     apri(window.innerWidth > 600);

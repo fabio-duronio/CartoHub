@@ -5,6 +5,7 @@ Uso:  python3 scripts/valida_dati.py
 Esce con codice 1 se trova errori bloccanti (E), 0 se ci sono solo avvisi (W).
 Non richiede librerie esterne.
 """
+import csv
 import json
 import sys
 from collections import Counter
@@ -17,6 +18,7 @@ BBOX_ITALIA = (6.0, 35.0, 19.0, 47.5)  # lon_min, lat_min, lon_max, lat_max
 JOM_PREFIX = ("10.1080/17445647.", "10.1080/jom.", "10.4113/jom.")
 
 problemi = []
+doi_jom = {}  # DOI -> file, per i duplicati tra i due livelli Journal of Maps
 
 
 def segnala(livello, file, msg):
@@ -89,6 +91,21 @@ def controlla_file(path):
         fuori = [x for x in dois if not str(x).lower().startswith(JOM_PREFIX)]
         if fuori:
             segnala("E", nome, f"{len(fuori)} DOI non appartengono al Journal of Maps (prefissi {JOM_PREFIX})")
+        for x in dois:
+            k = str(x).lower()
+            if k in doi_jom:
+                segnala("E", nome, f"DOI {x} presente anche in {doi_jom[k]}")
+            doi_jom.setdefault(k, nome)
+        regionale = "jom_regionali" in nome
+        for f in fs:
+            p = f["properties"]
+            prec, ambito = p.get("Precisione"), p.get("Ambito")
+            if not regionale and prec in ("Regione", "Provincia"):
+                segnala("E", nome, f"{p.get('DOI')}: precisione '{prec}' nel livello principale (va in jom_regionali)")
+            if regionale and (prec not in ("Regione", "Provincia") or ambito not in ("Regionale", "Da localizzare")):
+                segnala("E", nome, f"{p.get('DOI')}: precisione '{prec}' / ambito '{ambito}' non previsti nel livello regionale")
+            if not p.get("Dettagli"):
+                segnala("E", nome, f"{p.get('DOI')}: campo Dettagli vuoto (eseguire scripts/dettagli_popup.py)")
 
     if "carta_100k" in nome:
         # Punti di controllo: il foglio deve contenere la località che gli dà il nome
@@ -143,10 +160,30 @@ def controlla_file(path):
     print(f"{nome}: {len(fs)} feature")
 
 
+def controlla_csv_jom():
+    """Un DOI può stare in un solo file (e una sola volta) tra localizzazioni, regionali ed esclusioni."""
+    cartella = ROOT / "journal_of_maps"
+    visti = {}
+    for nome in ("localizzazioni.csv", "regionali.csv", "esclusioni.csv"):
+        path = cartella / nome
+        if not path.exists():
+            continue
+        with open(path, encoding="utf-8-sig", newline="") as fh:
+            for n, r in enumerate(csv.DictReader(fh, delimiter=";"), start=2):
+                doi = (r.get("DOI") or "").strip().lower().removeprefix("https://doi.org/")
+                if not doi:
+                    continue
+                if doi in visti:
+                    segnala("E", f"dati/journal_of_maps/{nome}", f"riga {n}: DOI {doi} già in {visti[doi]}")
+                else:
+                    visti[doi] = f"{nome} riga {n}"
+
+
 def main():
     files = sorted(ROOT.rglob("*.geojson"))
     for f in files:
         controlla_file(f)
+    controlla_csv_jom()
     print()
     for livello in ("E", "W"):
         righe = [p for p in problemi if p[0] == livello]

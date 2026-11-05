@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Ricostruisce dati/journal_of_maps/jom_italia.geojson da un export Crossref.
+"""Ricostruisce i due livelli Journal of Maps da un export Crossref:
+  dati/journal_of_maps/jom_italia.geojson     studi localizzati (comune o coordinate)
+  dati/journal_of_maps/jom_regionali.geojson  studi a scala regionale e articoli da localizzare
 
 Uso:
   python3 -I scripts/build_jom.py <crossref.json> <regions.geojson> <provinces.geojson> <municipalities.geojson>
@@ -12,6 +14,8 @@ Metodo di localizzazione (dichiarato nel campo "Precisione"):
   ogni pubblicazione è un punto sul centroide dell'unità ISTAT più specifica
   nominata nel titolo: comune > provincia > regione. Un comune viene accettato
   solo se il nome è univoco in Italia oppure se la regione è citata nel titolo.
+  Con solo la provincia o la regione l'articolo va nel livello regionale
+  (Ambito "Da localizzare"), mai sul livello principale.
   Le pubblicazioni senza toponimo riconoscibile NON vengono posizionate:
   finiscono in dati/journal_of_maps/jom_da_localizzare.csv.
 
@@ -21,11 +25,20 @@ Localizzazioni manuali (prevalgono su quelle automatiche):
   - altrimenti Comune + sigla Provincia: centroide del comune ISTAT (Precisione "Comune").
   Un comune non trovato o una riga incompleta fanno fallire lo script, così l'errore si vede.
 
+Studi a scala regionale o di area vasta (confermati):
+  dati/journal_of_maps/regionali.csv, colonne DOI;Area;Regione;Provincia;Note
+  Punto sul centroide della provincia (sigla) se indicata, altrimenti della regione (nome ISTAT).
+  Area è il nome mostrato sulla mappa; se vuota, il nome della provincia o della regione.
+  Livello regionale, Ambito "Regionale".
+
+Un DOI può stare in un solo file tra localizzazioni.csv, regionali.csv ed esclusioni.csv.
+
 Esclusioni: dati/journal_of_maps/esclusioni.csv, colonne DOI;Categoria;Motivo.
   Articoli che non vanno sulla mappa (commenti, temi non cartografici, scala nazionale,
   nessun luogo indicato): non compaiono né sulla mappa né tra quelli da localizzare.
 """
 import csv
+import html
 import json
 import re
 import sys
@@ -35,6 +48,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "dati/journal_of_maps/jom_italia.geojson"
+OUT_REG = ROOT / "dati/journal_of_maps/jom_regionali.geojson"
+REGIONALI = ROOT / "dati/journal_of_maps/regionali.csv"
 OUT_CSV = ROOT / "dati/journal_of_maps/jom_da_localizzare.csv"
 MANUALI = ROOT / "dati/journal_of_maps/localizzazioni.csv"
 ESCLUSIONI = ROOT / "dati/journal_of_maps/esclusioni.csv"
@@ -51,7 +66,13 @@ ALIAS_REGIONI = {
 }
 ALIAS_COMUNI = {"rome": "Roma", "naples": "Napoli", "florence": "Firenze", "venice": "Venezia",
                 "milan": "Milano", "turin": "Torino", "genoa": "Genova", "leghorn": "Livorno",
-                "padua": "Padova", "syracuse": "Siracusa", "mantua": "Mantova"}
+                "padua": "Padova", "syracuse": "Siracusa", "mantua": "Mantova",
+                "tremiti islands": "Isole Tremiti", "lampedusa island": "Lampedusa e Linosa",
+                "giglio island": "Isola del Giglio"}
+# Unità geologiche e nomi composti che contengono un toponimo ma non indicano quel luogo.
+# Tolti dal titolo prima del riconoscimento della regione o del comune.
+NON_REGIONE = [r"tertiary piedmont basin", r"piedmont basin", r"(lower )?piedmont zone"]  # unità tettoniche
+NON_COMUNE = [r"aosta valley", r"valle d.aosta"]  # la regione, non il comune di Aosta
 # Nomi di comuni che sono anche parole comuni nei titoli: esclusi dal riconoscimento
 # Salento: comune campano omonimo della penisola pugliese
 ESCLUSI = {"Italia", "Mare", "Monte", "Valle", "Lago", "Isola", "Porto", "Salento"}
@@ -63,8 +84,40 @@ def nome_licenza(url):
     return f"CC {m.group(1).upper()} {m.group(2)}" if m else ""
 
 
+def apostrofi(s):
+    """Prima della conversione in ASCII, che li eliminerebbe incollando le parole:
+    apostrofo tipografico -> apostrofo ("L’Aquila" non diventa "LAquila");
+    lineetta – o — -> spazio ("Entracque–Colle di Tenda" non diventa "EntracqueColle")."""
+    for c in "\u2019\u2018\u02bc":
+        s = s.replace(c, "'")
+    return s.replace("\u2013", " ").replace("\u2014", " ")
+
+
+def maschera(titolo, espressioni):
+    for e in espressioni:
+        titolo = re.sub(r"(?i)(?<![a-z])" + e + r"(?![a-z])", " ", titolo)
+    return titolo
+
+
+def pulisci_titolo(s):
+    """Titolo Crossref -> testo semplice: niente tag HTML, entità decodificate.
+    <sub>/<sup> si attaccano alla parola precedente (P<sub>2</sub>O -> P2O, M<sub>w</sub> -> Mw)."""
+    s = re.sub(r"(?<=\w)<(i|em|b|strong|span)\b[^>]*>(?=\w)", " ", s, flags=re.I)
+    s = re.sub(r"(?<=\w)</(i|em|b|strong|span)>(?=[\w(])", " ", s, flags=re.I)
+    s = re.sub(r"</?(?!su[bp]\b)[a-z][^>]*>", "", s, flags=re.I)
+    formula = re.search(r"<sub>", s, flags=re.I) is not None
+    s = re.sub(r"\s*<(sub|sup)>\s*(.*?)\s*</\1>", r"\2", s, flags=re.I | re.S)
+    s = re.sub(r"<[^>]+>", "", s)
+    s = html.unescape(s)
+    s = " ".join(s.split())
+    if formula:  # "P2 O5", "K2 O" -> "P2O5", "K2O"
+        s = re.sub(r"(?<=[A-Z]\d) (?=[A-Z](\d|\W|$))", "", s)
+    s = re.sub(r"\u2018\s+", "\u2018", re.sub(r"\s+\u2019", "\u2019", s))  # ‘ Bosco ’ -> ‘Bosco’
+    return re.sub(r"\s+([,:;.)])", r"\1", s)
+
+
 def norm(s):
-    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    s = unicodedata.normalize("NFKD", apostrofi(s)).encode("ascii", "ignore").decode()
     return re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
 
 
@@ -99,8 +152,9 @@ def citazione_valida(titolo, nome_norm, nomi_comuni):
       salvo aggettivi descrittivi ("Northern Siena Basin");
     - non è unita con un trattino a un nome che non è un comune
       ("Ferriere-Mollieres Shear Zone"; ammesso "Laconi-Asuni", entrambi comuni)."""
-    t = unicodedata.normalize("NFKD", titolo).encode("ascii", "ignore").decode()
-    parole = list(re.finditer(r"[A-Za-z0-9']+", t))
+    # Parole senza apostrofo: "L'Aquila" -> "L", "Aquila", come nel nome normalizzato "l aquila"
+    t = unicodedata.normalize("NFKD", apostrofi(titolo)).encode("ascii", "ignore").decode()
+    parole = list(re.finditer(r"[A-Za-z0-9]+", t))
     n = nome_norm.split()
     for i in range(len(parole) - len(n) + 1):
         if [norm(w.group()) for w in parole[i:i + len(n)]] != n:
@@ -126,8 +180,9 @@ def citazione_valida(titolo, nome_norm, nomi_comuni):
 def maiuscolo(titolo, nome_norm):
     """True se almeno un'occorrenza del toponimo nel titolo originale inizia con la maiuscola.
     Esclude i composti col trattino ("Piemonte-Ligurian units" è un'unità tettonica)."""
-    t = unicodedata.normalize("NFKD", titolo).encode("ascii", "ignore").decode()
-    parole = list(re.finditer(r"[A-Za-z0-9']+", t))
+    # Parole senza apostrofo: "L'Aquila" -> "L", "Aquila", come nel nome normalizzato "l aquila"
+    t = unicodedata.normalize("NFKD", apostrofi(titolo)).encode("ascii", "ignore").decode()
+    parole = list(re.finditer(r"[A-Za-z0-9]+", t))
     n = nome_norm.split()
     for i in range(len(parole) - len(n) + 1):
         if [norm(w.group()) for w in parole[i:i + len(n)]] != n or not parole[i].group()[:1].isupper():
@@ -187,6 +242,65 @@ def leggi_manuali(path, comuni):
     return out
 
 
+def leggi_regionali(path, regioni, province):
+    """DOI (minuscolo) -> (coordinate, precisione, luogo) per gli studi a scala regionale o di area vasta."""
+    if not path.exists():
+        return {}
+    per_regione = {}
+    for f in regioni:
+        nome = f["properties"]["reg_name"]
+        per_regione[norm(nome)] = f
+        for parte in nome.split("/"):
+            per_regione[norm(parte)] = f
+    per_sigla = {f["properties"]["prov_acr"].upper(): f for f in province}
+    out, errori = {}, []
+    with open(path, encoding="utf-8-sig", newline="") as fh:
+        for n, r in enumerate(csv.DictReader(fh, delimiter=";"), start=2):
+            r = {k.strip(): (v or "").strip() for k, v in r.items() if k}
+            doi = r.get("DOI", "").lower().removeprefix("https://doi.org/")
+            if not doi:
+                continue
+            if r.get("Provincia"):
+                f = per_sigla.get(r["Provincia"].upper())
+                if f is None:
+                    errori.append(f"riga {n}: sigla di provincia '{r['Provincia']}' non trovata nei confini ISTAT")
+                    continue
+                prec, nome = "Provincia", f"Provincia di {f['properties']['prov_name']}"
+            elif r.get("Regione"):
+                f = per_regione.get(norm(r["Regione"]))
+                if f is None:
+                    errori.append(f"riga {n}: regione '{r['Regione']}' non trovata nei confini ISTAT")
+                    continue
+                prec, nome = "Regione", f["properties"]["reg_name"].split("/")[0]
+            else:
+                errori.append(f"riga {n}: serve la Regione (nome ISTAT) o la sigla della Provincia")
+                continue
+            out[doi] = (centroide(f["geometry"]), prec, r.get("Area") or nome)
+    if errori:
+        sys.exit("Errori in " + str(path.relative_to(ROOT)) + ":\n  " + "\n  ".join(errori))
+    return out
+
+
+def duplicati_csv(*paths):
+    """DOI ripetuti dentro uno stesso CSV o presenti in più CSV: errore bloccante."""
+    visti, errori = {}, []
+    for path in paths:
+        if not path.exists():
+            continue
+        with open(path, encoding="utf-8-sig", newline="") as fh:
+            for n, r in enumerate(csv.DictReader(fh, delimiter=";"), start=2):
+                doi = (r.get("DOI") or "").strip().lower().removeprefix("https://doi.org/")
+                if not doi:
+                    continue
+                dove = f"{path.name} riga {n}"
+                if doi in visti:
+                    errori.append(f"{doi}: {visti[doi]} e {dove}")
+                else:
+                    visti[doi] = dove
+    if errori:
+        sys.exit("DOI presenti più volte nei CSV di localizzazione:\n  " + "\n  ".join(errori))
+
+
 def leggi_esclusioni(path):
     if not path.exists():
         return {}
@@ -201,11 +315,10 @@ def main(p_cr, p_reg, p_prov, p_com):
     province = json.load(open(p_prov, encoding="utf-8"))["features"]
     comuni = json.load(open(p_com, encoding="utf-8"))["features"]
 
+    duplicati_csv(MANUALI, REGIONALI, ESCLUSIONI)
     manuali = leggi_manuali(MANUALI, comuni)
+    regionali = leggi_regionali(REGIONALI, regioni, province)
     esclusi = leggi_esclusioni(ESCLUSIONI)
-    conflitti = sorted(set(manuali) & set(esclusi))
-    if conflitti:
-        sys.exit(f"DOI presenti sia in localizzazioni.csv sia in esclusioni.csv: {conflitti}")
     n_esclusi = 0
     reg_by_name = {f["properties"]["reg_name"]: f for f in regioni}
     gaz_reg = {}
@@ -230,9 +343,9 @@ def main(p_cr, p_reg, p_prov, p_com):
     def rank(doi):
         return 0 if doi.startswith("10.1080/17445647.") else 1 if doi.startswith("10.1080/jom.") else 2
     per_titolo = {}
-    features, scartati = [], []
+    features, features_reg, scartati = [], [], []
     for it in items:
-        titolo = " ".join((it.get("title") or [""])[0].split())
+        titolo = pulisci_titolo((it.get("title") or [""])[0])
         if not titolo:
             continue
         if it["DOI"].lower() in esclusi:
@@ -248,23 +361,29 @@ def main(p_cr, p_reg, p_prov, p_com):
             per_titolo[k] = it
 
     for it in sorted(per_titolo.values(), key=lambda x: x["DOI"]):
-        titolo = " ".join(it["title"][0].split())
-        t = norm(titolo)
+        titolo = pulisci_titolo(it["title"][0])
+        tit_reg = maschera(titolo, NON_REGIONE)
+        tit_com = maschera(tit_reg, NON_COMUNE)
+        t, t_com = norm(tit_reg), norm(tit_com)
         anno = (it.get("issued", {}).get("date-parts") or [[None]])[0][0]
         lic = sorted({nome_licenza(l["URL"]) for l in it.get("license", []) if "creativecommons" in l["URL"]} - {""})
         licenza = lic[0] if lic else "Non indicata in Crossref"
 
         # Maiuscola obbligatoria: "Adriatic piedmont" è la fascia pedemontana, non il Piemonte
-        reg_citate = {nome for k, nome in gaz_reg.items() if contiene(t, k) and maiuscolo(titolo, k)}
+        reg_citate = {nome for k, nome in gaz_reg.items() if contiene(t, k) and maiuscolo(tit_reg, k)}
+        # Le unità tettoniche ("Tertiary Piedmont Basin") non filtrano i comuni, ma se nel titolo
+        # non c'è altro restano l'unico indizio della regione per il ripiego regionale.
+        reg_ripiego = reg_citate or {nome for k, nome in gaz_reg.items()
+                                     if contiene(norm(titolo), k) and maiuscolo(titolo, k)}
         # Provincia solo se il titolo parla esplicitamente di provincia ("X Province", "province of X")
         prov = [f for k, f in gaz_prov.items()
                 if (contiene(t, k + " province") or contiene(t, "province of " + k))
                 and (not reg_citate or f["properties"]["reg_name"] in reg_citate)]
         com = []
         for k, fs in com_per_nome.items():
-            if not fs or not contiene(t, k) or k in gaz_reg:
+            if not fs or not contiene(t_com, k) or k in gaz_reg:
                 continue
-            if not citazione_valida(titolo, k, com_per_nome):
+            if not citazione_valida(tit_com, k, com_per_nome):
                 continue
             cand = [f for f in fs if not reg_citate or f["properties"]["reg_name"] in reg_citate]
             if len(cand) == 1:
@@ -272,7 +391,8 @@ def main(p_cr, p_reg, p_prov, p_com):
         # Con più comuni citati si sceglie il nome più lungo (meno ambiguo).
         com.sort(key=lambda f: -len(f["properties"]["name"]))
 
-        man = manuali.get(it["DOI"].lower())
+        doi = it["DOI"].lower()
+        man = manuali.get(doi) or regionali.get(doi)
         if man:
             punto, prec, luogo = man
         elif prov:
@@ -281,11 +401,11 @@ def main(p_cr, p_reg, p_prov, p_com):
         elif com:
             f = com[0]
             geom, prec, luogo = f["geometry"], "Comune", f"{f['properties']['name']} ({f['properties']['prov_acr']})"
-        elif len(reg_citate) == 1:
-            nome = next(iter(reg_citate))
+        elif len(reg_ripiego) == 1:
+            nome = next(iter(reg_ripiego))
             geom, prec, luogo = reg_by_name[nome]["geometry"], "Regione", nome.split("/")[0]
         else:
-            motivo = "più regioni citate" if len(reg_citate) > 1 else "nessun toponimo ISTAT riconosciuto"
+            motivo = "più regioni citate" if len(reg_ripiego) > 1 else "nessun toponimo ISTAT riconosciuto"
             scartati.append({"DOI": it["DOI"], "Title": titolo, "Anno": anno, "Motivo": motivo})
             continue
         if not man:
@@ -293,8 +413,12 @@ def main(p_cr, p_reg, p_prov, p_com):
             fonte = "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT"
         else:
             fonte = "Crossref (metadati); localizzazione manuale (Geologiaintasca)"
+        # Regione o provincia: livello regionale. "Regionale" se confermato in regionali.csv,
+        # "Da localizzare" se è solo il ripiego automatico (studio locale ancora da posizionare).
+        regionale = prec in ("Regione", "Provincia")
+        extra = {"Ambito": "Regionale" if doi in regionali else "Da localizzare"} if regionale else {}
 
-        features.append({
+        (features_reg if regionale else features).append({
             "type": "Feature",
             "properties": {
                 "Title": titolo,
@@ -306,23 +430,28 @@ def main(p_cr, p_reg, p_prov, p_com):
                 "Licenza": licenza,
                 "Precisione": prec,
                 "Fonte": fonte,
+                **extra,
             },
             "geometry": {"type": "Point", "coordinates": punto},
         })
 
-    OUT.write_text(json.dumps({"type": "FeatureCollection", "features": features},
-                              ensure_ascii=False, indent=1), encoding="utf-8")
+    for path, fs in ((OUT, features), (OUT_REG, features_reg)):
+        path.write_text(json.dumps({"type": "FeatureCollection", "features": fs},
+                                   ensure_ascii=False, indent=1), encoding="utf-8")
     with open(OUT_CSV, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=["DOI", "Title", "Anno", "Motivo"])
         w.writeheader()
         w.writerows(scartati)
     print(f"Crossref: {len(items)} record, {len(per_titolo)} dopo dedup")
-    usati = {f["properties"]["DOI"].lower() for f in features}
-    orfani = sorted(set(manuali) - usati)
-    if orfani:
-        print(f"ATTENZIONE: {len(orfani)} DOI in localizzazioni.csv non presenti nei dati Crossref: {orfani}")
+    usati = {f["properties"]["DOI"].lower() for f in features + features_reg}
+    for nome, d in (("localizzazioni.csv", manuali), ("regionali.csv", regionali)):
+        orfani = sorted(set(d) - usati)
+        if orfani:
+            print(f"ATTENZIONE: {len(orfani)} DOI in {nome} non presenti nei dati Crossref: {orfani}")
+    conf = sum(1 for f in features_reg if f["properties"]["Ambito"] == "Regionale")
     print(f"Localizzati: {len(features)} (di cui manuali: {len(set(manuali) & usati)})  |  "
-          f"esclusi: {n_esclusi}  |  da localizzare: {len(scartati)}")
+          f"scala regionale: {conf}  |  regione o provincia da completare: {len(features_reg) - conf}  |  "
+          f"esclusi: {n_esclusi}  |  senza luogo: {len(scartati)}")
 
 
 if __name__ == "__main__":

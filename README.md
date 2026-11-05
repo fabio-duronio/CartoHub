@@ -14,7 +14,8 @@ I dati sono file GeoJSON nella cartella `dati/`, letti sia dalla mappa web sia d
 |---|---|---|---|
 | Progetto CARG 1:50.000 | `dati/carg/carg_50k_fogli.geojson` | 634 fogli | CARG-GATE (ISPRA) |
 | Carta Geologica d'Italia 1:100.000 | `dati/carta_100k/carta_100k_fogli.geojson` | 278 fogli | Quadro d'unione e catalogo Biblioteca ISPRA |
-| Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 313 pubblicazioni | Crossref + confini ISTAT |
+| Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 191 pubblicazioni | Crossref + confini ISTAT |
+| JoM – studi a scala regionale | `dati/journal_of_maps/jom_regionali.geojson` | 122 pubblicazioni | Crossref + confini ISTAT |
 | Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 enti | Selezione manuale + confini ISTAT |
 
 Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`. Il campo `Dettagli` contiene il testo del popup di uMap (stesse etichette e link di `index.html`), generato da `scripts/dettagli_popup.py`.
@@ -39,14 +40,22 @@ Fogli della Carta Geologica d'Italia alla scala 1:100.000, con le edizioni prese
 *Fonte: ISPRA – Servizio Geologico d'Italia (quadro d'unione 1:100.000; catalogo OPAC della Biblioteca ISPRA).*
 
 ### 3. Ricerca scientifica (Journal of Maps)
-Articoli del *Journal of Maps* su aree italiane. Il punto indica la località, non l'area cartografata. **Il livello si aggiorna da solo ogni lunedì** (vedi *Aggiornamento automatico*).
-* **Posizione:** il campo `Precisione` dice come è stato ottenuto il punto:
+Articoli del *Journal of Maps* su aree italiane, in due livelli. Il punto indica la località, non l'area cartografata. **I livelli si aggiornano da soli ogni lunedì** (vedi *Aggiornamento automatico*).
+* **Journal of Maps** (`jom_italia.geojson`): studi localizzati. Il campo `Precisione` dice come è stato ottenuto il punto:
   * `Coordinate`: coordinate indicate nel paper (localizzazione manuale);
-  * `Comune`, `Provincia`, `Regione`: centroide dell'unità ISTAT indicata dal curatore oppure, in automatico, citata nel titolo. Il campo `Fonte` distingue i due casi.
+  * `Comune`: centroide del comune ISTAT indicato dal curatore oppure, in automatico, citato nel titolo. Il campo `Fonte` distingue i due casi.
+* **JoM – studi a scala regionale** (`jom_regionali.geojson`): punto sul centroide della regione o della provincia (`Precisione` `Regione` o `Provincia`). Il campo `Ambito` distingue:
+  * `Regionale`: studio su un'intera regione, provincia o area vasta, confermato in `regionali.csv`;
+  * `Da localizzare`: nel titolo c'è solo la regione o la provincia; lo studio è locale e va ancora posizionato. Sta qui e non nel livello principale, così un centroide non viene scambiato per il luogo dello studio.
 * **Non posizionate:** le pubblicazioni senza un toponimo ISTAT nel titolo (es. Etna, Campi Flegrei, Dolomiti) o che citano più regioni, e senza una localizzazione manuale, sono elencate in `jom_da_localizzare.csv` e non vengono collocate a stima.
 * **Licenza:** il campo `Licenza` riporta quella dichiarata in Crossref (CC BY 4.0, CC BY-NC 4.0, CC BY-NC-ND 4.0). Quando Crossref non la indica, va verificata sulla pagina dell'articolo prima di riusarne le figure.
 
 *Fonte: metadati [Crossref](https://www.crossref.org/) (ISSN 1744-5647); confini ISTAT per la localizzazione.*
+
+**In uMap** il livello regionale si aggiunge come livello con dati remoti:
+* URL: `https://raw.githubusercontent.com/fabio-duronio/geologiaintasca/main/dati/journal_of_maps/jom_regionali.geojson`
+* tipo di livello **Cluster**: gli articoli della stessa regione hanno le stesse coordinate e, senza cluster, solo l'ultimo sarebbe cliccabile;
+* modello del popup come gli altri livelli: `# {Title}` + `{Dettagli}`; nascosto all'apertura della mappa.
 
 ### 4. Geologia ISPRA (solo nella mappa web)
 Due livelli di visualizzazione forniti dai servizi WMS del Servizio Geologico d'Italia, spenti all'apertura. Le immagini e le informazioni al clic arrivano direttamente da ISPRA: il repository non ne conserva copia.
@@ -83,7 +92,7 @@ Tre GitHub Action aggiornano i dati: [`aggiorna-carg.yml`](.github/workflows/agg
 
 Se il validatore trova errori, l'Action si ferma e non modifica i dati. Se non ci sono novità, non fa commit.
 
-### Aggiungere una localizzazione
+### Aggiungere una localizzazione o uno studio regionale
 Il file [`dati/journal_of_maps/localizzazioni.csv`](dati/journal_of_maps/localizzazioni.csv) (separatore `;`) prevale sulla localizzazione automatica e permette di aggiungere articoli che la ricerca per "Italy" non trova.
 
 ```
@@ -95,7 +104,11 @@ DOI;Comune;Provincia;Lat;Lon;Note
 * Si modifica direttamente da GitHub: icona della matita sul file, incolla la riga, *Commit changes*.
 * Un comune inesistente o una riga incompleta fanno fallire l'Action con il numero della riga, e GitHub invia una notifica.
 
+Gli studi su un'intera regione, provincia o area vasta stanno in [`regionali.csv`](dati/journal_of_maps/regionali.csv) (`DOI;Area;Regione;Provincia;Note`): punto sul centroide della provincia (sigla) se indicata, altrimenti della regione (nome ISTAT); `Area` è il nome mostrato sulla mappa, se diverso da quello della regione o della provincia.
+
 Gli articoli da non mettere sulla mappa (commenti, temi non cartografici, carte a scala nazionale, nessun luogo indicato) stanno in [`esclusioni.csv`](dati/journal_of_maps/esclusioni.csv) (`DOI;Categoria;Motivo`): non compaiono né sulla mappa né tra quelli da localizzare.
+
+Un DOI può comparire in un solo file tra `localizzazioni.csv`, `regionali.csv` ed `esclusioni.csv`: un doppione fa fallire l'Action.
 
 Per ogni post di Geologiaintasca su un articolo del Journal of Maps viene preparata la riga da aggiungere.
 
@@ -114,7 +127,7 @@ python3 -I scripts/valida_dati.py                      # controllo qualità: va 
 ```
 
 ## Limiti noti
-* **Journal of Maps:** il punto indica una località, non l'area cartografata. Con precisione `Regione` il punto è il centro della regione.
+* **Journal of Maps:** il punto indica una località, non l'area cartografata. Nel livello regionale il punto è il centro della regione o della provincia.
 * **Carta 1:100.000:** alcuni fogli non hanno schede nel catalogo ISPRA; le scansioni non sono riprodotte perché il catalogo non ne dichiara la licenza.
 * **Geologia ISPRA:** è servita dai server ISPRA; se il servizio non risponde, il livello resta vuoto. I servizi non dichiarano una licenza: si cita la fonte.
 * **Geoportali regionali:** i link sono scelti a mano e possono cambiare senza preavviso; quello dell'Abruzzo è solo in http.
@@ -125,7 +138,7 @@ python3 -I scripts/valida_dati.py                      # controllo qualità: va 
 - [x] Journal of Maps da Crossref, con DOI verificati, localizzazioni manuali e aggiornamento settimanale
 - [x] Geoportali regionali su confini ISTAT
 - [x] Geologia CARG 1:25.000 e 1:100.000 come livelli WMS ISPRA nella mappa web
-- [ ] Localizzare le pubblicazioni rimaste in `jom_da_localizzare.csv` (servono i paper)
+- [ ] Localizzare gli articoli `Da localizzare` del livello regionale e quelli rimasti in `jom_da_localizzare.csv` (servono gli abstract o i paper)
 - [ ] Verificare i link dei geoportali regionali
 - [ ] Cartografia geologica marina (CARG Mare)
 

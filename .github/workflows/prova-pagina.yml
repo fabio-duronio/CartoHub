@@ -1,0 +1,52 @@
+# Prova temporanea della pagina (da rimuovere prima del merge).
+name: Prova pagina
+on:
+  push:
+    branches: [mobile-gps-etichette]
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.12" }
+      - run: pip install -q playwright==1.48.0 && python -m playwright install --with-deps chromium > /dev/null
+      - name: Prova
+        shell: python3 {0}
+        run: |
+          import subprocess, time, base64
+          srv = subprocess.Popen(["python3", "-m", "http.server", "8000"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+          time.sleep(2)
+          from playwright.sync_api import sync_playwright
+          def dump(nome, png):
+              b = base64.b64encode(png).decode()
+              for i in range(0, len(b), 4000):
+                  print("IMG|" + nome + "|" + b[i:i+4000])
+          with sync_playwright() as p:
+              br = p.chromium.launch()
+              errori = []
+              pg = br.new_page(viewport={"width": 1280, "height": 800})
+              pg.on("pageerror", lambda e: errori.append(f"pageerror: {e}"))
+              pg.goto("http://localhost:8000/index.html"); pg.wait_for_timeout(6000)
+              print("desktop: legenda aperta:", pg.is_visible(".voci-legenda"))
+              pg.evaluate("map.setView([42.35, 13.40], 8)"); pg.wait_for_timeout(1500)
+              print("zoom 8, etichette:", pg.evaluate("etichetteCarg.getLayers().length"))
+              pg.evaluate("map.setView([42.35, 13.40], 9)"); pg.wait_for_timeout(1500)
+              print("zoom 9, etichette:", pg.evaluate("etichetteCarg.getLayers().length"))
+              dump("etichette-z9", pg.screenshot(type="jpeg", quality=60))
+              pg.click("label:has-text('Progetto CARG 1:50.000') input"); pg.wait_for_timeout(500)
+              print("CARG spento, etichette:", pg.evaluate("etichetteCarg.getLayers().length"))
+              ctx = br.new_context(viewport={"width": 390, "height": 760}, geolocation={"latitude": 42.4435, "longitude": 13.5596, "accuracy": 12}, permissions=["geolocation"])
+              m = ctx.new_page(); m.on("pageerror", lambda e: errori.append(f"mobile: {e}"))
+              m.goto("http://localhost:8000/index.html"); m.wait_for_timeout(6000)
+              print("telefono: legenda aperta:", m.is_visible(".voci-legenda"))
+              dump("mobile-chiusa", m.screenshot(type="jpeg", quality=60))
+              m.click(".titolo-legenda"); m.wait_for_timeout(500)
+              print("telefono dopo tocco: legenda aperta:", m.is_visible(".voci-legenda"))
+              dump("mobile-aperta", m.screenshot(type="jpeg", quality=60))
+              m.click(".titolo-legenda"); m.click(".gps a"); m.wait_for_timeout(3000)
+              print("GPS: centro", m.evaluate("map.getCenter()"), "zoom", m.evaluate("map.getZoom()"))
+              dump("mobile-gps", m.screenshot(type="jpeg", quality=60))
+              print("ERRORI:", errori); br.close()
+          srv.terminate()

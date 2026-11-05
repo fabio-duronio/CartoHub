@@ -56,7 +56,7 @@ Due livelli di visualizzazione forniti dai servizi WMS del Servizio Geologico d'
 
 *Fonte: servizi `geo/SGI_ISPRA_Geologia25k` e `servizi/geologica100k` su sinacloud.isprambiente.it (ISPRA – Servizio Geologico d'Italia).*
 
-**Strumenti della mappa web:** quattro sfondi (OpenStreetMap, OpenTopoMap con curve di livello, ortofoto AGEA 2022-2024 a 20 cm, rilievo ombreggiato TINITALY dell'INGV), opacità regolabile per ciascun livello di geologia direttamente nel pannello dei livelli, barra di scala con rapporto numerico, ricerca unica: mentre si scrive cerca fogli CARG e 1:100.000 (numero o nome), articoli del Journal of Maps (titolo o luogo) e coordinate «lat, lon»; con Invio aggiunge le località di OpenStreetMap.
+**Strumenti della mappa web:** quattro sfondi (OpenStreetMap, OpenTopoMap con curve di livello, ortofoto AGEA 2022-2024 a 20 cm, rilievo ombreggiato TINITALY dell'INGV), opacità regolabile per ciascun livello di geologia direttamente nel pannello dei livelli, barra di scala con rapporto numerico, ricerca unica: mentre si scrive cerca fogli CARG e 1:100.000 (numero o nome), articoli del Journal of Maps (titolo o luogo) e coordinate «lat, lon»; con Invio aggiunge le località di OpenStreetMap; pulsante «Posizione attuale» (GPS del dispositivo); numeri dei fogli CARG sulla mappa da zoom 9; legenda richiudibile, chiusa su telefono.
 
 ### 5. Geoportali regionali
 Geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano.

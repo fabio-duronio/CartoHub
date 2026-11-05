@@ -26,7 +26,21 @@
     .sezione + .sezione { margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd; }
     .sezione h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: #666; margin: 0 0 2px; }
     .meta { color: #555; }
-    @media (max-width: 600px) { .testata { max-width: 220px; } .legenda { display: none; } }
+    .strumenti { padding: 6px 10px; width: 210px; }
+    .strumenti label { display: block; margin-top: 4px; }
+    .titolo-strumenti { font: inherit; font-weight: bold; background: none; border: 0; padding: 0; cursor: pointer; color: #222; }
+    .titolo-strumenti::after { content: ' ▾'; color: #666; }
+    .titolo-strumenti[aria-expanded="false"]::after { content: ' ▸'; }
+    .strumenti input[type=range] { width: 100%; margin: 0; }
+    .ricerca { padding: 6px 8px; width: 260px; }
+    .ricerca form { display: flex; gap: 4px; }
+    .ricerca input { flex: 1; min-width: 0; font: inherit; padding: 3px 6px; border: 1px solid #bbb; border-radius: 3px; }
+    .ricerca button { font: inherit; padding: 3px 8px; border: 1px solid #bbb; border-radius: 3px; background: #f5f5f5; cursor: pointer; }
+    .ricerca ul { list-style: none; margin: 6px 0 0; padding: 0; max-height: 40vh; overflow: auto; }
+    .ricerca li { padding: 3px 0; border-top: 1px solid #eee; cursor: pointer; color: #1a237e; }
+    .ricerca li:hover { text-decoration: underline; }
+    .scala-num { padding: 2px 6px; margin-bottom: 2px !important; }
+    @media (max-width: 600px) { .testata { max-width: 220px; } .legenda { display: none; } .ricerca { width: 200px; } .strumenti { width: auto; max-width: 180px; } }
   </style>
 </head>
 <body>
@@ -34,9 +48,21 @@
 <script>
   const map = L.map('map', { zoomControl: false }).setView([41.9, 12.6], 6);
   L.control.zoom({ position: 'topright' }).addTo(map);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19, attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+  // ---------- Sfondi (licenze nel pannello Informazioni e nel README) ----------
+  const sfondi = {
+    'OpenStreetMap': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '© OpenStreetMap contributors' }),
+    'OpenTopoMap (curve di livello)': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+      maxZoom: 17, subdomains: 'abc',
+      attribution: '© OpenStreetMap contributors, SRTM · stile © OpenTopoMap (CC BY-SA)' }),
+    'Satellite Sentinel-2 2016': L.tileLayer('https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless_3857/default/g/{z}/{y}/{x}.jpg', {
+      maxZoom: 19, maxNativeZoom: 15,
+      attribution: 'Sentinel-2 cloudless 2016 © EOX IT Services (CC BY 4.0), dati Copernicus Sentinel modificati' }),
+    'Rilievo ombreggiato TINITALY': L.tileLayer.wms('https://tinitaly.pi.ingv.it/TINItaly_1_1/wms', {
+      layers: 'tinitaly_hshd', format: 'image/png', version: '1.3.0', maxZoom: 19,
+      attribution: 'TINITALY/1.1 © INGV (CC BY 4.0), doi:10.13127/tinitaly/1.1' })
+  };
+  sfondi['OpenStreetMap'].addTo(map);
   map.attributionControl.addAttribution('Dati: ISPRA, Journal of Maps, Crossref, ISTAT');
 
   // ---------- Utilità ----------
@@ -149,7 +175,7 @@
   }
 
   // ---------- Controllo dei livelli (ordine fisso) ----------
-  const controllo = L.control.layers(null, {}, { collapsed: window.innerWidth < 900, position: 'topright' }).addTo(map);
+  const controllo = L.control.layers(sfondi, {}, { collapsed: window.innerWidth < 900, position: 'topright' }).addTo(map);
   const etichetta = l => `<span style="color:${l.colore}">■</span> ${l.nome}` + (l.dati ? ` (${l.dati.length})` : '');
   function riempiControllo() {  // ordine fisso: dati del progetto, poi geologia ISPRA
     [...livelli, ...geologia].forEach(x => controllo.removeLayer(x.layer));
@@ -172,11 +198,40 @@
     .then(() => { riempiControllo(); stileCarg(); });
 
   // Con la geologia accesa i fogli CARG diventano quasi trasparenti, per non coprirne i colori
+  // ---------- Trasparenza ----------
+  // Un cursore per ciascun livello di geologia e uno per il riempimento dei fogli CARG.
+  // Quando si accende la geologia, il riempimento CARG scende in automatico, per non coprirne i colori.
+  const CARG_PIENO = 45, CARG_CON_GEOLOGIA = 8;
+  let opacitaCarg = CARG_PIENO;
   function stileCarg() {
-    const geo = geologia.some(g => map.hasLayer(g.layer));
-    livelli[1].layer.setStyle(f => ({ fillOpacity: COLORI_CARG[f.properties.Stato] ? (geo ? 0.08 : 0.45) : 0 }));
+    livelli[1].layer.setStyle(f => ({ fillOpacity: COLORI_CARG[f.properties.Stato] ? opacitaCarg / 100 : 0 }));
   }
-  map.on('overlayadd overlayremove', stileCarg);
+  const strumenti = L.control({ position: 'topright' });
+  strumenti.onAdd = () => {
+    const d = L.DomUtil.create('div', 'riquadro strumenti');
+    d.innerHTML = '<button type="button" class="titolo-strumenti" aria-expanded="true">Opacità</button><div class="cursori">' +
+      geologia.map((g, i) => `<label>${esc(g.nome.replace(' (ISPRA)', ''))}<input type="range" min="0" max="100" value="75" data-geo="${i}"></label>`).join('') +
+      `<label>Riempimento fogli CARG<input type="range" min="0" max="100" value="${CARG_PIENO}" data-carg></label></div>`;
+    // Su schermi piccoli il riquadro parte chiuso, come il pannello dei livelli
+    const tb = d.querySelector('.titolo-strumenti'), cur = d.querySelector('.cursori');
+    const apri = a => { cur.hidden = !a; tb.setAttribute('aria-expanded', a); };
+    apri(window.innerWidth >= 900);
+    tb.onclick = () => apri(cur.hidden);
+    d.querySelectorAll('[data-geo]').forEach(r => r.oninput = () => geologia[r.dataset.geo].layer.setOpacity(r.value / 100));
+    const rc = d.querySelector('[data-carg]');
+    rc.oninput = () => { opacitaCarg = +rc.value; stileCarg(); };
+    strumenti.cursoreCarg = rc;
+    L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+    return d;
+  };
+  strumenti.addTo(map);
+  map.on('overlayadd overlayremove', e => {
+    if (!geologia.some(g => g.layer === e.layer)) return;
+    const geo = geologia.some(g => map.hasLayer(g.layer));
+    if (geo && opacitaCarg === CARG_PIENO) opacitaCarg = CARG_CON_GEOLOGIA;
+    else if (!geo && opacitaCarg === CARG_CON_GEOLOGIA) opacitaCarg = CARG_PIENO;
+    strumenti.cursoreCarg.value = opacitaCarg; stileCarg();
+  });
 
   // Il popup del clic riassume i livelli accesi in quel momento: se si accende o spegne un livello
   // non è più valido e si chiude.
@@ -222,6 +277,57 @@
   }
   map.on('zoomend overlayadd overlayremove', aggiornaAvviso);
 
+  // ---------- Scala: barra metrica e rapporto numerico (a 96 dpi, al centro della mappa) ----------
+  L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
+  const scalaNum = L.control({ position: 'bottomright' });
+  scalaNum.onAdd = () => L.DomUtil.create('div', 'riquadro scala-num');
+  scalaNum.addTo(map);
+  function aggiornaScala() {
+    const lat = map.getCenter().lat * Math.PI / 180;
+    const mPerPx = 40075016.686 * Math.cos(lat) / Math.pow(2, map.getZoom() + 8);
+    const n = mPerPx / 0.0254 * 96, p = Math.pow(10, Math.floor(Math.log10(n)) - 1);
+    scalaNum.getContainer().textContent = '1:' + (Math.round(n / p) * p).toLocaleString('it-IT');
+  }
+  map.on('zoomend moveend', aggiornaScala); aggiornaScala();
+
+  // ---------- Ricerca di località (Nominatim, OpenStreetMap) ----------
+  // Regole d'uso di Nominatim: al massimo una richiesta al secondo e niente suggerimenti durante
+  // la digitazione: la ricerca parte solo con Invio o con il pulsante.
+  const ricerca = L.control({ position: 'topleft' });
+  let ultimaRicerca = 0, segnaposto = null;
+  ricerca.onAdd = () => {
+    const d = L.DomUtil.create('div', 'riquadro ricerca');
+    d.innerHTML = '<form><input type="search" placeholder="Cerca una località…" aria-label="Cerca una località">' +
+      '<button type="submit">Cerca</button></form><ul></ul>';
+    const f = d.querySelector('form'), inp = d.querySelector('input'), ul = d.querySelector('ul'), btn = d.querySelector('button');
+    f.onsubmit = ev => {
+      ev.preventDefault();
+      const q = inp.value.trim();
+      if (!q || Date.now() - ultimaRicerca < 1000) return;
+      ultimaRicerca = Date.now(); btn.disabled = true; ul.innerHTML = '<li class="meta">Ricerca in corso…</li>';
+      const url = 'https://nominatim.openstreetmap.org/search?' + new URLSearchParams({
+        q, format: 'jsonv2', countrycodes: 'it', limit: 5, 'accept-language': 'it' });
+      fetch(url).then(r => r.json()).then(ris => {
+        ul.innerHTML = ris.length ? '' : '<li class="meta">Nessun risultato.</li>';
+        ris.forEach(x => {
+          const li = document.createElement('li'); li.textContent = x.display_name;
+          li.onclick = ev => {
+            ev.stopPropagation();  // la voce viene tolta dalla lista: senza questo Leaflet vedrebbe un clic sulla mappa
+            const [s, n, w, e] = x.boundingbox.map(Number);
+            map.fitBounds([[s, w], [n, e]], { maxZoom: 14 });
+            if (segnaposto) segnaposto.remove();
+            segnaposto = L.circleMarker([+x.lat, +x.lon], { radius: 6, color: '#d32f2f', weight: 2, fillOpacity: 0.2, interactive: false }).addTo(map);
+            setTimeout(() => { ul.innerHTML = ''; }, 0);
+          };
+          ul.appendChild(li);
+        });
+      }).catch(() => { ul.innerHTML = '<li class="meta">Ricerca non disponibile.</li>'; })
+        .finally(() => { btn.disabled = false; });
+    };
+    L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+    return d;
+  };
+
   // ---------- Testata e informazioni (stessi testi di uMap e del README) ----------
   const testata = L.control({ position: 'topleft' });
   testata.onAdd = () => {
@@ -239,6 +345,8 @@
         Carta 1:100.000: © ISPRA – Servizio Geologico d'Italia; indicizzati quadro d'unione e schede del catalogo, le scansioni restano sul sito ISPRA.<br>
         Geologia 1:25.000 e 1:100.000: © ISPRA – Servizio Geologico d'Italia, servizi di visualizzazione WMS; le immagini e le informazioni al clic sono fornite direttamente da ISPRA.<br>
         Confini amministrativi: © ISTAT, licenza CC BY 4.0.<br>
+        Sfondi: © OpenStreetMap contributors (ODbL); OpenTopoMap (CC BY-SA); Sentinel-2 cloudless 2016 © EOX IT Services (CC BY 4.0, dati Copernicus Sentinel modificati); TINITALY/1.1 © INGV, Tarquini et al. 2023, doi:10.13127/tinitaly/1.1 (CC BY 4.0).<br>
+        Ricerca delle località: Nominatim, © OpenStreetMap contributors.<br>
         Journal of Maps: indicizzati solo i metadati bibliografici; gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.<br>
         Codice: licenza MIT.</p>
         <p class="meta">Geologiaintasca non è titolare dei dati cartografici collegati: fornisce solo il servizio di indicizzazione geografica.</p>
@@ -249,6 +357,7 @@
     return d;
   };
   testata.addTo(map);
+  ricerca.addTo(map);
 
   // ---------- Legenda ----------
   const legenda = L.control({ position: 'bottomleft' });

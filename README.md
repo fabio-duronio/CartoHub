@@ -56,6 +56,8 @@ Due livelli di visualizzazione forniti dai servizi WMS del Servizio Geologico d'
 
 *Fonte: servizi `geo/SGI_ISPRA_Geologia25k` e `servizi/geologica100k` su sinacloud.isprambiente.it (ISPRA – Servizio Geologico d'Italia).*
 
+**Strumenti della mappa web:** quattro sfondi (OpenStreetMap, OpenTopoMap con curve di livello, satellite Sentinel-2 2016, rilievo ombreggiato TINITALY dell'INGV), cursori di opacità per la geologia e per i fogli CARG, barra di scala con rapporto numerico, ricerca delle località.
+
 ### 5. Geoportali regionali
 Geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano.
 
@@ -125,6 +127,8 @@ Il repository è un **indice di collegamenti** a risorse esterne.
 * **Carta 1:100.000:** © ISPRA – Servizio Geologico d'Italia. Sono indicizzati quadro d'unione e schede del catalogo; le scansioni restano sul sito ISPRA.
 * **Geologia 1:25.000 e 1:100.000:** © ISPRA – Servizio Geologico d'Italia, servizi di visualizzazione WMS; immagini e informazioni al clic sono fornite direttamente da ISPRA.
 * **Confini amministrativi:** © ISTAT, licenza CC BY 4.0.
+* **Sfondi della mappa web:** © OpenStreetMap contributors (ODbL); OpenTopoMap (CC BY-SA); Sentinel-2 cloudless 2016 © EOX IT Services (CC BY 4.0, dati Copernicus Sentinel modificati); TINITALY/1.1 © INGV, Tarquini S., Isola I., Favalli M., Battistini A., Dotta G. (2023), [doi:10.13127/tinitaly/1.1](https://doi.org/10.13127/tinitaly/1.1) (CC BY 4.0).
+* **Ricerca delle località:** [Nominatim](https://nominatim.openstreetmap.org/), © OpenStreetMap contributors; una ricerca alla volta, come richiesto dalle regole d'uso del servizio.
 * **Journal of Maps:** sono indicizzati solo i metadati bibliografici. Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
 
 *Geologiaintasca non è titolare dei dati cartografici collegati: fornisce solo il servizio di indicizzazione geografica.*

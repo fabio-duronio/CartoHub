@@ -53,6 +53,12 @@
     'OpenTopoMap (curve di livello)': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
       maxZoom: 17, subdomains: 'abc',
       attribution: '© OpenStreetMap contributors, SRTM · stile © OpenTopoMap (CC BY-SA)' }),
+    // Tre servizi WMTS AGEA (voli 2022, 2023, 2024): ognuno copre regioni diverse ed è trasparente fuori
+    // dalla sua copertura, quindi insieme formano un unico sfondo nazionale. Il volo più recente sta sopra.
+    'Ortofoto AGEA 2022-2024 (20 cm)': L.layerGroup(['2022', '2023', '2024'].map(anno => L.tileLayer(
+      `https://geoportale.agea.gov.it/image/rest/services/AgEA/Ortofoto_AgEA_${anno}/ImageServer/WMTS/tile/1.0.0/AgEA_Ortofoto_AgEA_${anno}/default/GoogleMapsCompatible/{z}/{y}/{x}`, {
+        maxZoom: 19, maxNativeZoom: 18,
+        attribution: anno === '2024' ? 'Ortofoto AGEA 2022-2024 © AGEA – Agenzia per le Erogazioni in Agricoltura (CC BY 4.0)' : '' }))),
     'Rilievo ombreggiato TINITALY': L.tileLayer.wms('https://tinitaly.pi.ingv.it/TINItaly_1_1/wms', {
       layers: 'tinitaly_hshd', format: 'image/png', version: '1.3.0', maxZoom: 19,
       attribution: 'TINITALY/1.1 © INGV (CC BY 4.0), doi:10.13127/tinitaly/1.1' })
@@ -332,7 +338,7 @@
         Carta 1:100.000: © ISPRA – Servizio Geologico d'Italia; indicizzati quadro d'unione e schede del catalogo, le scansioni restano sul sito ISPRA.<br>
         Geologia 1:25.000 e 1:100.000: © ISPRA – Servizio Geologico d'Italia, servizi di visualizzazione WMS; le immagini e le informazioni al clic sono fornite direttamente da ISPRA.<br>
         Confini amministrativi: © ISTAT, licenza CC BY 4.0.<br>
-        Sfondi: © OpenStreetMap contributors (ODbL); OpenTopoMap (CC BY-SA); TINITALY/1.1 © INGV, Tarquini et al. 2023, doi:10.13127/tinitaly/1.1 (CC BY 4.0).<br>
+        Sfondi: © OpenStreetMap contributors (ODbL); OpenTopoMap (CC BY-SA); ortofoto AGEA 2022-2024 © AGEA (CC BY 4.0); TINITALY/1.1 © INGV, Tarquini et al. 2023, doi:10.13127/tinitaly/1.1 (CC BY 4.0).<br>
         Ricerca delle località: Nominatim, © OpenStreetMap contributors.<br>
         Journal of Maps: indicizzati solo i metadati bibliografici; gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.<br>
         Codice: licenza MIT.</p>

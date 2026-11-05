@@ -4,75 +4,6 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Morphotectonic map of the Osento River basin (Abruzzo, Italy), scale 1:30,000",
-    "DOI": "10.1080/17445647.2012.668764",
-    "URL": "https://doi.org/10.1080/17445647.2012.668764",
-    "Location": "Abruzzo",
-    "Type": "Research Map",
-    "Anno": 2012,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Abruzzo\n**Anno:** 2012\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2012.668764|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     13.8548,
-     42.2274
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geomorphological map of the Montelago area (North Marche Apennines, central Italy): constrains for two relict lakes",
-    "DOI": "10.1080/17445647.2012.668771",
-    "URL": "https://doi.org/10.1080/17445647.2012.668771",
-    "Location": "Marche",
-    "Type": "Research Map",
-    "Anno": 2012,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Marche\n**Anno:** 2012\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2012.668771|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     13.1421,
-     43.3452
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Landslide inventory map for the Briga and the Giampilieri catchments, NE Sicily, Italy",
-    "DOI": "10.1080/17445647.2012.694271",
-    "URL": "https://doi.org/10.1080/17445647.2012.694271",
-    "Location": "Sicilia",
-    "Type": "Research Map",
-    "Anno": 2012,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sicilia\n**Anno:** 2012\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2012.694271|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     14.1552,
-     37.5878
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "Environmental climatic maps of Liguria (Italy)",
     "DOI": "10.1080/17445647.2012.703901",
     "URL": "https://doi.org/10.1080/17445647.2012.703901",
@@ -90,29 +21,6 @@
     "coordinates": [
      8.7043,
      44.2648
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geological map of the northeastern sector of the high Agri Valley, Southern Apennines (Basilicata, Italy)",
-    "DOI": "10.1080/17445647.2012.722403",
-    "URL": "https://doi.org/10.1080/17445647.2012.722403",
-    "Location": "Basilicata",
-    "Type": "Research Map",
-    "Anno": 2012,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Basilicata\n**Anno:** 2012\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2012.722403|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.0817,
-     40.4998
     ]
    }
   },
@@ -168,20 +76,20 @@
     "Title": "Morphotectonic map of the Aventino-Lower Sangro valley (Abruzzo, Italy), scale 1:50,000",
     "DOI": "10.1080/17445647.2013.799050",
     "URL": "https://doi.org/10.1080/17445647.2013.799050",
-    "Location": "Abruzzo",
+    "Location": "Valle Aventino–basso Sangro",
     "Type": "Research Map",
     "Anno": 2013,
     "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Abruzzo\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2013.799050|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Valle Aventino–basso Sangro\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2013.799050|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     13.8548,
-     42.2274
+     14.3821,
+     42.1003
     ]
    }
   },
@@ -214,20 +122,20 @@
     "Title": "Denudation processes and landforms map of the Camastra River catchment (Basilicata – South Italy)",
     "DOI": "10.1080/17445647.2013.804797",
     "URL": "https://doi.org/10.1080/17445647.2013.804797",
-    "Location": "Basilicata",
+    "Location": "Bacino del Camastra",
     "Type": "Research Map",
     "Anno": 2013,
     "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Basilicata\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2013.804797|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Bacino del Camastra\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2013.804797|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     16.0817,
-     40.4998
+     15.8902,
+     40.5161
     ]
    }
   },
@@ -260,14 +168,14 @@
     "Title": "Landslide inventory map of north-eastern Calabria (South Italy)",
     "DOI": "10.1080/17445647.2013.852142",
     "URL": "https://doi.org/10.1080/17445647.2013.852142",
-    "Location": "Calabria",
+    "Location": "Calabria nord-orientale",
     "Type": "Research Map",
     "Anno": 2013,
     "Licenza": "Non indicata in Crossref",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2013.852142|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Calabria nord-orientale\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2013.852142|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -306,66 +214,20 @@
     "Title": "The marine and alluvial terraces of Tavoliere di Puglia plain(southern Italy)",
     "DOI": "10.1080/17445647.2013.861366",
     "URL": "https://doi.org/10.1080/17445647.2013.861366",
-    "Location": "Puglia",
+    "Location": "Tavoliere di Puglia",
     "Type": "Research Map",
     "Anno": 2013,
     "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Puglia\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2013.861366|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Tavoliere di Puglia\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2013.861366|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     16.6197,
-     40.9843
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Tectonic-geomorphological map of the middle Aterno River valley (Abruzzo, Central Italy)",
-    "DOI": "10.1080/17445647.2013.867545",
-    "URL": "https://doi.org/10.1080/17445647.2013.867545",
-    "Location": "Abruzzo",
-    "Type": "Research Map",
-    "Anno": 2013,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Abruzzo\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2013.867545|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     13.8548,
-     42.2274
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geomorphology of the Rotolon landslide (Veneto Region, Italy)",
-    "DOI": "10.1080/17445647.2013.869666",
-    "URL": "https://doi.org/10.1080/17445647.2013.869666",
-    "Location": "Veneto",
-    "Type": "Research Map",
-    "Anno": 2013,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Veneto\n**Anno:** 2013\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2013.869666|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     11.8558,
-     45.648
+     15.5607,
+     41.5378
     ]
    }
   },
@@ -375,14 +237,14 @@
     "Title": "Little Ice Age and contemporary glacier extent in the Western and South-Western Piedmont Alps (North-Western Italy)",
     "DOI": "10.1080/17445647.2014.880226",
     "URL": "https://doi.org/10.1080/17445647.2014.880226",
-    "Location": "Piemonte",
+    "Location": "Alpi piemontesi occidentali e sud-occidentali",
     "Type": "Research Map",
     "Anno": 2014,
     "Licenza": "Non indicata in Crossref",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Piemonte\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.880226|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Alpi piemontesi occidentali e sud-occidentali\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2014.880226|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -421,20 +283,20 @@
     "Title": "Geology of the middle and upper Pleistocene marine and continental terraces of the northern Tavoliere di Puglia plain (Apulia, southern Italy)",
     "DOI": "10.1080/17445647.2014.895436",
     "URL": "https://doi.org/10.1080/17445647.2014.895436",
-    "Location": "Puglia",
+    "Location": "Tavoliere settentrionale",
     "Type": "Research Map",
     "Anno": 2014,
     "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Puglia\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.895436|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Tavoliere settentrionale\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2014.895436|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     16.6197,
-     40.9843
+     15.5607,
+     41.5378
     ]
    }
   },
@@ -487,75 +349,6 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Mass movements inventory map of the Rubbio stream catchment (Basilicata – South Italy)",
-    "DOI": "10.1080/17445647.2014.924038",
-    "URL": "https://doi.org/10.1080/17445647.2014.924038",
-    "Location": "Basilicata",
-    "Type": "Research Map",
-    "Anno": 2014,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Basilicata\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.924038|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.0817,
-     40.4998
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geological Map of the Monte Grighini Variscan Complex (Sardinia, Italy)",
-    "DOI": "10.1080/17445647.2014.924441",
-    "URL": "https://doi.org/10.1080/17445647.2014.924441",
-    "Location": "Sardegna",
-    "Type": "Research Map",
-    "Anno": 2014,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.924441|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     9.0328,
-     40.0849
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Weathering grade and geotectonics of the western-central Mucone River basin (Calabria, Italy)",
-    "DOI": "10.1080/17445647.2014.933719",
-    "URL": "https://doi.org/10.1080/17445647.2014.933719",
-    "Location": "Calabria",
-    "Type": "Research Map",
-    "Anno": 2014,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.933719|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.3475,
-     39.0676
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "Contour map of the top of the regional geothermal reservoir of Sicily (Italy)",
     "DOI": "10.1080/17445647.2014.935503",
     "URL": "https://doi.org/10.1080/17445647.2014.935503",
@@ -582,43 +375,20 @@
     "Title": "Structural map of Variscan northern Sardinia (Italy)",
     "DOI": "10.1080/17445647.2014.936914",
     "URL": "https://doi.org/10.1080/17445647.2014.936914",
-    "Location": "Sardegna",
+    "Location": "Sardegna settentrionale",
     "Type": "Research Map",
     "Anno": 2014,
     "Licenza": "Non indicata in Crossref",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.936914|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Sardegna settentrionale\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2014.936914|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
      9.0328,
      40.0849
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geological map of the Tellaro River Valley (Hyblean Foreland, southeastern Sicily, Italy)",
-    "DOI": "10.1080/17445647.2014.944878",
-    "URL": "https://doi.org/10.1080/17445647.2014.944878",
-    "Location": "Sicilia",
-    "Type": "Research Map",
-    "Anno": 2014,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sicilia\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.944878|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     14.1552,
-     37.5878
     ]
    }
   },
@@ -674,66 +444,20 @@
     "Title": "Petro-structural geology of the Eastern Aspromonte Massif crystalline basement (southern Italy-Calabria): an example of interoperable geo-data management from thin section – to field scale",
     "DOI": "10.1080/17445647.2014.948939",
     "URL": "https://doi.org/10.1080/17445647.2014.948939",
-    "Location": "Calabria",
+    "Location": "Aspromonte orientale",
     "Type": "Research Map",
     "Anno": 2014,
     "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.948939|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Aspromonte orientale\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2014.948939|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     16.3475,
-     39.0676
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Near-surface deposits and hillslope evolution of the Adriatic piedmont of the Central Apennines (Feltrino Stream basin and minor coastal basins, Abruzzo, Italy)",
-    "DOI": "10.1080/17445647.2014.949884",
-    "URL": "https://doi.org/10.1080/17445647.2014.949884",
-    "Location": "Abruzzo",
-    "Type": "Research Map",
-    "Anno": 2014,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Abruzzo\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.949884|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     13.8548,
-     42.2274
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Rockfall runout, Mount Cimone area, Emilia-Romagna Region, Italy",
-    "DOI": "10.1080/17445647.2014.956154",
-    "URL": "https://doi.org/10.1080/17445647.2014.956154",
-    "Location": "Emilia-Romagna",
-    "Type": "Research Map",
-    "Anno": 2014,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Emilia-Romagna\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.956154|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     11.0419,
-     44.5234
+     16.0319,
+     38.239
     ]
    }
   },
@@ -743,20 +467,20 @@
     "Title": "Tectono-metamorphic map of the south-western flank of the Aspromonte Massif (southern Calabria -Italy)",
     "DOI": "10.1080/17445647.2014.962634",
     "URL": "https://doi.org/10.1080/17445647.2014.962634",
-    "Location": "Calabria",
+    "Location": "Aspromonte sud-occidentale",
     "Type": "Research Map",
     "Anno": 2014,
     "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.962634|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Aspromonte sud-occidentale\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2014.962634|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     16.3475,
-     39.0676
+     16.0319,
+     38.239
     ]
    }
   },
@@ -766,14 +490,14 @@
     "Title": "Quantitative assessment of the sensitivity to desertification in the Bradano River basin (Basilicata, southern Italy)",
     "DOI": "10.1080/17445647.2014.980857",
     "URL": "https://doi.org/10.1080/17445647.2014.980857",
-    "Location": "Basilicata",
+    "Location": "Bacino del Bradano",
     "Type": "Research Map",
     "Anno": 2014,
     "Licenza": "Non indicata in Crossref",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Basilicata\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.980857|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Bacino del Bradano\n**Anno:** 2014\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2014.980857|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -812,14 +536,14 @@
     "Title": "Evolution of the Gelasian (Pleistocene) slope turbidite systems of southern Marche (Peri-Adriatic basin, central Italy)",
     "DOI": "10.1080/17445647.2014.995724",
     "URL": "https://doi.org/10.1080/17445647.2014.995724",
-    "Location": "Marche",
+    "Location": "Marche meridionali",
     "Type": "Research Map",
     "Anno": 2015,
     "Licenza": "Non indicata in Crossref",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Marche\n**Anno:** 2015\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2014.995724|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Marche meridionali\n**Anno:** 2015\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2014.995724|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -901,29 +625,6 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Soil loss assessment in the Turbolo catchment (Calabria, Italy)",
-    "DOI": "10.1080/17445647.2015.1077168",
-    "URL": "https://doi.org/10.1080/17445647.2015.1077168",
-    "Location": "Calabria",
-    "Type": "Research Map",
-    "Anno": 2015,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2015\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2015.1077168|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.3475,
-     39.0676
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "The geological map of Sardinia (Italy) at 1:250,000 scale",
     "DOI": "10.1080/17445647.2015.1084544",
     "URL": "https://doi.org/10.1080/17445647.2015.1084544",
@@ -950,43 +651,20 @@
     "Title": "Regional-scale landslide inventory, central-western sector of the Basilicata region (Southern Apennines, Italy)",
     "DOI": "10.1080/17445647.2015.1091749",
     "URL": "https://doi.org/10.1080/17445647.2015.1091749",
-    "Location": "Basilicata",
+    "Location": "Basilicata centro-occidentale",
     "Type": "Research Map",
     "Anno": 2015,
     "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Basilicata\n**Anno:** 2015\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2015.1091749|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Basilicata centro-occidentale\n**Anno:** 2015\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2015.1091749|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     16.0817,
-     40.4998
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Structural and metallogenic map of late Variscan Arbus Pluton (SW Sardinia, Italy)",
-    "DOI": "10.1080/17445647.2015.1091750",
-    "URL": "https://doi.org/10.1080/17445647.2015.1091750",
-    "Location": "Sardegna",
-    "Type": "Research Map",
-    "Anno": 2015,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2015\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2015.1091750|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     9.0328,
-     40.0849
+     15.8902,
+     40.5161
     ]
    }
   },
@@ -1016,52 +694,6 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Thickness of pyroclastic cover beds: the case study of Mount Albino (Campania region, southern Italy)",
-    "DOI": "10.1080/17445647.2016.1158668",
-    "URL": "https://doi.org/10.1080/17445647.2016.1158668",
-    "Location": "Campania",
-    "Type": "Research Map",
-    "Anno": 2016,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Campania\n**Anno:** 2016\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2016.1158668|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     14.8441,
-     40.8605
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Landslide-risk scenario of the Costa Viola mountain ridge (Calabria, Southern Italy)",
-    "DOI": "10.1080/17445647.2016.1195300",
-    "URL": "https://doi.org/10.1080/17445647.2016.1195300",
-    "Location": "Calabria",
-    "Type": "Research Map",
-    "Anno": 2016,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2016\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2016.1195300|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.3475,
-     39.0676
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "Landslide susceptibility of the Prato–Pistoia–Lucca provinces, Tuscany, Italy",
     "DOI": "10.1080/17445647.2016.1233463",
     "URL": "https://doi.org/10.1080/17445647.2016.1233463",
@@ -1079,52 +711,6 @@
     "coordinates": [
      11.1359,
      43.4596
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geology of the Northern Simbruini Mts. (Abruzzo – Italy)",
-    "DOI": "10.1080/17445647.2016.1237899",
-    "URL": "https://doi.org/10.1080/17445647.2016.1237899",
-    "Location": "Abruzzo",
-    "Type": "Research Map",
-    "Anno": 2016,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Abruzzo\n**Anno:** 2016\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2016.1237899|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     13.8548,
-     42.2274
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Organic carbon and total nitrogen topsoil stocks, biogenetic natural reserve ‘Marchesale’ (Calabria region, southern Italy)",
-    "DOI": "10.1080/17445647.2016.1262795",
-    "URL": "https://doi.org/10.1080/17445647.2016.1262795",
-    "Location": "Calabria",
-    "Type": "Research Map",
-    "Anno": 2016,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2016\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2016.1262795|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.3475,
-     39.0676
     ]
    }
   },
@@ -1154,69 +740,23 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Tectonics, ore bodies, and gamma-ray logging of the Variscan basement, southern Gennargentu massif (central Sardinia, Italy)",
-    "DOI": "10.1080/17445647.2017.1287601",
-    "URL": "https://doi.org/10.1080/17445647.2017.1287601",
-    "Location": "Sardegna",
-    "Type": "Research Map",
-    "Anno": 2017,
-    "Licenza": "CC BY-NC-ND 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2017\n**Licenza:** CC BY-NC-ND 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2017.1287601|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     9.0328,
-     40.0849
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "Geology of the ‘Coltre della Val Marecchia’ (Romagna-Marche Northern Apennines, Italy)",
     "DOI": "10.1080/17445647.2017.1290555",
     "URL": "https://doi.org/10.1080/17445647.2017.1290555",
-    "Location": "Marche",
+    "Location": "Val Marecchia",
     "Type": "Research Map",
     "Anno": 2017,
     "Licenza": "CC BY-NC-ND 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Marche\n**Anno:** 2017\n**Licenza:** CC BY-NC-ND 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2017.1290555|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Val Marecchia\n**Anno:** 2017\n**Licenza:** CC BY-NC-ND 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2017.1290555|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     13.1421,
-     43.3452
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Natura 2000 protected habitats, Massaciuccoli Lake (northern Tuscany, Italy)",
-    "DOI": "10.1080/17445647.2017.1290557",
-    "URL": "https://doi.org/10.1080/17445647.2017.1290557",
-    "Location": "Toscana",
-    "Type": "Research Map",
-    "Anno": 2017,
-    "Licenza": "CC BY-NC-ND 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Toscana\n**Anno:** 2017\n**Licenza:** CC BY-NC-ND 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2017.1290557|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     11.1359,
-     43.4596
+     12.4359,
+     43.9248
     ]
    }
   },
@@ -1315,17 +855,40 @@
   {
    "type": "Feature",
    "properties": {
+    "Title": "Impact of massive deep-seated rock slope failures on mountain valley morphology in the northern Cottian Alps (NW Italy)",
+    "DOI": "10.1080/17445647.2017.1342211",
+    "URL": "https://doi.org/10.1080/17445647.2017.1342211",
+    "Location": "Valli di Susa e Chisone",
+    "Type": "Research Map",
+    "Anno": 2017,
+    "Licenza": "CC BY 4.0",
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Valli di Susa e Chisone\n**Anno:** 2017\n**Licenza:** CC BY 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2017.1342211|Articolo (DOI)]]"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.439,
+     45.1447
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
     "Title": "Geomorphic effects caused by heavy rainfall in southern Calabria (Italy) on 30 October–1 November 2015",
     "DOI": "10.1080/17445647.2017.1390499",
     "URL": "https://doi.org/10.1080/17445647.2017.1390499",
-    "Location": "Calabria",
+    "Location": "Calabria meridionale",
     "Type": "Research Map",
     "Anno": 2017,
     "Licenza": "CC BY 4.0",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2017\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2017.1390499|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Calabria meridionale\n**Anno:** 2017\n**Licenza:** CC BY 4.0\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2017.1390499|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -1361,75 +924,6 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Geology of the San Colombano hill, a Quaternary isolated tectonic relief in the Po Plain of Lombardy (Northern Italy)",
-    "DOI": "10.1080/17445647.2018.1443166",
-    "URL": "https://doi.org/10.1080/17445647.2018.1443166",
-    "Location": "Lombardia",
-    "Type": "Research Map",
-    "Anno": 2018,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Lombardia\n**Anno:** 2018\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2018.1443166|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     9.7691,
-     45.6206
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Spatial evolution of the December 2013 Metaponto plain (Basilicata, Italy) flood event using multi-source and high-resolution remotely sensed data",
-    "DOI": "10.1080/17445647.2018.1454349",
-    "URL": "https://doi.org/10.1080/17445647.2018.1454349",
-    "Location": "Basilicata",
-    "Type": "Research Map",
-    "Anno": 2018,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Basilicata\n**Anno:** 2018\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2018.1454349|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.0817,
-     40.4998
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "The interplay of structural pathway and weathering intensity in forming mass-wasting processes in deeply weathered gneissic rocks (Sila Massif, Calabria, Italy)",
-    "DOI": "10.1080/17445647.2018.1456489",
-    "URL": "https://doi.org/10.1080/17445647.2018.1456489",
-    "Location": "Calabria",
-    "Type": "Research Map",
-    "Anno": 2018,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2018\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2018.1456489|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.3475,
-     39.0676
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "Landslide inventory of the Basilicata region (Southern Italy)",
     "DOI": "10.1080/17445647.2018.1475309",
     "URL": "https://doi.org/10.1080/17445647.2018.1475309",
@@ -1447,75 +941,6 @@
     "coordinates": [
      16.0817,
      40.4998
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geology and tectonic setting of the Fornovolasco area, Alpi Apuane (Tuscany, Italy)",
-    "DOI": "10.1080/17445647.2018.1476985",
-    "URL": "https://doi.org/10.1080/17445647.2018.1476985",
-    "Location": "Toscana",
-    "Type": "Research Map",
-    "Anno": 2018,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Toscana\n**Anno:** 2018\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2018.1476985|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     11.1359,
-     43.4596
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Marine benthic forms of the Marine Protected Area Capo Caccia-Isola Piana (Sardinia, Italy)",
-    "DOI": "10.1080/17445647.2018.1486242",
-    "URL": "https://doi.org/10.1080/17445647.2018.1486242",
-    "Location": "Sardegna",
-    "Type": "Research Map",
-    "Anno": 2018,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2018\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2018.1486242|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     9.0328,
-     40.0849
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Natura 2000 habitat of Mt. Argentario promontory (southern Tuscany, Italy)",
-    "DOI": "10.1080/17445647.2018.1489903",
-    "URL": "https://doi.org/10.1080/17445647.2018.1489903",
-    "Location": "Toscana",
-    "Type": "Research Map",
-    "Anno": 2018,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Toscana\n**Anno:** 2018\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2018.1489903|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     11.1359,
-     43.4596
     ]
    }
   },
@@ -1545,92 +970,23 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Landslide inventory and main geomorphological features affecting slope stability in the Picentino river basin (Campania, southern Italy)",
-    "DOI": "10.1080/17445647.2018.1563836",
-    "URL": "https://doi.org/10.1080/17445647.2018.1563836",
-    "Location": "Campania",
-    "Type": "Research Map",
-    "Anno": 2019,
-    "Licenza": "CC BY-NC 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Campania\n**Anno:** 2019\n**Licenza:** CC BY-NC 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2018.1563836|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     14.8441,
-     40.8605
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Shallow landslide susceptibility, Rupinaro catchment, Liguria (northwestern Italy)",
-    "DOI": "10.1080/17445647.2019.1593252",
-    "URL": "https://doi.org/10.1080/17445647.2019.1593252",
-    "Location": "Liguria",
-    "Type": "Research Map",
-    "Anno": 2019,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Liguria\n**Anno:** 2019\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2019.1593252|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     8.7043,
-     44.2648
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "Phytoavailable phosphorus (P2O5) and potassium (K2O) in topsoil for apple orchards and vineyards, South Tyrol, Italy",
     "DOI": "10.1080/17445647.2019.1633962",
     "URL": "https://doi.org/10.1080/17445647.2019.1633962",
-    "Location": "Trentino-Alto Adige",
+    "Location": "Alto Adige",
     "Type": "Research Map",
     "Anno": 2019,
     "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Trentino-Alto Adige\n**Anno:** 2019\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2019.1633962|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Alto Adige\n**Anno:** 2019\n**Licenza:** CC BY 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2019.1633962|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     11.2821,
-     46.4415
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Shallow geophysics of the Asinara Island Marine Reserve Area (NW Sardinia, Italy)",
-    "DOI": "10.1080/17445647.2019.1669498",
-    "URL": "https://doi.org/10.1080/17445647.2019.1669498",
-    "Location": "Sardegna",
-    "Type": "Research Map",
-    "Anno": 2019,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2019\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2019.1669498|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     9.0328,
-     40.0849
+     11.4161,
+     46.6962
     ]
    }
   },
@@ -1660,69 +1016,23 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Surface ruptures following the 26 December 2018, Mw 4.9, Mt. Etna earthquake, Sicily (Italy)",
-    "DOI": "10.1080/17445647.2019.1683476",
-    "URL": "https://doi.org/10.1080/17445647.2019.1683476",
-    "Location": "Sicilia",
-    "Type": "Research Map",
-    "Anno": 2019,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sicilia\n**Anno:** 2019\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2019.1683476|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     14.1552,
-     37.5878
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "Litho-sedimentological and morphodynamic characterization of the Pisa Province coastal area (northern Tuscany, Italy)",
     "DOI": "10.1080/17445647.2019.1700836",
     "URL": "https://doi.org/10.1080/17445647.2019.1700836",
-    "Location": "Provincia di Pisa",
+    "Location": "Costa della provincia di Pisa",
     "Type": "Research Map",
     "Anno": 2019,
     "Licenza": "CC BY-NC 4.0",
     "Precisione": "Provincia",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Provincia di Pisa\n**Anno:** 2019\n**Licenza:** CC BY-NC 4.0\n**Posizione:** localizzazione da completare (provincia citata nel titolo)\n[[https://doi.org/10.1080/17445647.2019.1700836|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Costa della provincia di Pisa\n**Anno:** 2019\n**Licenza:** CC BY-NC 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2019.1700836|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
      10.6669,
      43.5022
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geological and geomorphological analysis of a complex landslides system: the case of San Martino sulla Marruccina (Abruzzo, Central Italy)",
-    "DOI": "10.1080/17445647.2019.1702596",
-    "URL": "https://doi.org/10.1080/17445647.2019.1702596",
-    "Location": "Abruzzo",
-    "Type": "Research Map",
-    "Anno": 2019,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Abruzzo\n**Anno:** 2019\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2019.1702596|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     13.8548,
-     42.2274
     ]
    }
   },
@@ -1755,66 +1065,20 @@
     "Title": "Hydrogeology of the western Po plain (Piedmont, NW Italy)",
     "DOI": "10.1080/17445647.2020.1738280",
     "URL": "https://doi.org/10.1080/17445647.2020.1738280",
-    "Location": "Piemonte",
+    "Location": "Pianura piemontese occidentale",
     "Type": "Research Map",
     "Anno": 2020,
     "Licenza": "CC BY 4.0",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Piemonte\n**Anno:** 2020\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2020.1738280|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Pianura piemontese occidentale\n**Anno:** 2020\n**Licenza:** CC BY 4.0\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2020.1738280|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
      7.9231,
      45.0606
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "The relation of spatio-temporal distribution of landslides to urban development (a case study from the Apulia region, Southern Italy)",
-    "DOI": "10.1080/17445647.2020.1746417",
-    "URL": "https://doi.org/10.1080/17445647.2020.1746417",
-    "Location": "Puglia",
-    "Type": "Research Map",
-    "Anno": 2020,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Puglia\n**Anno:** 2020\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2020.1746417|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.6197,
-     40.9843
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geomorphological and structural characterization of the ‘Canale di Pirro’ polje, Apulia (Southern Italy)",
-    "DOI": "10.1080/17445647.2020.1778550",
-    "URL": "https://doi.org/10.1080/17445647.2020.1778550",
-    "Location": "Puglia",
-    "Type": "Research Map",
-    "Anno": 2020,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Puglia\n**Anno:** 2020\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2020.1778550|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.6197,
-     40.9843
     ]
    }
   },
@@ -1875,61 +1139,15 @@
     "Anno": 2020,
     "Licenza": "Non indicata in Crossref",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Valle d'Aosta\n**Anno:** 2020\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2020.1821803|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Valle d'Aosta\n**Anno:** 2020\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2020.1821803|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
      7.3872,
      45.7302
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Rockfall hazards of Mount Pellegrino area (Sicily, Southern Italy)",
-    "DOI": "10.1080/17445647.2020.1824826",
-    "URL": "https://doi.org/10.1080/17445647.2020.1824826",
-    "Location": "Sicilia",
-    "Type": "Research Map",
-    "Anno": 2020,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sicilia\n**Anno:** 2020\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2020.1824826|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     14.1552,
-     37.5878
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geomorphological evidence of debris flows and landslides in the Pescara del Tronto area (Sibillini Mts, Marche Region, Central Italy)",
-    "DOI": "10.1080/17445647.2020.1827055",
-    "URL": "https://doi.org/10.1080/17445647.2020.1827055",
-    "Location": "Marche",
-    "Type": "Research Map",
-    "Anno": 2020,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Marche\n**Anno:** 2020\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2020.1827055|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     13.1421,
-     43.3452
     ]
    }
   },
@@ -1967,38 +1185,15 @@
     "Anno": 2020,
     "Licenza": "CC BY 4.0",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Valle d'Aosta\n**Anno:** 2020\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2020.1850534|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Valle d'Aosta\n**Anno:** 2020\n**Licenza:** CC BY 4.0\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2020.1850534|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
      7.3872,
      45.7302
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Anthropogenic landforms and geo-hydrological hazards of the Bisagno Stream catchment (Liguria, Italy)",
-    "DOI": "10.1080/17445647.2020.1866704",
-    "URL": "https://doi.org/10.1080/17445647.2020.1866704",
-    "Location": "Liguria",
-    "Type": "Research Map",
-    "Anno": 2021,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Liguria\n**Anno:** 2021\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2020.1866704|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     8.7043,
-     44.2648
     ]
    }
   },
@@ -2028,46 +1223,23 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Geology of the southern Gran Paradiso Massif and Lower Piedmont Zone contact area (middle Ala Valley, Western Alps, Italy)",
-    "DOI": "10.1080/17445647.2021.1911869",
-    "URL": "https://doi.org/10.1080/17445647.2021.1911869",
-    "Location": "Piemonte",
-    "Type": "Research Map",
-    "Anno": 2021,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Piemonte\n**Anno:** 2021\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2021.1911869|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     7.9231,
-     45.0606
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "Forest accessibility, Madonie mountains (northern Sicily, Italy): implementing a GIS decision support system",
     "DOI": "10.1080/17445647.2021.1962751",
     "URL": "https://doi.org/10.1080/17445647.2021.1962751",
-    "Location": "Sicilia",
+    "Location": "Madonie",
     "Type": "Research Map",
     "Anno": 2021,
     "Licenza": "CC BY-NC 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sicilia\n**Anno:** 2021\n**Licenza:** CC BY-NC 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2021.1962751|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Madonie\n**Anno:** 2021\n**Licenza:** CC BY-NC 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2021.1962751|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     14.1552,
-     37.5878
+     13.5906,
+     37.8672
     ]
    }
   },
@@ -2077,20 +1249,20 @@
     "Title": "Geology of late-Variscan Sàrrabus pluton (south-eastern Sardinia, Italy)",
     "DOI": "10.1080/17445647.2021.1982032",
     "URL": "https://doi.org/10.1080/17445647.2021.1982032",
-    "Location": "Sardegna",
+    "Location": "Plutone del Sàrrabus",
     "Type": "Research Map",
     "Anno": 2021,
     "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2021\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2021.1982032|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Plutone del Sàrrabus\n**Anno:** 2021\n**Licenza:** CC BY 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2021.1982032|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     9.0328,
-     40.0849
+     9.1881,
+     39.3998
     ]
    }
   },
@@ -2100,37 +1272,14 @@
     "Title": "Landscape and geology as controls on Bronze Age human dispersal: a case study from Sardinia (Italy)",
     "DOI": "10.1080/17445647.2021.1999339",
     "URL": "https://doi.org/10.1080/17445647.2021.1999339",
-    "Location": "Sardegna",
+    "Location": "Sardegna sud-occidentale",
     "Type": "Research Map",
     "Anno": 2022,
     "Licenza": "CC BY 4.0",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2022\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2021.1999339|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     9.0328,
-     40.0849
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Sea Floor of the Marine Protected Area of the Asinara Island (Sardinia, Italy)",
-    "DOI": "10.1080/17445647.2022.2052765",
-    "URL": "https://doi.org/10.1080/17445647.2022.2052765",
-    "Location": "Sardegna",
-    "Type": "Research Map",
-    "Anno": 2022,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2022\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2022.2052765|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Sardegna sud-occidentale\n**Anno:** 2022\n**Licenza:** CC BY 4.0\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2021.1999339|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -2215,14 +1364,14 @@
     "Title": "From floor to roof of a batholith: geology and petrography of the north-eastern Serre Batholith (Calabria, southern Italy)",
     "DOI": "10.1080/17445647.2022.2149358",
     "URL": "https://doi.org/10.1080/17445647.2022.2149358",
-    "Location": "Calabria",
+    "Location": "Batolite delle Serre, settore nord-orientale",
     "Type": "Research Map",
     "Anno": 2022,
     "Licenza": "CC BY 4.0",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2022\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2022.2149358|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Batolite delle Serre, settore nord-orientale\n**Anno:** 2022\n**Licenza:** CC BY 4.0\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2022.2149358|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -2238,14 +1387,14 @@
     "Title": "Plio-Quaternary coastal landscape evolution of north-western Sicily (Italy)",
     "DOI": "10.1080/17445647.2022.2159889",
     "URL": "https://doi.org/10.1080/17445647.2022.2159889",
-    "Location": "Sicilia",
+    "Location": "Sicilia nord-occidentale costiera",
     "Type": "Research Map",
     "Anno": 2023,
     "Licenza": "CC BY 4.0",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sicilia\n**Anno:** 2023\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2022.2159889|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Sicilia nord-occidentale costiera\n**Anno:** 2023\n**Licenza:** CC BY 4.0\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2022.2159889|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -2275,29 +1424,6 @@
     "coordinates": [
      14.5953,
      41.6843
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Structure of a Variscan migmatite-granite transition zone (N Sardinia, Italy)",
-    "DOI": "10.1080/17445647.2023.2182721",
-    "URL": "https://doi.org/10.1080/17445647.2023.2182721",
-    "Location": "Sardegna",
-    "Type": "Research Map",
-    "Anno": 2023,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2023\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2023.2182721|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     9.0328,
-     40.0849
     ]
    }
   },
@@ -2353,20 +1479,20 @@
     "Title": "Geology of the lower Belice River valley, epicentral area of the M > 5 1968 seismic sequence (south-western Sicily, Italy)",
     "DOI": "10.1080/17445647.2023.2242725",
     "URL": "https://doi.org/10.1080/17445647.2023.2242725",
-    "Location": "Sicilia",
+    "Location": "Bassa valle del Belice",
     "Type": "Research Map",
     "Anno": 2023,
     "Licenza": "CC BY-NC 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sicilia\n**Anno:** 2023\n**Licenza:** CC BY-NC 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2023.2242725|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Bassa valle del Belice\n**Anno:** 2023\n**Licenza:** CC BY-NC 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2023.2242725|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     14.1552,
-     37.5878
+     12.7402,
+     37.8449
     ]
    }
   },
@@ -2376,20 +1502,20 @@
     "Title": "Holocene to near-future evolution of the southern Molise coast (Central Adriatic, Italy) under the influence of natural and anthropogenic controls",
     "DOI": "10.1080/17445647.2023.2243973",
     "URL": "https://doi.org/10.1080/17445647.2023.2243973",
-    "Location": "Molise",
+    "Location": "Costa molisana meridionale",
     "Type": "Research Map",
     "Anno": 2023,
     "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Molise\n**Anno:** 2023\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2023.2243973|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Costa molisana meridionale\n**Anno:** 2023\n**Licenza:** CC BY 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2023.2243973|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     14.5953,
-     41.6843
+     14.7766,
+     41.7025
     ]
    }
   },
@@ -2399,66 +1525,43 @@
     "Title": "Mapping and chronological classification of marine terraces along the southern side of the Sibari Plain (northern Calabria, Italy) by means of digital and analogue tools",
     "DOI": "10.1080/17445647.2023.2243983",
     "URL": "https://doi.org/10.1080/17445647.2023.2243983",
-    "Location": "Calabria",
+    "Location": "Piana di Sibari, lato meridionale",
     "Type": "Research Map",
     "Anno": 2023,
     "Licenza": "CC BY-NC 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2023\n**Licenza:** CC BY-NC 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2023.2243983|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Piana di Sibari, lato meridionale\n**Anno:** 2023\n**Licenza:** CC BY-NC 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2023.2243983|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     16.3475,
-     39.0676
+     16.3226,
+     39.5648
     ]
    }
   },
   {
    "type": "Feature",
    "properties": {
-    "Title": "Geomorphology of the upper sector of the Roncovetro active landslide (Emilia-Romagna Region, Italy)",
-    "DOI": "10.1080/17445647.2023.2277898",
-    "URL": "https://doi.org/10.1080/17445647.2023.2277898",
-    "Location": "Emilia-Romagna",
-    "Type": "Research Map",
-    "Anno": 2023,
-    "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Emilia-Romagna\n**Anno:** 2023\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2023.2277898|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     11.0419,
-     44.5234
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geology of the Asinara Island (Sardinia, Italy)",
-    "DOI": "10.1080/17445647.2024.2317136",
-    "URL": "https://doi.org/10.1080/17445647.2024.2317136",
-    "Location": "Sardegna",
+    "Title": "Areas simultaneously susceptible and (dis-)connected to debris flows in the Dolomites (Italy): regional-scale application of a novel data-driven approach",
+    "DOI": "10.1080/17445647.2024.2307549",
+    "URL": "https://doi.org/10.1080/17445647.2024.2307549",
+    "Location": "Dolomiti altoatesine",
     "Type": "Research Map",
     "Anno": 2024,
     "Licenza": "CC BY-NC 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2024\n**Licenza:** CC BY-NC 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2024.2317136|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Dolomiti altoatesine\n**Anno:** 2024\n**Licenza:** CC BY-NC 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2024.2307549|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     9.0328,
-     40.0849
+     11.4161,
+     46.6962
     ]
    }
   },
@@ -2468,20 +1571,20 @@
     "Title": "Combining multi-source data to map vineyards in a specialized district of Basilicata (Southern Italy)",
     "DOI": "10.1080/17445647.2024.2327859",
     "URL": "https://doi.org/10.1080/17445647.2024.2327859",
-    "Location": "Basilicata",
+    "Location": "Vulture-Melfese",
     "Type": "Research Map",
     "Anno": 2024,
     "Licenza": "CC BY 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Basilicata\n**Anno:** 2024\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2024.2327859|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Vulture-Melfese\n**Anno:** 2024\n**Licenza:** CC BY 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2024.2327859|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     16.0817,
-     40.4998
+     15.8902,
+     40.5161
     ]
    }
   },
@@ -2491,20 +1594,43 @@
     "Title": "Hydrogeochemistry of the shallow aquifer in the western Po Plain (Piedmont, Italy): spatial and temporal variability",
     "DOI": "10.1080/17445647.2024.2329164",
     "URL": "https://doi.org/10.1080/17445647.2024.2329164",
-    "Location": "Piemonte",
+    "Location": "Pianura piemontese occidentale",
     "Type": "Research Map",
     "Anno": 2024,
     "Licenza": "CC BY-NC 4.0",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Piemonte\n**Anno:** 2024\n**Licenza:** CC BY-NC 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2024.2329164|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Pianura piemontese occidentale\n**Anno:** 2024\n**Licenza:** CC BY-NC 4.0\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2024.2329164|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
      7.9231,
      45.0606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Seismotectonics and landslides of the NE border of the Calabrian Arc (Southern Italy)",
+    "DOI": "10.1080/17445647.2024.2347901",
+    "URL": "https://doi.org/10.1080/17445647.2024.2347901",
+    "Location": "Arco Calabro, margine nord-orientale",
+    "Type": "Research Map",
+    "Anno": 2024,
+    "Licenza": "CC BY-NC 4.0",
+    "Precisione": "Regione",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Arco Calabro, margine nord-orientale\n**Anno:** 2024\n**Licenza:** CC BY-NC 4.0\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2024.2347901|Articolo (DOI)]]"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     16.3475,
+     39.0676
     ]
    }
   },
@@ -2534,40 +1660,17 @@
   {
    "type": "Feature",
    "properties": {
-    "Title": "Geology of the Pleistocene volcano of Monte Amiata (Southern Tuscany, Italy)",
-    "DOI": "10.1080/17445647.2024.2360749",
-    "URL": "https://doi.org/10.1080/17445647.2024.2360749",
-    "Location": "Toscana",
-    "Type": "Research Map",
-    "Anno": 2024,
-    "Licenza": "CC BY-NC 4.0",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Toscana\n**Anno:** 2024\n**Licenza:** CC BY-NC 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2024.2360749|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     11.1359,
-     43.4596
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "Title": "Geoheritage of the Sila National Park and surrounding areas (Northern Calabria, Italy)",
     "DOI": "10.1080/17445647.2024.2411787",
     "URL": "https://doi.org/10.1080/17445647.2024.2411787",
-    "Location": "Calabria",
+    "Location": "Sila",
     "Type": "Research Map",
     "Anno": 2024,
     "Licenza": "CC BY 4.0",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2024\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/17445647.2024.2411787|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Sila\n**Anno:** 2024\n**Licenza:** CC BY 4.0\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/17445647.2024.2411787|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -2606,14 +1709,14 @@
     "Title": "A physical geography approach to predict vineyard occurrence using statistical methods in the Taurasi DOCG Terroir (Avellino Province, southern Italy)",
     "DOI": "10.1080/17445647.2025.2525922",
     "URL": "https://doi.org/10.1080/17445647.2025.2525922",
-    "Location": "Provincia di Avellino",
+    "Location": "Terroir del Taurasi DOCG",
     "Type": "Research Map",
     "Anno": 2025,
     "Licenza": "CC BY 4.0",
     "Precisione": "Provincia",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Provincia di Avellino\n**Anno:** 2025\n**Licenza:** CC BY 4.0\n**Posizione:** localizzazione da completare (provincia citata nel titolo)\n[[https://doi.org/10.1080/17445647.2025.2525922|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Terroir del Taurasi DOCG\n**Anno:** 2025\n**Licenza:** CC BY 4.0\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.1080/17445647.2025.2525922|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
@@ -2652,43 +1755,20 @@
     "Title": "Climatic characteristics of middle-southern Apulia (southern Italy)",
     "DOI": "10.1080/jom.2007.9710849",
     "URL": "https://doi.org/10.1080/jom.2007.9710849",
-    "Location": "Puglia",
+    "Location": "Puglia centro-meridionale",
     "Type": "Research Map",
     "Anno": 2007,
     "Licenza": "Non indicata in Crossref",
     "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Puglia\n**Anno:** 2007\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.1080/jom.2007.9710849|Articolo (DOI)]]"
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Puglia centro-meridionale\n**Anno:** 2007\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera regione / area vasta\n[[https://doi.org/10.1080/jom.2007.9710849|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
      16.6197,
      40.9843
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "Geomorphological Map of the Ionian Area between the Trionto and Colognati River Catchments (Calabria, Italy)",
-    "DOI": "10.4113/jom.2009.1044",
-    "URL": "https://doi.org/10.4113/jom.2009.1044",
-    "Location": "Calabria",
-    "Type": "Research Map",
-    "Anno": 2009,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Calabria\n**Anno:** 2009\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.4113/jom.2009.1044|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     16.3475,
-     39.0676
     ]
    }
   },
@@ -2698,43 +1778,20 @@
     "Title": "Desertification Vulnerability Map of Tavoliere, Apulia (Southern Italy)",
     "DOI": "10.4113/jom.2009.1050",
     "URL": "https://doi.org/10.4113/jom.2009.1050",
-    "Location": "Puglia",
+    "Location": "Tavoliere",
     "Type": "Research Map",
     "Anno": 2009,
     "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Puglia\n**Anno:** 2009\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.4113/jom.2009.1050|Articolo (DOI)]]"
+    "Precisione": "Provincia",
+    "Fonte": "Crossref (metadati); localizzazione manuale (Geologiaintasca)",
+    "Ambito": "Regionale",
+    "Dettagli": "**Luogo:** Tavoliere\n**Anno:** 2009\n**Licenza:** Non indicata in Crossref\n**Area di studio:** intera provincia / area vasta\n[[https://doi.org/10.4113/jom.2009.1050|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     16.6197,
-     40.9843
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "Title": "The geological and metallogenic map of the Baccu Locci mine area (Sardinia, Italy)",
-    "DOI": "10.4113/jom.2011.1134",
-    "URL": "https://doi.org/10.4113/jom.2011.1134",
-    "Location": "Sardegna",
-    "Type": "Research Map",
-    "Anno": 2011,
-    "Licenza": "Non indicata in Crossref",
-    "Precisione": "Regione",
-    "Fonte": "Crossref (metadati); localizzazione automatica dal titolo, confini ISTAT",
-    "Ambito": "Da localizzare",
-    "Dettagli": "**Luogo:** Sardegna\n**Anno:** 2011\n**Licenza:** Non indicata in Crossref\n**Posizione:** localizzazione da completare (regione citata nel titolo)\n[[https://doi.org/10.4113/jom.2011.1134|Articolo (DOI)]]"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     9.0328,
-     40.0849
+     15.5607,
+     41.5378
     ]
    }
   },

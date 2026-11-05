@@ -37,11 +37,11 @@ jobs:
               return lon * 20037508.34 / 180, math.log(math.tan((90 + lat) * math.pi / 360)) * 20037508.34 / math.pi
           for lab, (lon, lat, half) in {"Italia z6": (12.5, 41.9, 6), "Gran Sasso z12": (13.55, 42.45, 0.08), "Gran Sasso z15": (13.55, 42.45, 0.01)}.items():
               x0, y0 = merc(lon - half, lat - half * 0.75); x1, y1 = merc(lon + half, lat + half * 0.75)
-              for ly in ["TINItaly_1_1:tinitaly_hillshade", "TINItaly_Hillshade", "tinitaly_hillshade"]:
+              for ly in ["tinitaly_hshd", "tinitaly_hsv", "tinitaly_slope"]:
                   q = urllib.parse.urlencode({"service": "WMS", "version": "1.3.0", "request": "GetMap", "layers": ly, "styles": "", "crs": "EPSG:3857",
                                               "bbox": f"{x0},{y0},{x1},{y1}", "width": 256, "height": 256, "format": "image/png", "transparent": "true"})
                   s, ct, b, t, _ = get("https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?" + q)
-                  print(f"GetMap {lab} {ly}: {s} {ct} {len(b)}B {t}s")
+                  print(f"GetMap {lab} {ly}: {s} {ct} {len(b)}B {t}s", b[:200] if b"xml" in (ct or "").encode() else "")
           s, ct, b, t, fu = get("https://tiles.maps.eox.at/wmts/1.0.0/WMTSCapabilities.xml")
           txt = b.decode("utf-8", "replace")
           i2 = txt.find("<ows:Identifier>s2cloudless_3857</ows:Identifier>")

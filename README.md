@@ -56,7 +56,7 @@ Due livelli di visualizzazione forniti dai servizi WMS del Servizio Geologico d'
 
 *Fonte: servizi `geo/SGI_ISPRA_Geologia25k` e `servizi/geologica100k` su sinacloud.isprambiente.it (ISPRA – Servizio Geologico d'Italia).*
 
-**Strumenti della mappa web:** tre sfondi (OpenStreetMap, OpenTopoMap con curve di livello, rilievo ombreggiato TINITALY dell'INGV), opacità regolabile per ciascun livello di geologia direttamente nel pannello dei livelli, barra di scala con rapporto numerico, ricerca delle località.
+**Strumenti della mappa web:** quattro sfondi (OpenStreetMap, OpenTopoMap con curve di livello, ortofoto AGEA 2022-2024 a 20 cm, rilievo ombreggiato TINITALY dell'INGV), opacità regolabile per ciascun livello di geologia direttamente nel pannello dei livelli, barra di scala con rapporto numerico, ricerca delle località.
 
 ### 5. Geoportali regionali
 Geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano.
@@ -127,7 +127,7 @@ Il repository è un **indice di collegamenti** a risorse esterne.
 * **Carta 1:100.000:** © ISPRA – Servizio Geologico d'Italia. Sono indicizzati quadro d'unione e schede del catalogo; le scansioni restano sul sito ISPRA.
 * **Geologia 1:25.000 e 1:100.000:** © ISPRA – Servizio Geologico d'Italia, servizi di visualizzazione WMS; immagini e informazioni al clic sono fornite direttamente da ISPRA.
 * **Confini amministrativi:** © ISTAT, licenza CC BY 4.0.
-* **Sfondi della mappa web:** © OpenStreetMap contributors (ODbL); OpenTopoMap (CC BY-SA); TINITALY/1.1 © INGV, Tarquini S., Isola I., Favalli M., Battistini A., Dotta G. (2023), [doi:10.13127/tinitaly/1.1](https://doi.org/10.13127/tinitaly/1.1) (CC BY 4.0).
+* **Sfondi della mappa web:** © OpenStreetMap contributors (ODbL); OpenTopoMap (CC BY-SA); ortofoto AGEA voli 2022, 2023 e 2024, © AGEA – Agenzia per le Erogazioni in Agricoltura, servizi WMTS del [GeoPortale AGEA](https://geoportale.agea.gov.it/) (CC BY 4.0); TINITALY/1.1 © INGV, Tarquini S., Isola I., Favalli M., Battistini A., Dotta G. (2023), [doi:10.13127/tinitaly/1.1](https://doi.org/10.13127/tinitaly/1.1) (CC BY 4.0).
 * **Ricerca delle località:** [Nominatim](https://nominatim.openstreetmap.org/), © OpenStreetMap contributors; una ricerca alla volta, come richiesto dalle regole d'uso del servizio.
 * **Journal of Maps:** sono indicizzati solo i metadati bibliografici. Gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.
 

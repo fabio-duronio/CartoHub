@@ -56,7 +56,9 @@
     .ricerca li.gruppo:hover, .ricerca li.meta:hover { text-decoration: none; }
     .ricerca { width: 300px; }
     .scala-num { padding: 2px 6px; margin-bottom: 2px !important; }
-    @media (max-width: 600px) { .testata { max-width: 220px; } .ricerca { width: 200px; } }
+    @media (max-width: 600px) { .testata { max-width: 220px; } .ricerca { width: 200px; }
+      /* su telefono l'attribuzione occupa tutta la larghezza in basso: la legenda sale sopra di lei */
+      .leaflet-bottom.leaflet-left { bottom: 48px; } }
   </style>
 </head>
 <body>

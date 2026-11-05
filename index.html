@@ -18,7 +18,15 @@
     .info { display: none; margin-top: 6px; border-top: 1px solid #ddd; padding-top: 6px; max-height: 50vh; overflow: auto; }
     .info.aperto { display: block; }
     .info p { color: #222; }
-    .legenda { padding: 6px 10px; line-height: 1.6; }
+    .legenda { padding: 6px 10px; line-height: 1.6; max-height: 60vh; overflow: auto; }
+    .titolo-legenda { font: inherit; font-weight: bold; background: none; border: 0; padding: 0; cursor: pointer; color: #222; }
+    .titolo-legenda::after { content: ' ▾'; color: #666; }
+    .titolo-legenda[aria-expanded="false"]::after { content: ' ▸'; }
+    .voci-legenda[hidden] { display: none; }
+    .etichetta-foglio { font: 600 11px/1 system-ui, sans-serif; color: #333; text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #fff; white-space: nowrap; pointer-events: none; }
+    .etichetta-foglio span { display: inline-block; transform: translate(-50%, -50%); }
+    .gps a { font-size: 16px; line-height: 30px; text-align: center; cursor: pointer; }
+    .gps a.attesa { opacity: .5; }
     .legenda i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -2px; border: 1px solid #555; }
     .avviso { padding: 4px 8px; display: none; }
     .avviso.attivo { display: block; }
@@ -48,7 +56,9 @@
     .ricerca li.gruppo:hover, .ricerca li.meta:hover { text-decoration: none; }
     .ricerca { width: 300px; }
     .scala-num { padding: 2px 6px; margin-bottom: 2px !important; }
-    @media (max-width: 600px) { .testata { max-width: 220px; } .legenda { display: none; } .ricerca { width: 200px; } }
+    @media (max-width: 600px) { .testata { max-width: 220px; } .ricerca { width: 200px; }
+      /* su telefono l'attribuzione occupa tutta la larghezza in basso: la legenda sale sopra di lei */
+      .leaflet-bottom.leaflet-left { bottom: 48px; } }
   </style>
 </head>
 <body>
@@ -56,6 +66,40 @@
 <script>
   const map = L.map('map', { zoomControl: false }).setView([41.9, 12.6], 6);
   L.control.zoom({ position: 'topright' }).addTo(map);
+
+  // ---------- Posizione attuale (GPS del dispositivo) ----------
+  const gps = L.control({ position: 'topright' });
+  let miaPosizione = null;
+  gps.onAdd = () => {
+    const d = L.DomUtil.create('div', 'leaflet-bar gps');
+    d.innerHTML = '<a href="#" role="button" title="Posizione attuale" aria-label="Posizione attuale">⌖</a>';
+    const a = d.querySelector('a');
+    a.onclick = ev => {
+      ev.preventDefault();
+      if (!navigator.geolocation) { alertaGps('Il dispositivo non fornisce la posizione.'); return; }
+      a.classList.add('attesa');
+      navigator.geolocation.getCurrentPosition(pos => {
+        a.classList.remove('attesa');
+        const ll = [pos.coords.latitude, pos.coords.longitude], acc = Math.round(pos.coords.accuracy);
+        if (miaPosizione) miaPosizione.remove();
+        miaPosizione = L.layerGroup([
+          L.circle(ll, { radius: acc, color: '#1565c0', weight: 1, fillOpacity: 0.1, interactive: false }),
+          L.circleMarker(ll, { radius: 6, color: '#fff', weight: 2, fillColor: '#1565c0', fillOpacity: 1 })
+            .bindTooltip(`Sei qui (precisione circa ${acc} m)`)
+        ]).addTo(map);
+        map.setView(ll, Math.max(map.getZoom(), 15));
+      }, err => {
+        a.classList.remove('attesa');
+        alertaGps(err.code === 1 ? 'Permesso di localizzazione negato.' : 'Posizione non disponibile.');
+      }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 });
+    };
+    L.DomEvent.disableClickPropagation(d);
+    return d;
+  };
+  gps.addTo(map);
+  function alertaGps(testo) {
+    L.popup().setLatLng(map.getCenter()).setContent(`<span class="meta">${testo}</span>`).openOn(map);
+  }
   // ---------- Sfondi (licenze nel pannello Informazioni e nel README) ----------
   const sfondi = {
     'OpenStreetMap': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -268,7 +312,22 @@
       if (l.punti) aggiungiPunti(l.layer, dati.features); else l.layer.addData(dati);
     })
     .catch(e => console.error('Impossibile caricare', l.file, e))))
-    .then(() => { riempiControllo(); stileCarg(); });
+    .then(() => { riempiControllo(); stileCarg(); aggiornaEtichette(); });
+
+  // Numeri dei fogli CARG al centro di ogni foglio, da zoom 9 e solo per i fogli visibili sullo schermo
+  const etichetteCarg = L.layerGroup().addTo(map);
+  function aggiornaEtichette() {
+    etichetteCarg.clearLayers();
+    const l = livelli[1];
+    if (!l.dati || !map.hasLayer(l.layer) || map.getZoom() < 9) return;
+    const vista = map.getBounds().pad(0.2);
+    l.dati.forEach(f => {
+      if (!f._centro) f._centro = L.geoJSON(f).getBounds().getCenter();
+      if (vista.contains(f._centro)) etichetteCarg.addLayer(L.marker(f._centro, { interactive: false, keyboard: false,
+        icon: L.divIcon({ className: 'etichetta-foglio', iconSize: null, html: `<span>${esc(f.properties.Foglio)}</span>` }) }));
+    });
+  }
+  map.on('zoomend moveend overlayadd overlayremove', aggiornaEtichette);
 
   // Con la geologia accesa i fogli CARG diventano quasi trasparenti, per non coprirne i colori
   function stileCarg() {
@@ -476,8 +535,9 @@
   const legenda = L.control({ position: 'bottomleft' });
   legenda.onAdd = () => {
     const d = L.DomUtil.create('div', 'riquadro legenda');
-    // Stesso ordine del pannello dei livelli
-    d.innerHTML = '<b>Carta 1:100.000</b><br><i style="background:#6d4c41;opacity:.35"></i>con copia digitale' +
+    // Richiudibile: aperta su schermi grandi, chiusa su telefono. Stesso ordine del pannello dei livelli.
+    d.innerHTML = '<button type="button" class="titolo-legenda" aria-expanded="true">Legenda</button><div class="voci-legenda">' +
+      '<b>Carta 1:100.000</b><br><i style="background:#6d4c41;opacity:.35"></i>con copia digitale' +
       '<br><i style="background:#6d4c41;opacity:.1"></i>senza copia digitale' +
       '<br><b>Fogli CARG (stato su CARG-GATE)</b><br>' +
       Object.entries(COLORI_CARG).map(([k, c]) => `<i style="background:${c};opacity:.75"></i>${k}`).join('<br>') +
@@ -485,7 +545,12 @@
       '<br><b>Geologia ISPRA</b><br><span class="meta">colori della carta ufficiale; clic per i dettagli</span>' +
       `<br><b>Journal of Maps</b><br><i style="background:${COLORE_JOM};border-radius:50%"></i>comune, provincia o coordinate` +
       `<br><i style="background:${COLORE_JOM};opacity:.5;border-radius:50%"></i>solo regione` +
-      `<br><i style="background:${COLORE_JOM};border-radius:50%;width:14px;height:14px;color:#fff;font:bold 9px/14px sans-serif;text-align:center;font-style:normal;vertical-align:-3px">3</i>più articoli nello stesso punto`;
+      `<br><i style="background:${COLORE_JOM};border-radius:50%;width:14px;height:14px;color:#fff;font:bold 9px/14px sans-serif;text-align:center;font-style:normal;vertical-align:-3px">3</i>più articoli nello stesso punto</div>`;
+    const tb = d.querySelector('.titolo-legenda'), voci = d.querySelector('.voci-legenda');
+    const apri = x => { voci.hidden = !x; tb.setAttribute('aria-expanded', x); };
+    apri(window.innerWidth > 600);
+    tb.onclick = () => apri(voci.hidden);
+    L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
     return d;
   };
   legenda.addTo(map);

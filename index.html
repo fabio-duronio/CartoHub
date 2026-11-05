@@ -43,6 +43,10 @@
     .ricerca ul { list-style: none; margin: 6px 0 0; padding: 0; max-height: 40vh; overflow: auto; }
     .ricerca li { padding: 3px 0; border-top: 1px solid #eee; cursor: pointer; color: #1a237e; }
     .ricerca li:hover { text-decoration: underline; }
+    .ricerca li.gruppo, .ricerca li.meta { cursor: default; color: #666; }
+    .ricerca li.gruppo { font-size: 10px; text-transform: uppercase; letter-spacing: .03em; padding-top: 6px; border-top: 0; }
+    .ricerca li.gruppo:hover, .ricerca li.meta:hover { text-decoration: none; }
+    .ricerca { width: 300px; }
     .scala-num { padding: 2px 6px; margin-bottom: 2px !important; }
     @media (max-width: 600px) { .testata { max-width: 220px; } .legenda { display: none; } .ricerca { width: 200px; } }
   </style>
@@ -198,6 +202,7 @@
         const m = livelli[0].opzioni.pointToLayer(f, ll);
         m.feature = f;
         m.bindPopup(`<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}`);
+        f._simbolo = m;
         gruppo.addLayer(m);
         return;
       }
@@ -218,6 +223,7 @@
           return `<li><b>${esc(pr.Title)}</b><br><span class="meta">${esc(pr.Anno || 's.d.')} · ${esc(pr.Licenza || '')}</span>` +
             (url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener">Articolo (DOI)</a>` : '') + '</li>';
         }).join('') + '</ol>', { maxWidth: 340 });
+      fs.forEach(f => { f._simbolo = m; });
       gruppo.addLayer(m);
     });
   }
@@ -328,38 +334,107 @@
   }
   map.on('zoomend moveend', aggiornaScala); aggiornaScala();
 
-  // ---------- Ricerca di località (Nominatim, OpenStreetMap) ----------
-  // Regole d'uso di Nominatim: al massimo una richiesta al secondo e niente suggerimenti durante
-  // la digitazione: la ricerca parte solo con Invio o con il pulsante.
+  // ---------- Ricerca ----------
+  // 1) Subito, mentre si scrive, nei dati già caricati: fogli CARG e 1:100.000 (numero o nome),
+  //    Journal of Maps (titolo o luogo), coordinate «lat, lon».
+  // 2) Con Invio o con il pulsante, anche tra le località di OpenStreetMap (Nominatim): le sue regole d'uso
+  //    vietano le richieste durante la digitazione e ammettono al massimo una richiesta al secondo.
   const ricerca = L.control({ position: 'topleft' });
   let ultimaRicerca = 0, segnaposto = null;
+  const norm = t => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[’'`]/g, "'").replace(/\s+/g, ' ').trim();
+  const numeroFoglio = t => String(t || '').toLowerCase().replace(/^0+(?=\d)/, '');
+  function segna(ll, testo) {
+    if (segnaposto) segnaposto.remove();
+    segnaposto = L.circleMarker(ll, { radius: 7, color: '#d32f2f', weight: 2, fillOpacity: 0.2 }).addTo(map);
+    if (testo) segnaposto.bindTooltip(testo).openTooltip();
+  }
+  function coordinate(q) {  // «42.3498, 13.3995», «42,3498 13,3995», «42.3498N 13.3995E»; ordine invertito riconosciuto
+    const m = q.match(/^\s*(-?\d{1,2}(?:[.,]\d+)?)\s*°?\s*[NnSs]?\s*[,; ]\s*(-?\d{1,3}(?:[.,]\d+)?)\s*°?\s*[EeOoWw]?\s*$/);
+    if (!m) return null;
+    let a = parseFloat(m[1].replace(',', '.')), b = parseFloat(m[2].replace(',', '.'));
+    const inItalia = (lat, lon) => lat >= 35 && lat <= 48 && lon >= 6 && lon <= 19;
+    if (inItalia(a, b)) return [a, b];
+    if (inItalia(b, a)) return [b, a];
+    return null;
+  }
+  function cercaNeiDati(q) {
+    const nq = norm(q), num = numeroFoglio(q.trim()), out = [];
+    if (nq.length < 2 && !/^\d+$/.test(nq)) return out;
+    const fogli = (l, gruppo) => (l.dati || []).filter(f => {
+      const p = f.properties;
+      return String(p.Foglio || '').split('-').map(numeroFoglio).includes(num) || (nq.length >= 2 && norm(p.Location).includes(nq));
+    }).slice(0, 5).map(f => ({ gruppo, testo: f.properties.Title, vai: () => {
+      if (!map.hasLayer(l.layer)) map.addLayer(l.layer);
+      const b = L.geoJSON(f).getBounds(); map.fitBounds(b, { maxZoom: 12 });
+      L.popup({ maxWidth: 320 }).setLatLng(b.getCenter())
+        .setContent(`<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}`).openOn(map);
+    } }));
+    out.push(...fogli(livelli[1], 'Fogli CARG 1:50.000'), ...fogli(livelli[2], "Fogli Carta Geologica d'Italia 1:100.000"));
+    const jom = nq.length < 3 ? [] : (livelli[0].dati || []).filter(f => norm(f.properties.Title).includes(nq) || norm(f.properties.Location).includes(nq))
+      .sort((a, b) => (b.properties.Anno || 0) - (a.properties.Anno || 0)).slice(0, 8);
+    out.push(...jom.map(f => ({ gruppo: 'Journal of Maps', testo: `${f.properties.Title} (${f.properties.Anno || 's.d.'})`, vai: () => {
+      if (!map.hasLayer(livelli[0].layer)) map.addLayer(livelli[0].layer);
+      const ll = L.GeoJSON.coordsToLatLng(f.geometry.coordinates);
+      map.setView(ll, Math.max(map.getZoom(), f.properties.Precisione === 'Regione' ? 8 : 11));
+      if (f._simbolo) f._simbolo.openPopup();
+    } })));
+    return out;
+  }
   ricerca.onAdd = () => {
     const d = L.DomUtil.create('div', 'riquadro ricerca');
-    d.innerHTML = '<form><input type="search" placeholder="Cerca una località…" aria-label="Cerca una località">' +
+    d.innerHTML = '<form><input type="search" placeholder="Foglio, località, parola chiave, lat, lon" aria-label="Cerca">' +
       '<button type="submit">Cerca</button></form><ul></ul>';
     const f = d.querySelector('form'), inp = d.querySelector('input'), ul = d.querySelector('ul'), btn = d.querySelector('button');
+    const voce = (r) => {
+      const li = document.createElement('li'); li.textContent = r.testo;
+      li.onclick = ev => {
+        ev.stopPropagation();  // la voce viene tolta dalla lista: senza questo Leaflet vedrebbe un clic sulla mappa
+        r.vai(); setTimeout(() => { ul.innerHTML = ''; }, 0);
+      };
+      return li;
+    };
+    const titolo = t => { const li = document.createElement('li'); li.className = 'gruppo'; li.textContent = t; return li; };
+    function mostra(risultati, extra) {
+      ul.innerHTML = '';
+      let ultimo = null;
+      risultati.forEach(r => { if (r.gruppo !== ultimo) { ul.appendChild(titolo(r.gruppo)); ultimo = r.gruppo; } ul.appendChild(voce(r)); });
+      if (extra) ul.insertAdjacentHTML('beforeend', extra);
+    }
+    function locali() {
+      const q = inp.value.trim(), c = coordinate(q), ris = [];
+      if (c) ris.push({ gruppo: 'Coordinate', testo: `${c[0].toFixed(5)}, ${c[1].toFixed(5)}`, vai: () => {
+        map.setView(c, 15); segna(c, `${c[0].toFixed(5)}, ${c[1].toFixed(5)}`);
+      } });
+      return ris.concat(cercaNeiDati(q));
+    }
+    let attesa;
+    inp.addEventListener('input', () => {
+      clearTimeout(attesa);
+      attesa = setTimeout(() => {
+        const q = inp.value.trim();
+        if (!q) { ul.innerHTML = ''; return; }
+        const r = locali();
+        mostra(r, '<li class="meta">Invio: cerca anche tra le località</li>');
+      }, 200);
+    });
     f.onsubmit = ev => {
       ev.preventDefault();
-      const q = inp.value.trim();
-      if (!q || Date.now() - ultimaRicerca < 1000) return;
-      ultimaRicerca = Date.now(); btn.disabled = true; ul.innerHTML = '<li class="meta">Ricerca in corso…</li>';
+      const q = inp.value.trim(), loc = locali();
+      if (!q) return;
+      if (coordinate(q)) { mostra(loc); return; }  // coordinate: niente richiesta a Nominatim
+      if (Date.now() - ultimaRicerca < 1000) return;
+      ultimaRicerca = Date.now(); btn.disabled = true;
+      mostra(loc, '<li class="meta">Ricerca delle località in corso…</li>');
       const url = 'https://nominatim.openstreetmap.org/search?' + new URLSearchParams({
         q, format: 'jsonv2', countrycodes: 'it', limit: 5, 'accept-language': 'it' });
       fetch(url).then(r => r.json()).then(ris => {
-        ul.innerHTML = ris.length ? '' : '<li class="meta">Nessun risultato.</li>';
-        ris.forEach(x => {
-          const li = document.createElement('li'); li.textContent = x.display_name;
-          li.onclick = ev => {
-            ev.stopPropagation();  // la voce viene tolta dalla lista: senza questo Leaflet vedrebbe un clic sulla mappa
-            const [s, n, w, e] = x.boundingbox.map(Number);
-            map.fitBounds([[s, w], [n, e]], { maxZoom: 14 });
-            if (segnaposto) segnaposto.remove();
-            segnaposto = L.circleMarker([+x.lat, +x.lon], { radius: 6, color: '#d32f2f', weight: 2, fillOpacity: 0.2, interactive: false }).addTo(map);
-            setTimeout(() => { ul.innerHTML = ''; }, 0);
-          };
-          ul.appendChild(li);
-        });
-      }).catch(() => { ul.innerHTML = '<li class="meta">Ricerca non disponibile.</li>'; })
+        const luoghi = ris.map(x => ({ gruppo: 'Località (OpenStreetMap)', testo: x.display_name, vai: () => {
+          const [s, n, w, e] = x.boundingbox.map(Number);
+          map.fitBounds([[s, w], [n, e]], { maxZoom: 14 }); segna([+x.lat, +x.lon]);
+        } }));
+        const tutti = loc.concat(luoghi);
+        mostra(tutti, tutti.length ? '' : '<li class="meta">Nessun risultato.</li>');
+      }).catch(() => { mostra(loc, '<li class="meta">Ricerca delle località non disponibile.</li>'); })
         .finally(() => { btn.disabled = false; });
     };
     L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);

@@ -1,12 +1,14 @@
 # Geologiaintasca – Cartografia geologica italiana
 
-Indice geografico (GeoJSON) delle risorse cartografiche geologiche italiane. Riunisce i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi.
+Indice geografico delle risorse cartografiche geologiche italiane. Riunisce i rimandi a dati di istituzioni nazionali, enti regionali e ricerca accademica, oggi distribuiti su portali diversi. Nasce dalle pagine di divulgazione geoscientifica [Geologiaintasca](https://www.facebook.com/profile.php?id=61565694163261).
 
 [**Mappa web (GitHub Pages)**](https://fabio-duronio.github.io/geologiaintasca/) · [Mappa uMap](https://umap.openstreetmap.fr/it/map/geologiaintasca-cartografia-geologica-italiana_1338725)
 
 ---
 
 ## Dataset
+
+I dati sono file GeoJSON nella cartella `dati/`, letti sia dalla mappa web sia da uMap.
 
 | Livello | File | Elementi (nov. 2026) | Fonte |
 |---|---|---|---|

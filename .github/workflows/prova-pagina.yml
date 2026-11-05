@@ -1,0 +1,49 @@
+# Prova temporanea della pagina (da rimuovere prima del merge).
+name: Prova pagina
+on:
+  push:
+    branches: [link-diretti]
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.12" }
+      - run: pip install -q playwright==1.48.0 && python -m playwright install --with-deps chromium > /dev/null
+      - name: Prova
+        shell: python3 {0}
+        run: |
+          import subprocess, time, base64
+          srv = subprocess.Popen(["python3", "-m", "http.server", "8000"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+          time.sleep(2)
+          from playwright.sync_api import sync_playwright
+          def dump(nome, png):
+              b = base64.b64encode(png).decode()
+              for i in range(0, len(b), 4000):
+                  print("IMG|" + nome + "|" + b[i:i+4000])
+          U = "http://localhost:8000/index.html"
+          with sync_playwright() as p:
+              br = p.chromium.launch()
+              ctx = br.new_context(viewport={"width": 1280, "height": 800}, permissions=["clipboard-read", "clipboard-write"])
+              errori = []
+              def apri(url, attesa=6000):
+                  pg = ctx.new_page(); pg.on("pageerror", lambda e: errori.append(f"pageerror: {e}"))
+                  pg.goto(url); pg.wait_for_timeout(attesa); return pg
+              pop = lambda pg: pg.inner_text(".leaflet-popup-content").replace(chr(10), " / ")[:110] if pg.query_selector(".leaflet-popup-content") else None
+              pg = apri(U + "?carg=628"); print("?carg=628 →", pop(pg), "| url:", pg.url)
+              dump("carg628", pg.screenshot(type="jpeg", quality=55))
+              pg = apri(U + "?carta100k=141"); print("?carta100k=141 →", pop(pg), "| 100k acceso:", pg.evaluate("map.hasLayer(livelli[2].layer)"))
+              pg = apri(U + "?doi=10.1080/17445647.2013.842508"); print("?doi →", pop(pg), "| zoom", pg.evaluate("map.getZoom()"))
+              pg = apri(U + "?doi=https://doi.org/10.1080/17445647.2012.668423"); print("?doi con https://doi.org →", pop(pg))
+              pg = apri(U + "#13/42.35000/13.40000"); print("#13/42.35/13.40 → centro", pg.evaluate("map.getCenter()"), "zoom", pg.evaluate("map.getZoom()"))
+              pg.evaluate("map.setView([41.9, 12.5], 10)"); pg.wait_for_timeout(800); print("dopo spostamento url:", pg.url)
+              pg.evaluate("map.setView([42.35, 13.40], 12)"); pg.wait_for_timeout(2500)
+              pg.mouse.click(640, 400); pg.wait_for_timeout(1500)
+              print("pulsanti nel popup:", pg.eval_on_selector_all(".leaflet-popup .copia-link", "els => els.map(e => e.textContent + ' → ' + e.dataset.url)"))
+              pg.click(".leaflet-popup .copia-link >> text=Copia link a questo punto"); pg.wait_for_timeout(500)
+              print("appunti:", pg.evaluate("navigator.clipboard.readText()"), "| testo pulsante:", pg.eval_on_selector_all(".leaflet-popup .copia-link", "els => els.map(e => e.textContent)"))
+              dump("popup", pg.screenshot(type="jpeg", quality=55))
+              print("ERRORI:", errori); br.close()
+          srv.terminate()

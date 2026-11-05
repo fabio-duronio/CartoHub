@@ -34,6 +34,8 @@
     .sezione + .sezione { margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd; }
     .sezione h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: #666; margin: 0 0 2px; }
     .meta { color: #555; }
+    .azioni { margin-top: 6px; }
+    .copia-link { font: inherit; font-size: 11px; color: #1a237e; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
     .gruppo-jom { box-sizing: border-box; border-radius: 50%; background: #1a237e; color: #fff; border: 1.5px solid #fff;
                   font: bold 11px/1 system-ui, sans-serif; display: flex; align-items: center; justify-content: center;
                   box-shadow: 0 0 2px rgba(0,0,0,.5); }
@@ -64,7 +66,22 @@
 <body>
 <div id="map"></div>
 <script>
-  const map = L.map('map', { zoomControl: false }).setView([41.9, 12.6], 6);
+  const map = L.map('map', { zoomControl: false });
+  // ---------- Link diretti ----------
+  // #zoom/lat/lon nell'indirizzo: la vista corrente, aggiornata a ogni spostamento.
+  // ?carg=628, ?carta100k=141, ?doi=10.1080/…: all'apertura inquadrano l'elemento e ne aprono la scheda.
+  const BASE_URL = location.origin + location.pathname;
+  const vistaDaHash = () => {
+    const m = location.hash.match(/^#(\d{1,2})\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+    return m ? { z: +m[1], ll: [+m[2], +m[3]] } : null;
+  };
+  const vistaIniziale = vistaDaHash();
+  map.setView(vistaIniziale ? vistaIniziale.ll : [41.9, 12.6], vistaIniziale ? vistaIniziale.z : 6);
+  const hashVista = (ll, z) => `#${z}/${ll.lat.toFixed(5)}/${ll.lng.toFixed(5)}`;
+  map.on('moveend', () => history.replaceState(null, '', BASE_URL + location.search + hashVista(map.getCenter(), map.getZoom())));
+  const linkFoglio = (l, f) => `${BASE_URL}?${l.parametro}=${encodeURIComponent(f.properties.Foglio)}`;
+  const linkArticolo = f => `${BASE_URL}?doi=${encodeURIComponent(f.properties.DOI)}`;
+  const pulsanteLink = (url, testo) => `<button type="button" class="copia-link" data-url="${esc(url)}">🔗 ${testo}</button>`;
   L.control.zoom({ position: 'topright' }).addTo(map);
 
   // ---------- Posizione attuale (GPS del dispositivo) ----------
@@ -160,10 +177,10 @@
       opzioni: { pointToLayer: (f, ll) => L.circleMarker(ll, {
         radius: f.properties.Precisione === 'Regione' ? 5 : 7, color: '#fff', weight: 1, bubblingMouseEvents: false,
         fillColor: COLORE_JOM, fillOpacity: f.properties.Precisione === 'Regione' ? 0.5 : 0.9 }) } },
-    { nome: 'Progetto CARG 1:50.000', file: 'dati/carg/carg_50k_fogli.geojson', colore: '#FF0000',
+    { nome: 'Progetto CARG 1:50.000', file: 'dati/carg/carg_50k_fogli.geojson', colore: '#FF0000', parametro: 'carg',
       opzioni: { interactive: false, style: f => ({ color: '#555', weight: 0.6,
         fillOpacity: COLORI_CARG[f.properties.Stato] ? 0.45 : 0, fillColor: COLORI_CARG[f.properties.Stato] || '#ffffff' }) } },
-    { nome: "Carta Geologica d'Italia 1:100.000", file: 'dati/carta_100k/carta_100k_fogli.geojson', colore: '#6d4c41', visibile: false,
+    { nome: "Carta Geologica d'Italia 1:100.000", file: 'dati/carta_100k/carta_100k_fogli.geojson', colore: '#6d4c41', visibile: false, parametro: 'carta100k',
       opzioni: { interactive: false, style: f => ({ color: '#6d4c41', weight: 1.2, dashArray: '6 3',
         fillColor: '#6d4c41', fillOpacity: f.properties.Copia_digitale === 'Sì' ? 0.12 : 0.03 }) } },
     { nome: 'Geoportali regionali', file: 'dati/geoportali_regionali/geoportali_regionali.geojson', colore: '#2e8b57', visibile: false,
@@ -245,7 +262,8 @@
         const f = fs[0], ll = L.GeoJSON.coordsToLatLng(f.geometry.coordinates);
         const m = livelli[0].opzioni.pointToLayer(f, ll);
         m.feature = f;
-        m.bindPopup(`<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}`);
+        m.bindPopup(`<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}` +
+          (f.properties.DOI ? `<div class="azioni">${pulsanteLink(linkArticolo(f), "Copia link all'articolo")}</div>` : ''));
         f._simbolo = m;
         gruppo.addLayer(m);
         return;
@@ -265,7 +283,8 @@
         '<ol class="elenco-jom">' + fs.map(f => {
           const pr = f.properties, url = /^https:\/\//.test(pr.URL || '') ? pr.URL : '';
           return `<li><b>${esc(pr.Title)}</b><br><span class="meta">${esc(pr.Anno || 's.d.')} · ${esc(pr.Licenza || '')}</span>` +
-            (url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener">Articolo (DOI)</a>` : '') + '</li>';
+            (url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener">Articolo (DOI)</a>` : '') +
+            (pr.DOI ? ' · ' + pulsanteLink(linkArticolo(f), 'link') : '') + '</li>';
         }).join('') + '</ol>', { maxWidth: 340 });
       fs.forEach(f => { f._simbolo = m; });
       gruppo.addLayer(m);
@@ -312,7 +331,32 @@
       if (l.punti) aggiungiPunti(l.layer, dati.features); else l.layer.addData(dati);
     })
     .catch(e => console.error('Impossibile caricare', l.file, e))))
-    .then(() => { riempiControllo(); stileCarg(); aggiornaEtichette(); });
+    .then(() => { riempiControllo(); stileCarg(); aggiornaEtichette(); apriDaIndirizzo(); });
+
+  function apriDaIndirizzo() {
+    const q = new URLSearchParams(location.search), num = v => String(v || '').trim().toLowerCase().replace(/^0+(?=\d)/, '');
+    let fatto = false;
+    [livelli[1], livelli[2]].forEach(l => {
+      const v = q.get(l.parametro); if (!v || fatto) return;
+      const f = (l.dati || []).find(x => num(x.properties.Foglio) === num(v)); if (f) { vaiFoglio(l, f); fatto = true; }
+    });
+    const doi = (q.get('doi') || '').trim().toLowerCase().replace(/^https?:\/\/(dx\.)?doi\.org\//, '');
+    if (doi && !fatto) {
+      const f = (livelli[0].dati || []).find(x => String(x.properties.DOI || '').toLowerCase() === doi);
+      if (f) { vaiArticolo(f); fatto = true; }
+    }
+    // L'indirizzo torna «pulito»: da qui in poi conta solo la vista (#zoom/lat/lon)
+    if (location.search) history.replaceState(null, '', BASE_URL + hashVista(map.getCenter(), map.getZoom()));
+  }
+
+  // Pulsanti «Copia link» nei popup
+  map.getContainer().addEventListener('click', ev => {
+    const b = ev.target.closest('.copia-link'); if (!b) return;
+    ev.preventDefault(); ev.stopPropagation();
+    const fatto = () => { const t = b.textContent; b.textContent = '✓ Link copiato'; setTimeout(() => { b.textContent = t; }, 1800); };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(b.dataset.url).then(fatto, () => prompt('Copia il link:', b.dataset.url));
+    else prompt('Copia il link:', b.dataset.url);
+  });
 
   // Numeri dei fogli CARG al centro di ogni foglio, da zoom 9 e solo per i fogli visibili sullo schermo
   const etichetteCarg = L.layerGroup().addTo(map);
@@ -347,12 +391,14 @@
     let html = '';
     livelli.filter(l => !l.punti && l.dati && map.hasLayer(l.layer)).forEach(l => {
       l.dati.filter(f => contiene(f, lng, lat)).forEach(f => {
-        html += sezione(l.nome, `<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}`);
+        html += sezione(l.nome, `<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}` +
+          (l.parametro ? `<div class="azioni">${pulsanteLink(linkFoglio(l, f), 'Copia link al foglio')}</div>` : ''));
       });
     });
     const attive = geologia.filter(g => map.hasLayer(g.layer) && map.getZoom() >= g.zoomMin);
     attive.forEach((g, i) => { html += `<div class="sezione" id="geo${i}"><h3>${esc(g.nome)}</h3><span class="meta">Interrogazione in corso…</span></div>`; });
     if (!html) return;
+    html += `<div class="sezione azioni">${pulsanteLink(BASE_URL + hashVista(e.latlng, Math.max(map.getZoom(), 12)), 'Copia link a questo punto')}</div>`;
     // Il contenuto è un elemento DOM: popup.update() lo conserva quando arrivano le risposte di ISPRA
     const box = document.createElement('div'); box.innerHTML = html;
     const popup = popupClic = L.popup({ maxWidth: 320 }).setLatLng(e.latlng).setContent(box).openOn(map);
@@ -416,27 +462,30 @@
     if (inItalia(b, a)) return [b, a];
     return null;
   }
+  function vaiFoglio(l, f) {
+    if (!map.hasLayer(l.layer)) map.addLayer(l.layer);
+    const b = L.geoJSON(f).getBounds(); map.fitBounds(b, { maxZoom: 12 });
+    L.popup({ maxWidth: 320 }).setLatLng(b.getCenter())
+      .setContent(`<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}` +
+        `<div class="azioni">${pulsanteLink(linkFoglio(l, f), 'Copia link al foglio')}</div>`).openOn(map);
+  }
+  function vaiArticolo(f) {
+    if (!map.hasLayer(livelli[0].layer)) map.addLayer(livelli[0].layer);
+    const ll = L.GeoJSON.coordsToLatLng(f.geometry.coordinates);
+    map.setView(ll, Math.max(map.getZoom(), f.properties.Precisione === 'Regione' ? 8 : 11));
+    if (f._simbolo) f._simbolo.openPopup();
+  }
   function cercaNeiDati(q) {
     const nq = norm(q), num = numeroFoglio(q.trim()), out = [];
     if (nq.length < 2 && !/^\d+$/.test(nq)) return out;
     const fogli = (l, gruppo) => (l.dati || []).filter(f => {
       const p = f.properties;
       return String(p.Foglio || '').split('-').map(numeroFoglio).includes(num) || (nq.length >= 2 && norm(p.Location).includes(nq));
-    }).slice(0, 5).map(f => ({ gruppo, testo: f.properties.Title, vai: () => {
-      if (!map.hasLayer(l.layer)) map.addLayer(l.layer);
-      const b = L.geoJSON(f).getBounds(); map.fitBounds(b, { maxZoom: 12 });
-      L.popup({ maxWidth: 320 }).setLatLng(b.getCenter())
-        .setContent(`<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}`).openOn(map);
-    } }));
+    }).slice(0, 5).map(f => ({ gruppo, testo: f.properties.Title, vai: () => vaiFoglio(l, f) }));
     out.push(...fogli(livelli[1], 'Fogli CARG 1:50.000'), ...fogli(livelli[2], "Fogli Carta Geologica d'Italia 1:100.000"));
     const jom = nq.length < 3 ? [] : (livelli[0].dati || []).filter(f => norm(f.properties.Title).includes(nq) || norm(f.properties.Location).includes(nq))
       .sort((a, b) => (b.properties.Anno || 0) - (a.properties.Anno || 0)).slice(0, 8);
-    out.push(...jom.map(f => ({ gruppo: 'Journal of Maps', testo: `${f.properties.Title} (${f.properties.Anno || 's.d.'})`, vai: () => {
-      if (!map.hasLayer(livelli[0].layer)) map.addLayer(livelli[0].layer);
-      const ll = L.GeoJSON.coordsToLatLng(f.geometry.coordinates);
-      map.setView(ll, Math.max(map.getZoom(), f.properties.Precisione === 'Regione' ? 8 : 11));
-      if (f._simbolo) f._simbolo.openPopup();
-    } })));
+    out.push(...jom.map(f => ({ gruppo: 'Journal of Maps', testo: `${f.properties.Title} (${f.properties.Anno || 's.d.'})`, vai: () => vaiArticolo(f) })));
     return out;
   }
   ricerca.onAdd = () => {

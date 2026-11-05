@@ -65,6 +65,16 @@ Geoportali e WebGIS delle Regioni e delle Province autonome di Trento e Bolzano.
 
 ---
 
+## Link diretti alla mappa web
+Per collegare un post a un punto preciso della mappa:
+* `https://fabio-duronio.github.io/geologiaintasca/?carg=628` apre il foglio CARG 628 con la sua scheda;
+* `https://fabio-duronio.github.io/geologiaintasca/?carta100k=141` apre il foglio 141 della Carta 1:100.000;
+* `https://fabio-duronio.github.io/geologiaintasca/?doi=10.1080/17445647.2013.842508` apre l'articolo del Journal of Maps;
+* `https://fabio-duronio.github.io/geologiaintasca/#13/42.35000/13.40000` apre la mappa a quello zoom e su quel punto. L'indirizzo nella barra del browser si aggiorna mentre ci si sposta, quindi basta copiarlo.
+
+Nei popup il pulsante «Copia link» prepara questi indirizzi.
+
+---
 ## Aggiornamento automatico
 Tre GitHub Action aggiornano i dati: [`aggiorna-carg.yml`](.github/workflows/aggiorna-carg.yml) rigenera ogni lunedì i fogli CARG da CARG-GATE, [`aggiorna-100k.yml`](.github/workflows/aggiorna-100k.yml) la Carta 1:100.000 il primo lunedì del mese, [`aggiorna-jom.yml`](.github/workflows/aggiorna-jom.yml) il livello Journal of Maps. Quest'ultima parte:
 * **ogni lunedì**, scaricando da Crossref i nuovi articoli sull'Italia;

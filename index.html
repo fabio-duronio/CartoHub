@@ -28,6 +28,9 @@
     .meta { color: #555; }
     .strumenti { padding: 6px 10px; width: 210px; }
     .strumenti label { display: block; margin-top: 4px; }
+    .titolo-strumenti { font: inherit; font-weight: bold; background: none; border: 0; padding: 0; cursor: pointer; color: #222; }
+    .titolo-strumenti::after { content: ' ▾'; color: #666; }
+    .titolo-strumenti[aria-expanded="false"]::after { content: ' ▸'; }
     .strumenti input[type=range] { width: 100%; margin: 0; }
     .ricerca { padding: 6px 8px; width: 260px; }
     .ricerca form { display: flex; gap: 4px; }
@@ -37,7 +40,7 @@
     .ricerca li { padding: 3px 0; border-top: 1px solid #eee; cursor: pointer; color: #1a237e; }
     .ricerca li:hover { text-decoration: underline; }
     .scala-num { padding: 2px 6px; margin-bottom: 2px !important; }
-    @media (max-width: 600px) { .testata { max-width: 220px; } .legenda { display: none; } .ricerca { width: 200px; } .strumenti { width: 160px; } }
+    @media (max-width: 600px) { .testata { max-width: 220px; } .legenda { display: none; } .ricerca { width: 200px; } .strumenti { width: auto; max-width: 180px; } }
   </style>
 </head>
 <body>
@@ -206,9 +209,14 @@
   const strumenti = L.control({ position: 'topright' });
   strumenti.onAdd = () => {
     const d = L.DomUtil.create('div', 'riquadro strumenti');
-    d.innerHTML = '<b>Opacità</b>' +
+    d.innerHTML = '<button type="button" class="titolo-strumenti" aria-expanded="true">Opacità</button><div class="cursori">' +
       geologia.map((g, i) => `<label>${esc(g.nome.replace(' (ISPRA)', ''))}<input type="range" min="0" max="100" value="75" data-geo="${i}"></label>`).join('') +
-      `<label>Riempimento fogli CARG<input type="range" min="0" max="100" value="${CARG_PIENO}" data-carg></label>`;
+      `<label>Riempimento fogli CARG<input type="range" min="0" max="100" value="${CARG_PIENO}" data-carg></label></div>`;
+    // Su schermi piccoli il riquadro parte chiuso, come il pannello dei livelli
+    const tb = d.querySelector('.titolo-strumenti'), cur = d.querySelector('.cursori');
+    const apri = a => { cur.hidden = !a; tb.setAttribute('aria-expanded', a); };
+    apri(window.innerWidth >= 900);
+    tb.onclick = () => apri(cur.hidden);
     d.querySelectorAll('[data-geo]').forEach(r => r.oninput = () => geologia[r.dataset.geo].layer.setOpacity(r.value / 100));
     const rc = d.querySelector('[data-carg]');
     rc.oninput = () => { opacitaCarg = +rc.value; stileCarg(); };
@@ -303,12 +311,13 @@
         ul.innerHTML = ris.length ? '' : '<li class="meta">Nessun risultato.</li>';
         ris.forEach(x => {
           const li = document.createElement('li'); li.textContent = x.display_name;
-          li.onclick = () => {
+          li.onclick = ev => {
+            ev.stopPropagation();  // la voce viene tolta dalla lista: senza questo Leaflet vedrebbe un clic sulla mappa
             const [s, n, w, e] = x.boundingbox.map(Number);
             map.fitBounds([[s, w], [n, e]], { maxZoom: 14 });
             if (segnaposto) segnaposto.remove();
             segnaposto = L.circleMarker([+x.lat, +x.lon], { radius: 6, color: '#d32f2f', weight: 2, fillOpacity: 0.2, interactive: false }).addTo(map);
-            ul.innerHTML = '';
+            setTimeout(() => { ul.innerHTML = ''; }, 0);
           };
           ul.appendChild(li);
         });

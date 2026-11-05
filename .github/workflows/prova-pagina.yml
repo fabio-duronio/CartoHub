@@ -36,6 +36,7 @@ jobs:
               print("risultati:", pg.eval_on_selector_all(".ricerca li", "els => els.map(e => e.textContent)"))
               if pg.query_selector(".ricerca li:not(.meta)"):
                   pg.click(".ricerca li:not(.meta)"); pg.wait_for_timeout(1500)
+              print("popup aperto dopo la scelta del risultato:", pg.query_selector(".leaflet-popup") is not None)
               print("dopo ricerca: zoom", pg.evaluate("map.getZoom()"), "centro", pg.evaluate("map.getCenter()"), "scala", pg.inner_text(".scala-num"))
               pg.click("label:has-text('Rilievo ombreggiato TINITALY') input"); pg.wait_for_timeout(9000)
               dump("2-tinitaly", pg.screenshot(type="jpeg", quality=60))
@@ -52,5 +53,7 @@ jobs:
               m = br.new_page(viewport={"width": 390, "height": 760})
               m.goto("http://localhost:8000/index.html"); m.wait_for_timeout(6000)
               dump("6-mobile", m.screenshot(type="jpeg", quality=60))
+              m.click(".titolo-strumenti"); m.wait_for_timeout(500)
+              dump("7-mobile-opacita", m.screenshot(type="jpeg", quality=60))
               print("ERRORI:", errori); br.close()
           srv.terminate()

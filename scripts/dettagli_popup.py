@@ -50,7 +50,7 @@ def dettagli(p):
         righe = [riga("Edizioni", p.get("Edizioni")),
                  link(p.get("URL"), "Scheda nel catalogo ISPRA"),
                  link(p.get("URL_note"), "Note illustrative (catalogo ISPRA)")]
-    elif t == "Research Map":  # Journal of Maps
+    elif t == "Research Map":  # Journal of Maps e Altre riviste
         unita = "provincia" if p.get("Precisione") == "Provincia" else "regione"
         if p.get("Ambito") == "Regionale":  # studio a scala regionale confermato (regionali.csv)
             pos = riga("Area di studio", f"intera {unita} / area vasta")
@@ -58,7 +58,8 @@ def dettagli(p):
             pos = riga("Posizione", f"localizzazione da completare ({unita} citata nel titolo)")
         else:
             pos = riga("Posizione", posizione(p))
-        righe = [riga("Luogo", p.get("Location")), riga("Anno", p.get("Anno")), riga("Licenza", p.get("Licenza")),
+        righe = [riga("Rivista", p.get("Rivista")),  # solo livello «Altre riviste»; vuoto per il Journal of Maps
+                 riga("Luogo", p.get("Location")), riga("Anno", p.get("Anno")), riga("Licenza", p.get("Licenza")),
                  pos, link(p.get("URL"), "Articolo (DOI)")]
     else:  # Geoportali regionali
         righe = [str(p.get("Description") or "").strip(), link(p.get("URL"), "Vai al geoportale")]

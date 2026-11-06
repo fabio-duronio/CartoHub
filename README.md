@@ -16,6 +16,7 @@ I dati sono file GeoJSON nella cartella `dati/`, letti sia dalla mappa web sia d
 | Carta Geologica d'Italia 1:100.000 | `dati/carta_100k/carta_100k_fogli.geojson` | 278 fogli | Quadro d'unione e catalogo Biblioteca ISPRA |
 | Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 191 pubblicazioni | Crossref + confini ISTAT |
 | JoM – studi a scala regionale | `dati/journal_of_maps/jom_regionali.geojson` | 122 pubblicazioni | Crossref + confini ISTAT |
+| Altre riviste | `dati/altre_riviste/altre_riviste.geojson` | 1 pubblicazione | Selezione manuale + confini ISTAT |
 | Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 enti | Selezione manuale + confini ISTAT |
 
 Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`. Il campo `Dettagli` contiene il testo del popup di uMap (stesse etichette e link di `index.html`), generato da `scripts/dettagli_popup.py`.
@@ -57,6 +58,14 @@ Articoli del *Journal of Maps* su aree italiane, in due livelli. Il punto indica
 * tipo di livello **Cluster**: gli articoli della stessa regione hanno le stesse coordinate e, senza cluster, solo l'ultimo sarebbe cliccabile;
 * modello del popup come gli altri livelli: `# {Title}` + `{Dettagli}`; nascosto all'apertura della mappa.
 
+### 3b. Altre riviste (selezione manuale)
+Carte geologiche allegate ad articoli di riviste diverse dal *Journal of Maps* (es. *Geological Field Trips and Maps*), aggiunte **solo quando un post di Geologiaintasca riguarda una carta allegata**. Nessuna ricerca automatica: queste riviste pubblicano poche carte e molti contributi senza carta, quindi un indice automatico richiederebbe comunque un filtro a mano.
+* **Criteri:** territorio italiano, carta allegata all'articolo (tavola o materiale supplementare), Open Access con licenza aperta dichiarata sulla pagina dell'articolo.
+* **Posizione:** come per il Journal of Maps, `Precisione` `Comune` (centroide del comune ISTAT indicato dal curatore) o `Coordinate` (solo se scritte nel testo). Nessuna coordinata stimata.
+* **Metadati:** titolo, anno e licenza copiati dalla pagina dell'articolo, perché non tutte le riviste li depositano completi su Crossref.
+
+*Fonte: pagine degli articoli citati; confini ISTAT per la localizzazione.*
+
 ### 4. Geologia ISPRA (solo nella mappa web)
 Due livelli di visualizzazione forniti dai servizi WMS del Servizio Geologico d'Italia, spenti all'apertura. Le immagini e le informazioni al clic arrivano direttamente da ISPRA: il repository non ne conserva copia.
 * **Geologia CARG 1:25.000:** unità geologiche, depositi quaternari, limiti geologici, elementi tettonici, elementi strutturali e giaciture dei fogli CARG disponibili nel servizio (210 a novembre 2026), visibili da zoom 11.
@@ -85,7 +94,7 @@ Nei popup il pulsante «Copia link» prepara questi indirizzi.
 
 ---
 ## Aggiornamento automatico
-Tre GitHub Action aggiornano i dati: [`aggiorna-carg.yml`](.github/workflows/aggiorna-carg.yml) rigenera ogni lunedì i fogli CARG da CARG-GATE, [`aggiorna-100k.yml`](.github/workflows/aggiorna-100k.yml) la Carta 1:100.000 il primo lunedì del mese, [`aggiorna-jom.yml`](.github/workflows/aggiorna-jom.yml) il livello Journal of Maps. Quest'ultima parte:
+Quattro GitHub Action aggiornano i dati: [`aggiorna-carg.yml`](.github/workflows/aggiorna-carg.yml) rigenera ogni lunedì i fogli CARG da CARG-GATE, [`aggiorna-100k.yml`](.github/workflows/aggiorna-100k.yml) la Carta 1:100.000 il primo lunedì del mese, [`aggiorna-jom.yml`](.github/workflows/aggiorna-jom.yml) il livello Journal of Maps, [`aggiorna-altre-riviste.yml`](.github/workflows/aggiorna-altre-riviste.yml) il livello Altre riviste (solo quando cambia il suo CSV). L'Action del Journal of Maps parte:
 * **ogni lunedì**, scaricando da Crossref i nuovi articoli sull'Italia;
 * **a ogni modifica di `localizzazioni.csv`**, così una localizzazione aggiunta compare sulla mappa in pochi minuti;
 * **a mano**, da *Actions → Aggiorna Journal of Maps → Run workflow*.
@@ -112,6 +121,16 @@ Un DOI può comparire in un solo file tra `localizzazioni.csv`, `regionali.csv` 
 
 Per ogni post di Geologiaintasca su un articolo del Journal of Maps viene preparata la riga da aggiungere.
 
+### Aggiungere un articolo di un'altra rivista
+Il file [`dati/altre_riviste/localizzazioni.csv`](dati/altre_riviste/localizzazioni.csv) (separatore `;`) alimenta il livello *Altre riviste*. A ogni modifica l'Action [`aggiorna-altre-riviste.yml`](.github/workflows/aggiorna-altre-riviste.yml) rigenera il livello in pochi minuti.
+
+```
+DOI;Rivista;Titolo;Anno;Licenza;Comune;Provincia;Lat;Lon;Note
+10.3301/GFT.2026.13;Geological Field Trips and Maps;Evolution of the Fiastrone Gorge…;2026;CC BY 4.0;Fiastra;MC;;;Gola del Fiastrone
+```
+* `DOI`, `Rivista`, `Titolo`, `Anno`, `Licenza` obbligatori; poi `Comune` + `Provincia` **oppure** `Lat` + `Lon`, come per il Journal of Maps.
+* Un DOI del Journal of Maps, un DOI ripetuto, un campo obbligatorio vuoto o un comune inesistente fanno fallire l'Action con il numero della riga.
+
 ## Rigenerare i dati
 Ogni livello ha uno script che lo ricostruisce dalla fonte. Le istruzioni per scaricare i dati di partenza sono nell'intestazione di ciascuno script.
 
@@ -121,6 +140,7 @@ python3 -I scripts/build_carg.py carggate.json <regions>
 python3 -I scripts/build_100k.py                       # serve accesso ai siti ISPRA (quadro d'unione e catalogo)
 python3 -I scripts/scarica_crossref.py crossref.json   # serve accesso a api.crossref.org
 python3 -I scripts/build_jom.py crossref.json <regions> <provinces> <municipalities>
+python3 -I scripts/build_altre_riviste.py <municipalities>
 python3 -I scripts/build_geoportali.py <regions> <provinces>
 python3 -I scripts/dettagli_popup.py                   # testo dei popup (campo Dettagli)
 python3 -I scripts/valida_dati.py                      # controllo qualità: va eseguito prima di ogni commit

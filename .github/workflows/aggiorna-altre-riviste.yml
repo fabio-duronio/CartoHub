@@ -1,0 +1,60 @@
+# Ricostruisce il livello «Altre riviste» (carte allegate ad articoli di riviste diverse dal Journal of Maps).
+# Livello manuale: parte solo a ogni modifica di dati/altre_riviste/localizzazioni.csv o dello script,
+# oppure a mano (Actions → Aggiorna Altre riviste → Run workflow). Nessun aggiornamento programmato.
+# Se i dati non cambiano non fa commit; se il validatore trova errori si ferma senza toccare nulla.
+name: Aggiorna Altre riviste
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "dati/altre_riviste/*.csv"
+      - "scripts/build_altre_riviste.py"
+      - ".github/workflows/aggiorna-altre-riviste.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aggiorna-altre-riviste
+  cancel-in-progress: false
+
+env:
+  # Confini ISTAT (CC BY 4.0) da openpolis/geojson-italy, stesso commit del livello Journal of Maps.
+  OPENPOLIS: https://raw.githubusercontent.com/openpolis/geojson-italy/ba3347df3a53352891109f8198c597a0273684c0/geojson
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Scarica confini comunali ISTAT
+        run: curl -fsSL --retry 3 -o "$RUNNER_TEMP/municipalities.geojson" "$OPENPOLIS/limits_IT_municipalities.geojson"
+
+      - name: Ricostruisci il livello
+        run: python3 -I scripts/build_altre_riviste.py "$RUNNER_TEMP/municipalities.geojson" | tee "$RUNNER_TEMP/esito.txt"
+
+      - name: Testo dei popup per uMap
+        run: python3 -I scripts/dettagli_popup.py
+
+      - name: Valida
+        run: python3 -I scripts/valida_dati.py
+
+      - name: Commit se ci sono novità
+        run: |
+          if git diff --quiet -- dati/altre_riviste && [ -z "$(git ls-files --others --exclude-standard dati/altre_riviste)" ]; then
+            echo "Nessuna novità."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dati/altre_riviste
+          git commit -m "Altre riviste: aggiornamento $(date -u +%Y-%m-%d)" -m "$(cat "$RUNNER_TEMP/esito.txt")"
+          git push

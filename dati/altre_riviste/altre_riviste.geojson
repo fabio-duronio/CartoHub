@@ -4,6 +4,75 @@
   {
    "type": "Feature",
    "properties": {
+    "Title": "Mapping the geology of the 2016 Central Italy earthquake fault (Mt. Vettore – Mt. Bove fault, Sibillini Mts.): geological details on the Cupi – Ussita and Mt. Bove – Mt. Porche segments and overall pattern of coseismic surface faulting",
+    "DOI": "10.3301/GFT.2019.03",
+    "URL": "https://doi.org/10.3301/GFT.2019.03",
+    "Location": "Ussita (MC)",
+    "Type": "Research Map",
+    "Rivista": "Geological Field Trips and Maps",
+    "Anno": 2019,
+    "Licenza": "CC BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Pagina dell'articolo (metadati); localizzazione manuale (Geologiaintasca)",
+    "Dettagli": "**Rivista:** Geological Field Trips and Maps\n**Luogo:** Ussita (MC)\n**Anno:** 2019\n**Licenza:** CC BY 4.0\n**Posizione:** centroide del comune indicato dal curatore\n[[https://doi.org/10.3301/GFT.2019.03|Articolo (DOI)]]"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1634,
+     42.9423
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Geological map of the Mt. Vettoretto–Capodacqua area (Central Apennines, Italy) and cross-cutting relationships between Sibillini Mts. Thrust and Mt. Vettore normal faults system",
+    "DOI": "10.3301/GFT.2020.04",
+    "URL": "https://doi.org/10.3301/GFT.2020.04",
+    "Location": "Arquata del Tronto (AP)",
+    "Type": "Research Map",
+    "Rivista": "Geological Field Trips and Maps",
+    "Anno": 2020,
+    "Licenza": "CC BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Pagina dell'articolo (metadati); localizzazione manuale (Geologiaintasca)",
+    "Dettagli": "**Rivista:** Geological Field Trips and Maps\n**Luogo:** Arquata del Tronto (AP)\n**Anno:** 2020\n**Licenza:** CC BY 4.0\n**Posizione:** centroide del comune indicato dal curatore\n[[https://doi.org/10.3301/GFT.2020.04|Articolo (DOI)]]"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.2832,
+     42.7625
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Stratigraphy and tectonic evolution of a portion of the Simbruini-Ernici Mountains (Central Apennines - Italy): review and new data from detailed geological mapping",
+    "DOI": "10.3301/GFT.2023.08",
+    "URL": "https://doi.org/10.3301/GFT.2023.08",
+    "Location": "Guarcino (FR)",
+    "Type": "Research Map",
+    "Rivista": "Geological Field Trips and Maps",
+    "Anno": 2023,
+    "Licenza": "CC BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Pagina dell'articolo (metadati); localizzazione manuale (Geologiaintasca)",
+    "Dettagli": "**Rivista:** Geological Field Trips and Maps\n**Luogo:** Guarcino (FR)\n**Anno:** 2023\n**Licenza:** CC BY 4.0\n**Posizione:** centroide del comune indicato dal curatore\n[[https://doi.org/10.3301/GFT.2023.08|Articolo (DOI)]]"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.309,
+     41.8136
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
     "Title": "Evolution of the Fiastrone Gorge from Jurassic Rifting to Apennine Orogeny. Insights from new detailed geological mapping",
     "DOI": "10.3301/GFT.2026.13",
     "URL": "https://doi.org/10.3301/GFT.2026.13",

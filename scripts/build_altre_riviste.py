@@ -48,6 +48,9 @@ def main(p_com):
     features, errori, visti = [], [], {}
     with open(CSV, encoding="utf-8-sig", newline="") as fh:
         for n, r in enumerate(csv.DictReader(fh, delimiter=";"), start=2):
+            if None in r:  # colonne in più: quasi sempre un «;» dentro le Note, che ne taglierebbe il testo
+                errori.append(f"riga {n}: troppe colonne (un ';' nelle Note? usare la virgola)")
+                continue
             r = {k.strip(): (v or "").strip() for k, v in r.items() if k}
             if not any(r.values()):
                 continue

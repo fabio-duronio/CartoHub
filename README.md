@@ -16,7 +16,7 @@ I dati sono file GeoJSON nella cartella `dati/`, letti sia dalla mappa web sia d
 | Carta Geologica d'Italia 1:100.000 | `dati/carta_100k/carta_100k_fogli.geojson` | 278 fogli | Quadro d'unione e catalogo Biblioteca ISPRA |
 | Journal of Maps | `dati/journal_of_maps/jom_italia.geojson` | 191 pubblicazioni | Crossref + confini ISTAT |
 | JoM – studi a scala regionale | `dati/journal_of_maps/jom_regionali.geojson` | 122 pubblicazioni | Crossref + confini ISTAT |
-| Altre riviste | `dati/altre_riviste/altre_riviste.geojson` | 1 pubblicazione | Selezione manuale + confini ISTAT |
+| Altre riviste | `dati/altre_riviste/altre_riviste.geojson` | 4 pubblicazioni | Selezione manuale + confini ISTAT |
 | Geoportali regionali | `dati/geoportali_regionali/geoportali_regionali.geojson` | 21 enti | Selezione manuale + confini ISTAT |
 
 Campi comuni a tutti i livelli: `Title`, `URL`, `Location`, `Type`. Il campo `Dettagli` contiene il testo del popup di uMap (stesse etichette e link di `index.html`), generato da `scripts/dettagli_popup.py`.
@@ -128,7 +128,7 @@ Il file [`dati/altre_riviste/localizzazioni.csv`](dati/altre_riviste/localizzazi
 DOI;Rivista;Titolo;Anno;Licenza;Comune;Provincia;Lat;Lon;Note
 10.3301/GFT.2026.13;Geological Field Trips and Maps;Evolution of the Fiastrone Gorge…;2026;CC BY 4.0;Fiastra;MC;;;Gola del Fiastrone
 ```
-* `DOI`, `Rivista`, `Titolo`, `Anno`, `Licenza` obbligatori; poi `Comune` + `Provincia` **oppure** `Lat` + `Lon`, come per il Journal of Maps.
+* `DOI`, `Rivista`, `Titolo`, `Anno`, `Licenza` obbligatori. Nelle `Note` niente punto e virgola (è il separatore): usare la virgola. Poi `Comune` + `Provincia` **oppure** `Lat` + `Lon`, come per il Journal of Maps.
 * Un DOI del Journal of Maps, un DOI ripetuto, un campo obbligatorio vuoto o un comune inesistente fanno fallire l'Action con il numero della riga.
 
 ## Rigenerare i dati

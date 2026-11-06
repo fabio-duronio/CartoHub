@@ -107,6 +107,22 @@ def controlla_file(path):
             if not p.get("Dettagli"):
                 segnala("E", nome, f"{p.get('DOI')}: campo Dettagli vuoto (eseguire scripts/dettagli_popup.py)")
 
+    if "altre_riviste" in nome:
+        for f in fs:
+            p = f["properties"]
+            doi = str(p.get("DOI", "")).lower()
+            if doi.startswith(JOM_PREFIX):
+                segnala("E", nome, f"{p.get('DOI')}: DOI del Journal of Maps (va nel livello Journal of Maps)")
+            if doi in doi_jom and "journal_of_maps" in doi_jom[doi]:
+                segnala("E", nome, f"{p.get('DOI')}: presente anche in {doi_jom[doi]}")
+            for c in ("DOI", "Rivista", "Anno", "Licenza", "Precisione"):
+                if not p.get(c):
+                    segnala("E", nome, f"{p.get('DOI')}: campo {c} vuoto")
+            if p.get("Precisione") not in ("Comune", "Coordinate"):
+                segnala("E", nome, f"{p.get('DOI')}: precisione '{p.get('Precisione')}' non prevista (solo Comune o Coordinate)")
+            if not p.get("Dettagli"):
+                segnala("E", nome, f"{p.get('DOI')}: campo Dettagli vuoto (eseguire scripts/dettagli_popup.py)")
+
     if "carta_100k" in nome:
         # Punti di controllo: il foglio deve contenere la località che gli dà il nome
         controlli = {"Pescara": (14.21, 42.46), "Sulmona": (13.93, 42.05), "Lanciano": (14.39, 42.23)}
@@ -180,7 +196,8 @@ def controlla_csv_jom():
 
 
 def main():
-    files = sorted(ROOT.rglob("*.geojson"))
+    # Journal of Maps per primo: il controllo dei doppioni di «Altre riviste» usa i DOI già visti
+    files = sorted(ROOT.rglob("*.geojson"), key=lambda p: ("journal_of_maps" not in p.parts, p))
     for f in files:
         controlla_file(f)
     controlla_csv_jom()

@@ -138,7 +138,7 @@
       attribution: 'TINITALY/1.1 © INGV (CC BY 4.0), doi:10.13127/tinitaly/1.1' })
   };
   sfondi['OpenStreetMap'].addTo(map);
-  map.attributionControl.addAttribution('Dati: ISPRA, Journal of Maps, Crossref, ISTAT');
+  map.attributionControl.addAttribution('Dati: ISPRA, Journal of Maps, Crossref, ISTAT, riviste citate');
 
   // ---------- Utilità ----------
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
@@ -173,7 +173,7 @@
   // ---------- Livelli dei dati (GeoJSON del repository) ----------
   const COLORI_CARG = { 'Stampato': '#FF0000', 'In attesa di stampa': '#A87000',
                         'In allestimento per la stampa': '#FFAA00', 'Rilevamento in corso': '#A3FF73' };
-  const COLORE_JOM = '#1a237e', COLORE_JOM_REG = '#5c6bc0';
+  const COLORE_JOM = '#1a237e', COLORE_JOM_REG = '#5c6bc0', COLORE_ALTRE = '#8e24aa';
 
   const livelli = [
     { nome: 'Journal of Maps', file: 'dati/journal_of_maps/jom_italia.geojson', colore: COLORE_JOM, punti: true,
@@ -189,9 +189,15 @@
       opzioni: { interactive: false, style: { color: '#2e8b57', weight: 2, fillOpacity: 0.03 } } },
     // Studi su un'intera regione o provincia (area vasta) e articoli con la sola regione nel titolo, ancora da localizzare
     { nome: 'JoM – studi a scala regionale', file: 'dati/journal_of_maps/jom_regionali.geojson', colore: COLORE_JOM_REG,
-      punti: true, regionale: true, visibile: false, opzioni: {} }
+      punti: true, regionale: true, visibile: false, opzioni: {} },
+    // Carte allegate ad articoli di altre riviste (es. Geological Field Trips and Maps), aggiunte a mano
+    // quando un post di Geologiaintasca ne parla: dati/altre_riviste/localizzazioni.csv
+    { nome: 'Altre riviste', file: 'dati/altre_riviste/altre_riviste.geojson', colore: COLORE_ALTRE, punti: true,
+      opzioni: { pointToLayer: (f, ll) => L.circleMarker(ll, {
+        radius: 7, color: '#fff', weight: 1, bubblingMouseEvents: false, fillColor: COLORE_ALTRE, fillOpacity: 0.9 }) } }
   ];
-  const livelliJom = () => [livelli[0], livelli[4]];
+  // Livelli di articoli (ricerca, ?doi=): Journal of Maps, JoM regionale, Altre riviste
+  const livelliJom = () => [livelli[0], livelli[4], livelli[5]];
 
   // ---------- Geologia ISPRA (servizi WMS, interrogabili al clic) ----------
   map.createPane('geologia'); map.getPane('geologia').style.zIndex = 350;  // sotto i fogli e i punti
@@ -270,7 +276,7 @@
       if (l.regionale) return aggiungiTarga(gruppo, fs);
       if (fs.length === 1) {
         const f = fs[0], ll = L.GeoJSON.coordsToLatLng(f.geometry.coordinates);
-        const m = livelli[0].opzioni.pointToLayer(f, ll);
+        const m = l.opzioni.pointToLayer(f, ll);
         m.feature = f;
         m.bindPopup(`<b>${esc(f.properties.Title)}</b><br>${daDettagli(f.properties.Dettagli)}` +
           (f.properties.DOI ? `<div class="azioni">${pulsanteLink(linkArticolo(f), "Copia link all'articolo")}</div>` : ''));
@@ -283,7 +289,7 @@
       const lato = fs.length < 10 ? 20 : 24;
       const m = L.marker(L.GeoJSON.coordsToLatLng(fs[0].geometry.coordinates), {
         icon: L.divIcon({ className: '', iconSize: [lato, lato],
-          html: `<div class="gruppo-jom" style="width:${lato}px;height:${lato}px">${fs.length}</div>` }),
+          html: `<div class="gruppo-jom" style="width:${lato}px;height:${lato}px;background:${l.colore}">${fs.length}</div>` }),
         title: `${fs.length} articoli – ${p0.Location}`, keyboard: true });
       // Riga «Posizione» di ciascun articolo (stesso punto, ma l'origine può essere manuale o automatica)
       const posizione = [...new Set(fs.map(f => (f.properties.Dettagli || '').split('\n')
@@ -348,9 +354,10 @@
   const etichetta = l => `<span style="color:${l.colore}">■</span> ${l.nome}` + (l.dati ? ` (${l.dati.length})` : '');
   const etichettaGeo = g => `<span style="color:#8d6e63">▦</span> ${g.nome}`;
   function riempiControllo() {
-    // Ordine per scala e priorità: 1:100.000, 1:50.000, 1:25.000, geoportali, Journal of Maps
+    // Ordine per scala e priorità: 1:100.000, 1:50.000, 1:25.000, geoportali, Journal of Maps, Altre riviste
     const ordine = [[livelli[2], etichetta], [geologia[1], etichettaGeo], [livelli[1], etichetta],
-                    [geologia[0], etichettaGeo], [livelli[3], etichetta], [livelli[0], etichetta], [livelli[4], etichetta]];
+                    [geologia[0], etichettaGeo], [livelli[3], etichetta], [livelli[0], etichetta], [livelli[4], etichetta],
+                    [livelli[5], etichetta]];
     ordine.forEach(([x]) => controllo.removeLayer(x.layer));
     ordine.forEach(([x, f]) => controllo.addOverlay(x.layer, f(x)));
   }
@@ -476,7 +483,7 @@
 
   // ---------- Ricerca ----------
   // 1) Subito, mentre si scrive, nei dati già caricati: fogli CARG e 1:100.000 (numero o nome),
-  //    Journal of Maps (titolo o luogo), coordinate «lat, lon».
+  //    articoli di Journal of Maps e Altre riviste (titolo o luogo), coordinate «lat, lon».
   // 2) Con Invio o con il pulsante, anche tra le località di OpenStreetMap (Nominatim): le sue regole d'uso
   //    vietano le richieste durante la digitazione e ammettono al massimo una richiesta al secondo.
   const ricerca = L.control({ position: 'topleft' });
@@ -607,6 +614,7 @@
         Sfondi: © OpenStreetMap contributors (ODbL); OpenTopoMap (CC BY-SA); ortofoto AGEA 2022-2024 © AGEA (CC BY 4.0); TINITALY/1.1 © INGV, Tarquini et al. 2023, doi:10.13127/tinitaly/1.1 (CC BY 4.0).<br>
         Ricerca delle località: Nominatim, © OpenStreetMap contributors.<br>
         Journal of Maps: indicizzati solo i metadati bibliografici; gli articoli restano di autori ed editore, con la licenza indicata su ciascuno.<br>
+        Altre riviste: selezione manuale di carte geologiche allegate ad articoli Open Access con licenza aperta dichiarata; indicizzati solo i metadati, gli articoli restano di autori ed editore.<br>
         Codice: licenza MIT.</p>
         <p class="meta">Geologiaintasca non è titolare dei dati cartografici collegati: fornisce solo il servizio di indicizzazione geografica.</p>
       </div>`;
@@ -632,7 +640,8 @@
       '<br><b>Geologia ISPRA</b><br><span class="meta">colori della carta ufficiale; clic per i dettagli</span>' +
       `<br><b>Journal of Maps</b><br><i style="background:${COLORE_JOM};border-radius:50%"></i>comune o coordinate` +
       `<br><i style="background:${COLORE_JOM};border-radius:50%;width:14px;height:14px;color:#fff;font:bold 9px/14px sans-serif;text-align:center;font-style:normal;vertical-align:-3px">3</i>più articoli nello stesso punto` +
-      `<br><i style="background:${COLORE_JOM_REG};border-radius:3px;width:22px"></i>studi a scala regionale e da localizzare</div>`;
+      `<br><i style="background:${COLORE_JOM_REG};border-radius:3px;width:22px"></i>studi a scala regionale e da localizzare` +
+      `<br><b>Altre riviste</b><br><i style="background:${COLORE_ALTRE};border-radius:50%"></i>carta allegata all'articolo (comune o coordinate)</div>`;
     const tb = d.querySelector('.titolo-legenda'), voci = d.querySelector('.voci-legenda');
     const apri = x => { voci.hidden = !x; tb.setAttribute('aria-expanded', x); };
     apri(window.innerWidth > 600);

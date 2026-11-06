@@ -1,0 +1,27 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "Title": "Evolution of the Fiastrone Gorge from Jurassic Rifting to Apennine Orogeny. Insights from new detailed geological mapping",
+    "DOI": "10.3301/GFT.2026.13",
+    "URL": "https://doi.org/10.3301/GFT.2026.13",
+    "Location": "Fiastra (MC)",
+    "Type": "Research Map",
+    "Rivista": "Geological Field Trips and Maps",
+    "Anno": 2026,
+    "Licenza": "CC BY 4.0",
+    "Precisione": "Comune",
+    "Fonte": "Pagina dell'articolo (metadati); localizzazione manuale (Geologiaintasca)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.1698,
+     43.0394
+    ]
+   }
+  }
+ ]
+}

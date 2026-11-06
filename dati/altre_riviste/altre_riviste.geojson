@@ -13,7 +13,8 @@
     "Anno": 2026,
     "Licenza": "CC BY 4.0",
     "Precisione": "Comune",
-    "Fonte": "Pagina dell'articolo (metadati); localizzazione manuale (Geologiaintasca)"
+    "Fonte": "Pagina dell'articolo (metadati); localizzazione manuale (Geologiaintasca)",
+    "Dettagli": "**Rivista:** Geological Field Trips and Maps\n**Luogo:** Fiastra (MC)\n**Anno:** 2026\n**Licenza:** CC BY 4.0\n**Posizione:** centroide del comune indicato dal curatore\n[[https://doi.org/10.3301/GFT.2026.13|Articolo (DOI)]]"
    },
    "geometry": {
     "type": "Point",
